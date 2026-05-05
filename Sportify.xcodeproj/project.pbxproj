@@ -3,17 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		39A8B6412FAA064D00CA4BDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A8B6402FAA064D00CA4BDD /* AppDelegate.swift */; };
 		39A8B6432FAA064D00CA4BDD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A8B6422FAA064D00CA4BDD /* SceneDelegate.swift */; };
 		39A8B6452FAA064D00CA4BDD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A8B6442FAA064D00CA4BDD /* ViewController.swift */; };
-		39A8B6482FAA064D00CA4BDD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39A8B6462FAA064D00CA4BDD /* Main.storyboard */; };
 		39A8B64B2FAA064D00CA4BDD /* Sportify.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 39A8B6492FAA064D00CA4BDD /* Sportify.xcdatamodeld */; };
 		39A8B64D2FAA064E00CA4BDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39A8B64C2FAA064E00CA4BDD /* Assets.xcassets */; };
-		39A8B6502FAA064E00CA4BDD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39A8B64E2FAA064E00CA4BDD /* LaunchScreen.storyboard */; };
 		39A8B65B2FAA064F00CA4BDD /* SportifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A8B65A2FAA064F00CA4BDD /* SportifyTests.swift */; };
 		39A8B6652FAA064F00CA4BDD /* SportifyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A8B6642FAA064F00CA4BDD /* SportifyUITests.swift */; };
 		39A8B6672FAA064F00CA4BDD /* SportifyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A8B6662FAA064F00CA4BDD /* SportifyUITestsLaunchTests.swift */; };
@@ -41,10 +39,8 @@
 		39A8B6402FAA064D00CA4BDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		39A8B6422FAA064D00CA4BDD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		39A8B6442FAA064D00CA4BDD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		39A8B6472FAA064D00CA4BDD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		39A8B64A2FAA064D00CA4BDD /* Sportify.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Sportify.xcdatamodel; sourceTree = "<group>"; };
 		39A8B64C2FAA064E00CA4BDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		39A8B64F2FAA064E00CA4BDD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		39A8B6512FAA064E00CA4BDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39A8B6562FAA064E00CA4BDD /* SportifyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SportifyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		39A8B65A2FAA064F00CA4BDD /* SportifyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportifyTests.swift; sourceTree = "<group>"; };
@@ -52,6 +48,11 @@
 		39A8B6642FAA064F00CA4BDD /* SportifyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportifyUITests.swift; sourceTree = "<group>"; };
 		39A8B6662FAA064F00CA4BDD /* SportifyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportifyUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		6DFCD9762FAA279C00A29705 /* view */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = view; sourceTree = "<group>"; };
+		6DFCD9772FAA27C400A29705 /* modules */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = modules; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		39A8B63A2FAA064D00CA4BDD /* Frameworks */ = {
@@ -101,12 +102,12 @@
 		39A8B63F2FAA064D00CA4BDD /* Sportify */ = {
 			isa = PBXGroup;
 			children = (
+				6DFCD9772FAA27C400A29705 /* modules */,
+				6DFCD9762FAA279C00A29705 /* view */,
 				39A8B6402FAA064D00CA4BDD /* AppDelegate.swift */,
 				39A8B6422FAA064D00CA4BDD /* SceneDelegate.swift */,
 				39A8B6442FAA064D00CA4BDD /* ViewController.swift */,
-				39A8B6462FAA064D00CA4BDD /* Main.storyboard */,
 				39A8B64C2FAA064E00CA4BDD /* Assets.xcassets */,
-				39A8B64E2FAA064E00CA4BDD /* LaunchScreen.storyboard */,
 				39A8B6512FAA064E00CA4BDD /* Info.plist */,
 				39A8B6492FAA064D00CA4BDD /* Sportify.xcdatamodeld */,
 			);
@@ -144,6 +145,10 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				6DFCD9762FAA279C00A29705 /* view */,
+				6DFCD9772FAA27C400A29705 /* modules */,
 			);
 			name = Sportify;
 			productName = Sportify;
@@ -234,9 +239,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39A8B6502FAA064E00CA4BDD /* LaunchScreen.storyboard in Resources */,
 				39A8B64D2FAA064E00CA4BDD /* Assets.xcassets in Resources */,
-				39A8B6482FAA064D00CA4BDD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,25 +302,6 @@
 			targetProxy = 39A8B6612FAA064F00CA4BDD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		39A8B6462FAA064D00CA4BDD /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				39A8B6472FAA064D00CA4BDD /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		39A8B64E2FAA064E00CA4BDD /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				39A8B64F2FAA064E00CA4BDD /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		39A8B6682FAA064F00CA4BDD /* Debug */ = {

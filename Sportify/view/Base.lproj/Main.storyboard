@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9zy-aH-3LQ">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Sportify" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="140" y="138"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="nGK-c7-FXy">
+            <objects>
+                <viewController id="7I0-GJ-aFf" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Jcq-yf-CVR">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="vvx-Wh-3K7"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="oJM-dQ-DnC"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fmE-PD-Kpt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1975" y="549"/>
+        </scene>
+        <!--Sports-->
+        <scene sceneID="ySM-KM-YGd">
+            <objects>
+                <viewController storyboardIdentifier="sportScreen" id="Pod-Qf-Y7F" customClass="SportsViewController" customModule="Sportify" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3B4-lj-K60">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SPORTIFY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRc-vC-eqw">
+                                <rect key="frame" x="16" y="118" width="164" height="41"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="18w-cg-xMi">
+                                <rect key="frame" x="16" y="183" width="361" height="536"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewLayout key="collectionViewLayout" id="tIV-zC-PI5"/>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="liveScore" id="Eu8-WZ-BHM">
+                                        <rect key="frame" x="1" y="0.0" width="359" height="184"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="VaL-0y-9pU">
+                                            <rect key="frame" x="0.0" y="0.0" width="359" height="184"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="359" height="184"/>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="sports" id="O90-Tr-Z58">
+                                        <rect key="frame" x="47.666666666666664" y="194" width="266" height="131"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="KEh-nW-2Bw">
+                                            <rect key="frame" x="0.0" y="0.0" width="266" height="131"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="266" height="131"/>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="iCJ-2b-ITH"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="eRc-vC-eqw" firstAttribute="leading" secondItem="iCJ-2b-ITH" secondAttribute="leading" constant="16" id="SkU-bD-b1R"/>
+                            <constraint firstItem="18w-cg-xMi" firstAttribute="top" secondItem="eRc-vC-eqw" secondAttribute="bottom" constant="24" id="UrJ-xp-GIB"/>
+                            <constraint firstItem="eRc-vC-eqw" firstAttribute="top" secondItem="iCJ-2b-ITH" secondAttribute="top" id="lYN-3Q-tfJ"/>
+                            <constraint firstItem="iCJ-2b-ITH" firstAttribute="trailing" secondItem="18w-cg-xMi" secondAttribute="trailing" constant="16" id="uuX-ea-HG7"/>
+                            <constraint firstItem="18w-cg-xMi" firstAttribute="leading" secondItem="iCJ-2b-ITH" secondAttribute="leading" constant="16" id="vTQ-pe-MSW"/>
+                            <constraint firstItem="iCJ-2b-ITH" firstAttribute="bottom" secondItem="18w-cg-xMi" secondAttribute="bottom" constant="16" id="yUy-Wh-kbm"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Sports" image="home_icon" landscapeImage="home_icon" largeContentSizeImage="home_icon" id="Xqi-OP-ALQ"/>
+                    <connections>
+                        <outlet property="homeCollectionView" destination="18w-cg-xMi" id="d89-Ee-gn9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lFP-5e-Wzx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1974.8091603053435" y="-159.1549295774648"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="UF7-iY-tKb">
+            <objects>
+                <tabBarController id="9zy-aH-3LQ" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6s2-5J-fkn">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Pod-Qf-Y7F" kind="relationship" relationship="viewControllers" id="CPm-by-qgQ"/>
+                        <segue destination="7I0-GJ-aFf" kind="relationship" relationship="viewControllers" id="d6w-1I-dRV"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pz8-Tu-aHC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1068" y="144"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="home_icon" width="22" height="22"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
