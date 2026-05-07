@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EPU-gD-dQ1" userLabel="background">
-                        <rect key="frame" x="0.0" y="8" width="1189" height="351"/>
+                        <rect key="frame" x="8" y="8" width="1189" height="335"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="3fL-yG-IBX" userLabel="cardHeader">
                                 <rect key="frame" x="8" y="7.9999999999999991" width="1173" height="15.666666666666664"/>
@@ -53,10 +53,10 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="AIm-aV-q1C" userLabel="teamsResult">
-                                <rect key="frame" x="16" y="47.666666666666664" width="1157" height="84.333333333333343"/>
+                                <rect key="frame" x="16" y="31.666666666666664" width="1157" height="68.333333333333343"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Zoa-61-EbX" userLabel="homeTeam">
-                                        <rect key="frame" x="0.0" y="0.0" width="385.66666666666669" height="84.333333333333329"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Zoa-61-EbX" userLabel="homeTeam">
+                                        <rect key="frame" x="0.0" y="0.0" width="385.66666666666669" height="68.333333333333329"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="teamLogo" translatesAutoresizingMaskIntoConstraints="NO" id="sdB-JD-Pao">
                                                 <rect key="frame" x="173" y="0.0" width="40" height="40"/>
@@ -66,7 +66,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ASC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bgq-yL-lgF">
-                                                <rect key="frame" x="175.33333333333334" y="64" width="35.333333333333343" height="20.333333333333329"/>
+                                                <rect key="frame" x="175.33333333333334" y="48.000000000000007" width="35.333333333333343" height="20.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <color key="textColor" name="TextBlack"/>
                                                 <nil key="highlightedColor"/>
@@ -74,13 +74,13 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 - 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EJ3-6w-qX3">
-                                        <rect key="frame" x="385.66666666666663" y="25.333333333333339" width="385.66666666666663" height="33.666666666666657"/>
+                                        <rect key="frame" x="385.66666666666663" y="17.333333333333339" width="385.66666666666663" height="33.666666666666657"/>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="28"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="gdu-y6-RWx" userLabel="awayTeam">
-                                        <rect key="frame" x="771.33333333333337" y="0.0" width="385.66666666666663" height="84.333333333333329"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gdu-y6-RWx" userLabel="awayTeam">
+                                        <rect key="frame" x="771.33333333333337" y="0.0" width="385.66666666666663" height="68.333333333333329"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="teamLogo" translatesAutoresizingMaskIntoConstraints="NO" id="OhN-0h-XdK">
                                                 <rect key="frame" x="173" y="0.0" width="40" height="40"/>
@@ -90,7 +90,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ASC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g3W-68-WlI">
-                                                <rect key="frame" x="175.33333333333326" y="64" width="35.333333333333343" height="20.333333333333329"/>
+                                                <rect key="frame" x="175.33333333333326" y="48.000000000000007" width="35.333333333333343" height="20.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <color key="textColor" name="TextBlack"/>
                                                 <nil key="highlightedColor"/>
@@ -100,43 +100,43 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cwh-rz-yDX" userLabel="divider">
-                                <rect key="frame" x="24" y="156" width="1141" height="1.6666666666666572"/>
+                                <rect key="frame" x="24" y="108" width="1141" height="1.6666666666666714"/>
                                 <color key="backgroundColor" name="GreyColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1.5" id="VSc-ge-Z4L"/>
                                 </constraints>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ocR-vJ-lQk">
-                                <rect key="frame" x="24" y="181.66666666666666" width="1141" height="39.333333333333343"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="ocR-vJ-lQk">
+                                <rect key="frame" x="24" y="117.66666666666667" width="1141" height="39.333333333333329"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="WJc-U3-9Oo">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="WJc-U3-9Oo">
                                         <rect key="frame" x="0.0" y="0.0" width="570.66666666666663" height="39.333333333333336"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⚽ Calvert-Lewin 14'" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uf4-m9-d79">
-                                                <rect key="frame" x="0.0" y="0.0" width="570.66666666666663" height="15.666666666666666"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="131.33333333333334" height="15.666666666666666"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⚽ Calvert-Lewin 14'" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qwr-e2-uIa">
-                                                <rect key="frame" x="0.0" y="23.666666666666686" width="570.66666666666663" height="15.666666666666664"/>
+                                                <rect key="frame" x="0.0" y="23.666666666666671" width="131.33333333333334" height="15.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Wrf-c7-oMh">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Wrf-c7-oMh">
                                         <rect key="frame" x="570.66666666666652" y="0.0" width="570.33333333333348" height="39.333333333333336"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⚽ Calvert-Lewin 14'" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQj-BY-na4">
-                                                <rect key="frame" x="0.0" y="0.0" width="570.33333333333337" height="15.666666666666666"/>
+                                                <rect key="frame" x="439.00000000000011" y="0.0" width="131.33333333333337" height="15.666666666666666"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⚽ Calvert-Lewin 14'" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5t8-GS-jxo">
-                                                <rect key="frame" x="0.0" y="23.666666666666686" width="570.33333333333337" height="15.666666666666664"/>
+                                                <rect key="frame" x="439.00000000000011" y="23.666666666666671" width="131.33333333333337" height="15.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -148,12 +148,12 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="AIm-aV-q1C" firstAttribute="top" secondItem="3fL-yG-IBX" secondAttribute="bottom" constant="24" id="4d7-P6-VHM"/>
-                            <constraint firstItem="cwh-rz-yDX" firstAttribute="top" secondItem="AIm-aV-q1C" secondAttribute="bottom" constant="24" id="7NT-qd-Kje"/>
+                            <constraint firstItem="AIm-aV-q1C" firstAttribute="top" secondItem="3fL-yG-IBX" secondAttribute="bottom" constant="8" id="4d7-P6-VHM"/>
+                            <constraint firstItem="cwh-rz-yDX" firstAttribute="top" secondItem="AIm-aV-q1C" secondAttribute="bottom" constant="8" id="7NT-qd-Kje"/>
                             <constraint firstItem="cwh-rz-yDX" firstAttribute="leading" secondItem="EPU-gD-dQ1" secondAttribute="leading" constant="24" id="DdP-2v-UWy"/>
                             <constraint firstItem="3fL-yG-IBX" firstAttribute="leading" secondItem="EPU-gD-dQ1" secondAttribute="leading" constant="8" id="EQO-Uv-0ov"/>
                             <constraint firstItem="ocR-vJ-lQk" firstAttribute="trailing" secondItem="EPU-gD-dQ1" secondAttribute="trailing" constant="-24" id="Oql-ad-fJ3"/>
-                            <constraint firstItem="ocR-vJ-lQk" firstAttribute="top" secondItem="cwh-rz-yDX" secondAttribute="bottom" constant="24" id="Qms-Zg-9Cd"/>
+                            <constraint firstItem="ocR-vJ-lQk" firstAttribute="top" secondItem="cwh-rz-yDX" secondAttribute="bottom" constant="8" id="Qms-Zg-9Cd"/>
                             <constraint firstItem="cwh-rz-yDX" firstAttribute="trailing" secondItem="EPU-gD-dQ1" secondAttribute="trailing" constant="-24" id="UIs-Pa-Kh6"/>
                             <constraint firstItem="3fL-yG-IBX" firstAttribute="top" secondItem="EPU-gD-dQ1" secondAttribute="top" constant="8" id="awI-as-RjU"/>
                             <constraint firstItem="ocR-vJ-lQk" firstAttribute="leading" secondItem="EPU-gD-dQ1" secondAttribute="leading" constant="24" id="bq6-Xj-gmv"/>
@@ -166,10 +166,10 @@
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstItem="EPU-gD-dQ1" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="98H-r9-XQL"/>
+                <constraint firstItem="EPU-gD-dQ1" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="98H-r9-XQL"/>
                 <constraint firstItem="EPU-gD-dQ1" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="EhU-rl-7nG"/>
-                <constraint firstItem="EPU-gD-dQ1" firstAttribute="trailing" secondItem="gTV-IL-0wX" secondAttribute="trailing" id="bHy-6w-Z9l"/>
-                <constraint firstAttribute="bottom" secondItem="EPU-gD-dQ1" secondAttribute="bottom" constant="-8" id="mWa-6k-5YL"/>
+                <constraint firstItem="EPU-gD-dQ1" firstAttribute="trailing" secondItem="gTV-IL-0wX" secondAttribute="trailing" constant="8" id="bHy-6w-Z9l"/>
+                <constraint firstAttribute="bottom" secondItem="EPU-gD-dQ1" secondAttribute="bottom" constant="8" id="mWa-6k-5YL"/>
             </constraints>
             <size key="customSize" width="1189" height="351"/>
             <connections>
