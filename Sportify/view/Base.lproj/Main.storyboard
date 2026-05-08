@@ -255,17 +255,50 @@
             </objects>
             <point key="canvasLocation" x="2869.5652173913045" y="137.94642857142856"/>
         </scene>
-        <!--View Controller-->
+        <!--FavouritesUI View Controller-->
         <scene sceneID="nGK-c7-FXy">
             <objects>
-                <viewController id="7I0-GJ-aFf" sceneMemberID="viewController">
+                <viewController id="7I0-GJ-aFf" customClass="FavouritesUIViewController" customModule="Sportify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jcq-yf-CVR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FAVOURITES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xIi-b6-ulo">
+                                <rect key="frame" x="16" y="96" width="206" height="41"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Nd8-Tw-bwf">
+                                <rect key="frame" x="0.0" y="137" width="414" height="642"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="favouriteCell" id="fCB-ko-QvV" customClass="FavouritesUITableViewCell" customModule="Sportify" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="414" height="53"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fCB-ko-QvV" id="8kU-Kh-DH8">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="53"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vvx-Wh-3K7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Nd8-Tw-bwf" firstAttribute="top" secondItem="xIi-b6-ulo" secondAttribute="bottom" id="4gA-zm-boh"/>
+                            <constraint firstItem="Nd8-Tw-bwf" firstAttribute="leading" secondItem="vvx-Wh-3K7" secondAttribute="leading" id="7nq-0y-806"/>
+                            <constraint firstItem="xIi-b6-ulo" firstAttribute="top" secondItem="vvx-Wh-3K7" secondAttribute="top" id="Amf-zc-nAk"/>
+                            <constraint firstItem="xIi-b6-ulo" firstAttribute="leading" secondItem="vvx-Wh-3K7" secondAttribute="leading" constant="16" id="KyS-mN-tqb"/>
+                            <constraint firstItem="vvx-Wh-3K7" firstAttribute="bottom" secondItem="Nd8-Tw-bwf" secondAttribute="bottom" id="MYg-kn-76f"/>
+                            <constraint firstItem="vvx-Wh-3K7" firstAttribute="trailing" secondItem="Nd8-Tw-bwf" secondAttribute="trailing" id="yKe-af-6p7"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="oJM-dQ-DnC"/>
+                    <connections>
+                        <outlet property="favouritesTable" destination="Nd8-Tw-bwf" id="l3J-YB-5SY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fmE-PD-Kpt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -286,7 +319,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="18w-cg-xMi">
-                                <rect key="frame" x="16" y="145" width="382" height="727"/>
+                                <rect key="frame" x="16" y="145" width="382" height="618"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewLayout key="collectionViewLayout" id="tIV-zC-PI5"/>
                                 <cells>
@@ -319,7 +352,7 @@
                             <constraint firstItem="eRc-vC-eqw" firstAttribute="top" secondItem="iCJ-2b-ITH" secondAttribute="top" id="lYN-3Q-tfJ"/>
                             <constraint firstItem="iCJ-2b-ITH" firstAttribute="trailing" secondItem="18w-cg-xMi" secondAttribute="trailing" constant="16" id="uuX-ea-HG7"/>
                             <constraint firstItem="18w-cg-xMi" firstAttribute="leading" secondItem="iCJ-2b-ITH" secondAttribute="leading" constant="16" id="vTQ-pe-MSW"/>
-                            <constraint firstAttribute="bottom" secondItem="18w-cg-xMi" secondAttribute="bottom" constant="24" id="w3A-Ah-mM8"/>
+                            <constraint firstItem="iCJ-2b-ITH" firstAttribute="bottom" secondItem="18w-cg-xMi" secondAttribute="bottom" constant="16" id="w3A-Ah-mM8"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Sports" image="home_icon" landscapeImage="home_icon" largeContentSizeImage="home_icon" id="Xqi-OP-ALQ"/>
