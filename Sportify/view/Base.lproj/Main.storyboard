@@ -641,6 +641,46 @@
             </objects>
             <point key="canvasLocation" x="6340.579710144928" y="-159.375"/>
         </scene>
+        <!--League List View Controller-->
+        <scene sceneID="SbS-sE-AB8">
+            <objects>
+                <viewController id="6zC-jv-taX" customClass="LeagueListViewController" customModule="Sportify" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5Cl-M8-D0D">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="gyx-24-QIu">
+                                <rect key="frame" x="0.0" y="104" width="414" height="724"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="leagueList" id="c5V-ug-4fR">
+                                        <rect key="frame" x="0.0" y="50" width="414" height="53"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c5V-ug-4fR" id="zhs-QL-9SE">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="53"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="yxk-Cs-MCM"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="yxk-Cs-MCM" firstAttribute="bottom" secondItem="gyx-24-QIu" secondAttribute="bottom" id="Aww-zA-woV"/>
+                            <constraint firstItem="gyx-24-QIu" firstAttribute="leading" secondItem="yxk-Cs-MCM" secondAttribute="leading" id="EHh-qg-VvB"/>
+                            <constraint firstItem="yxk-Cs-MCM" firstAttribute="trailing" secondItem="gyx-24-QIu" secondAttribute="trailing" id="HoF-u8-isA"/>
+                            <constraint firstItem="gyx-24-QIu" firstAttribute="top" secondItem="yxk-Cs-MCM" secondAttribute="top" constant="8" id="hMR-yF-3s9"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="leaguestTable" destination="gyx-24-QIu" id="EnJ-OC-aas"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aEo-ao-zhA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7187" y="-159"/>
+        </scene>
         <!--My Tab Bar Controller-->
         <scene sceneID="UF7-iY-tKb">
             <objects>
