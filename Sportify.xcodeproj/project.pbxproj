@@ -32,6 +32,8 @@
 		39C140642FAEBB340085A1C8 /* teamDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C140632FAEBB340085A1C8 /* teamDetailsViewController.swift */; };
 		39C140672FAECB6F0085A1C8 /* tableStandingsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C140652FAECB6F0085A1C8 /* tableStandingsCollectionViewCell.swift */; };
 		39C140682FAECB6F0085A1C8 /* tableStandingsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39C140662FAECB6F0085A1C8 /* tableStandingsCollectionViewCell.xib */; };
+		39E68A302FB135CF0087F9D6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 39E68A2F2FB135CF0087F9D6 /* Kingfisher */; };
+		39E68A332FB137130087F9D6 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 39E68A322FB137130087F9D6 /* Alamofire */; };
 		6D3E5F232FB0AE0700EFFE45 /* FavouritesEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3E5F222FB0AE0700EFFE45 /* FavouritesEmptyStateView.swift */; };
 		6D3E5F252FB0AE5F00EFFE45 /* FavouritesEmptyStateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D3E5F242FB0AE5F00EFFE45 /* FavouritesEmptyStateView.xib */; };
 		6D3E5F2A2FB1231A00EFFE45 /* LeagueListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3E5F292FB1231A00EFFE45 /* LeagueListViewController.swift */; };
@@ -122,6 +124,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39E68A302FB135CF0087F9D6 /* Kingfisher in Frameworks */,
+				39E68A332FB137130087F9D6 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +358,10 @@
 			dependencies = (
 			);
 			name = Sportify;
+			packageProductDependencies = (
+				39E68A2F2FB135CF0087F9D6 /* Kingfisher */,
+				39E68A322FB137130087F9D6 /* Alamofire */,
+			);
 			productName = Sportify;
 			productReference = 39A8B63D2FAA064D00CA4BDD /* Sportify.app */;
 			productType = "com.apple.product-type.application";
@@ -426,6 +434,10 @@
 				Base,
 			);
 			mainGroup = 39A8B6342FAA064D00CA4BDD;
+			packageReferences = (
+				39E68A2E2FB135CF0087F9D6 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				39E68A312FB137130087F9D6 /* XCRemoteSwiftPackageReference "alamofire" */,
+			);
 			productRefGroup = 39A8B63E2FAA064D00CA4BDD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -842,6 +854,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		39E68A2E2FB135CF0087F9D6 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = exactVersion;
+				version = 7.0.0;
+			};
+		};
+		39E68A312FB137130087F9D6 /* XCRemoteSwiftPackageReference "alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alamofire/alamofire";
+			requirement = {
+				kind = exactVersion;
+				version = 5.6.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		39E68A2F2FB135CF0087F9D6 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39E68A2E2FB135CF0087F9D6 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		39E68A322FB137130087F9D6 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39E68A312FB137130087F9D6 /* XCRemoteSwiftPackageReference "alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		39A8B6492FAA064D00CA4BDD /* Sportify.xcdatamodeld */ = {
