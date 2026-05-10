@@ -20,46 +20,41 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="2a2-te-wNA">
-                    <rect key="frame" x="4.6666666666666572" y="204" width="384" height="444"/>
-                    <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Empty_Fav" translatesAutoresizingMaskIntoConstraints="NO" id="u5j-k6-tNP">
-                            <rect key="frame" x="0.0" y="0.0" width="384" height="250"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="250" id="Lip-e0-otj"/>
-                            </constraints>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Favourites Yet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dKG-4n-AIF">
-                            <rect key="frame" x="89.333333333333329" y="274" width="205.33333333333337" height="31.333333333333314"/>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="26"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GlQ-p7-J20">
-                            <rect key="frame" x="29.333333333333343" y="329.33333333333337" width="325" height="40.666666666666686"/>
-                            <string key="text">Add leagues and teams to your favorites to
-quickly keep track of their latest matches.</string>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" name="TextGrey"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V2f-xb-PL9">
-                            <rect key="frame" x="82" y="394" width="220" height="50"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="50" id="6Ez-Pv-Z6v"/>
-                                <constraint firstAttribute="width" constant="220" id="m3f-K9-FK9"/>
-                            </constraints>
-                            <color key="tintColor" name="PrimaryColor"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="filled" title="Browse Sports">
-                                <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="24"/>
-                            </buttonConfiguration>
-                        </button>
-                    </subviews>
-                </stackView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FAVOURITES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s4h-G7-neU">
                     <rect key="frame" x="16" y="134" width="206" height="40.666666666666657"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Empty_Fav" translatesAutoresizingMaskIntoConstraints="NO" id="Fvg-x8-V3C">
+                    <rect key="frame" x="4.6666666666666572" y="190" width="384" height="384"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="250" id="8sV-if-0AD"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RtX-cb-a7X">
+                    <rect key="frame" x="32" y="622" width="329" height="40.666666666666629"/>
+                    <string key="text">Add leagues and teams to your favorites to
+quickly keep track of their latest matches.</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" name="TextGrey"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KQc-Ky-5E1">
+                    <rect key="frame" x="86.666666666666686" y="686.66666666666663" width="220" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="Dqg-ov-bHb"/>
+                        <constraint firstAttribute="width" constant="220" id="vvn-W1-tZM"/>
+                    </constraints>
+                    <color key="tintColor" name="PrimaryColor"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="filled" title="Browse Sports">
+                        <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="24"/>
+                    </buttonConfiguration>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Favourites Yet" textAlignment="natural" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mfj-v2-tOX">
+                    <rect key="frame" x="93.666666666666686" y="574" width="206" height="32"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="26"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -67,9 +62,16 @@ quickly keep track of their latest matches.</string>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="2a2-te-wNA" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="9wA-JD-pbC"/>
+                <constraint firstItem="KQc-Ky-5E1" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="13Q-hr-4cO"/>
+                <constraint firstItem="Fvg-x8-V3C" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="1iu-Hu-cKS"/>
+                <constraint firstItem="RtX-cb-a7X" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="32" id="377-qt-Gel"/>
+                <constraint firstItem="Mfj-v2-tOX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="4aM-NX-Q7t"/>
+                <constraint firstItem="Fvg-x8-V3C" firstAttribute="top" secondItem="s4h-G7-neU" secondAttribute="bottom" constant="15.333333333333343" id="4vx-gb-Djs"/>
+                <constraint firstItem="RtX-cb-a7X" firstAttribute="top" secondItem="Mfj-v2-tOX" secondAttribute="bottom" constant="16" id="5pE-5q-TYq"/>
+                <constraint firstItem="Mfj-v2-tOX" firstAttribute="top" secondItem="Fvg-x8-V3C" secondAttribute="bottom" id="7Gs-H1-V0p"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="RtX-cb-a7X" secondAttribute="trailing" constant="32" id="AAr-Qd-nj0"/>
                 <constraint firstItem="s4h-G7-neU" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="ANR-Li-PRE"/>
-                <constraint firstItem="2a2-te-wNA" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="dmA-pw-bDb"/>
+                <constraint firstItem="KQc-Ky-5E1" firstAttribute="top" secondItem="RtX-cb-a7X" secondAttribute="bottom" constant="24" id="qIj-OK-jCw"/>
                 <constraint firstItem="s4h-G7-neU" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="x0B-bo-TJm"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>

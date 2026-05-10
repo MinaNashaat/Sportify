@@ -13,7 +13,7 @@ class LeagueListViewController: UIViewController {
 
     let leagues: [String] = []
 
-    private let emptyView = FavouritesEmptyStateView()
+    private let emptyView = EmptyLeagueListState()
 
     override func viewDidLoad() {
         super.viewDidLoad()
