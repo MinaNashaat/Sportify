@@ -14,7 +14,7 @@
         <!--My Page View Controller-->
         <scene sceneID="GS1-T9-yZf">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="k0A-ab-lIe" customClass="myPageViewController" customModule="Sportify" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="startOnboarding" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="k0A-ab-lIe" customClass="myPageViewController" customModule="Sportify" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DmB-Xo-fMz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3933" y="145"/>
@@ -367,7 +367,7 @@
         <!--Team Details View Controller-->
         <scene sceneID="DRz-VF-y8M">
             <objects>
-                <viewController id="6YS-I4-YbX" customClass="teamDetailsViewController" customModule="Sportify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="teamEvents" id="6YS-I4-YbX" customClass="teamDetailsViewController" customModule="Sportify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6G4-Qx-o2u">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -529,7 +529,7 @@
         <!--League Details View Controller-->
         <scene sceneID="hzJ-mi-cZ2">
             <objects>
-                <viewController id="XB5-PU-7gP" customClass="leagueDetailsViewController" customModule="Sportify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="leagueEvent" id="XB5-PU-7gP" customClass="leagueDetailsViewController" customModule="Sportify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vgc-Yc-9kL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -644,7 +644,7 @@
         <!--League List View Controller-->
         <scene sceneID="SbS-sE-AB8">
             <objects>
-                <viewController id="6zC-jv-taX" customClass="LeagueListViewController" customModule="Sportify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="leagueList" id="6zC-jv-taX" customClass="LeagueListViewController" customModule="Sportify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5Cl-M8-D0D">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
