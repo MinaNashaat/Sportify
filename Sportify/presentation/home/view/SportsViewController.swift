@@ -95,8 +95,8 @@ extension SportsViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return section == 0
-        ? presenter.liveMatches.count
-        : sportsData.count
+            ? presenter.getLiveMatchesCount()
+            : sportsData.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -109,10 +109,9 @@ extension SportsViewController: UICollectionViewDataSource {
                 for: indexPath
             ) as! LiveResultCollectionViewCell
 
-            let match =
-            presenter.liveMatches[indexPath.item]
-
-            cell.configure(with: match)
+            if let match = presenter.getLiveMatch(at: indexPath.item) {
+                        cell.configure(with: match)
+                    }
 
             return cell
         }
