@@ -59,7 +59,6 @@ class AppRouterImpl: AppRouter {
         return view
     }
 
-    // MARK: - Navigation
 
     func navigateToLeagueList(
         from view: UIViewController
