@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - Data Models
 
-struct LiveMatch {
+struct DummyLiveMatch {
     let leagueName: String
     let matchTime: String
     let homeTeamName: String
@@ -63,8 +63,8 @@ class leagueDetailsViewController: UIViewController {
 
     // MARK: Mock Data
 
-    var liveMatches: [LiveMatch] = [
-        LiveMatch(
+    var liveMatches: [DummyLiveMatch] = [
+        DummyLiveMatch(
             leagueName: "Premier League",
             matchTime: "LIVE • 71'",
             homeTeamName: "ASC",
@@ -75,7 +75,7 @@ class leagueDetailsViewController: UIViewController {
             homeGoals: ["Salah 12'", "Mané 45'", "Firmino 68'"],
             awayGoals: ["Calvert-Lewin 14'", "Gray 55'"]
         ),
-        LiveMatch(
+        DummyLiveMatch(
             leagueName: "La Liga",
             matchTime: "LIVE • 34'",
             homeTeamName: "BAR",
