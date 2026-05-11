@@ -67,6 +67,8 @@
 		6D66153A2FB2299900D4E681 /* FavouriteLeague.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6615392FB2298800D4E681 /* FavouriteLeague.swift */; };
 		6D66153D2FB22A2600D4E681 /* CacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D66153C2FB22A1E00D4E681 /* CacheService.swift */; };
 		6D66153F2FB22A5800D4E681 /* CacheServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D66153E2FB22A5400D4E681 /* CacheServiceImpl.swift */; };
+		6D6616012FB2348900D4E681 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6616002FB2346E00D4E681 /* AppRouter.swift */; };
+		6D6616042FB234E400D4E681 /* AppRouterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6616032FB234DF00D4E681 /* AppRouterImpl.swift */; };
 		6D8D243E2FB1428E00D74CE6 /* presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8D243D2FB1428800D74CE6 /* presenter.swift */; };
 		6DA8988E2FAE7AE400E0F910 /* FavouritesUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA8988D2FAE7AE400E0F910 /* FavouritesUIViewController.swift */; };
 		6DA898912FAE7B2E00E0F910 /* FavouritesUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA8988F2FAE7B2E00E0F910 /* FavouritesUITableViewCell.swift */; };
@@ -154,6 +156,8 @@
 		6D6615392FB2298800D4E681 /* FavouriteLeague.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteLeague.swift; sourceTree = "<group>"; };
 		6D66153C2FB22A1E00D4E681 /* CacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheService.swift; sourceTree = "<group>"; };
 		6D66153E2FB22A5400D4E681 /* CacheServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheServiceImpl.swift; sourceTree = "<group>"; };
+		6D6616002FB2346E00D4E681 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
+		6D6616032FB234DF00D4E681 /* AppRouterImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouterImpl.swift; sourceTree = "<group>"; };
 		6D8D243D2FB1428800D74CE6 /* presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = presenter.swift; sourceTree = "<group>"; };
 		6DA8988D2FAE7AE400E0F910 /* FavouritesUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesUIViewController.swift; sourceTree = "<group>"; };
 		6DA8988F2FAE7B2E00E0F910 /* FavouritesUITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesUITableViewCell.swift; sourceTree = "<group>"; };
@@ -392,6 +396,7 @@
 		6D66143E2FB2084400D4E681 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				6D6616022FB2349900D4E681 /* navigation */,
 				6D66153B2FB22A0800D4E681 /* local */,
 				6D6614D62FB20E8100D4E681 /* utils */,
 				6D66148C2FB2088700D4E681 /* Network */,
@@ -425,6 +430,15 @@
 				6D66153C2FB22A1E00D4E681 /* CacheService.swift */,
 			);
 			path = local;
+			sourceTree = "<group>";
+		};
+		6D6616022FB2349900D4E681 /* navigation */ = {
+			isa = PBXGroup;
+			children = (
+				6D6616032FB234DF00D4E681 /* AppRouterImpl.swift */,
+				6D6616002FB2346E00D4E681 /* AppRouter.swift */,
+			);
+			path = navigation;
 			sourceTree = "<group>";
 		};
 		6D8D24292FB140DF00D74CE6 /* Dto */ = {
@@ -692,6 +706,7 @@
 				6D66143A2FB2057700D4E681 /* MatchEvent.swift in Sources */,
 				6D66143B2FB2057700D4E681 /* Team.swift in Sources */,
 				6D66153D2FB22A2600D4E681 /* CacheService.swift in Sources */,
+				6D6616042FB234E400D4E681 /* AppRouterImpl.swift in Sources */,
 				6D66143C2FB2057700D4E681 /* League.swift in Sources */,
 				6DDC426E2FAD0800007695E5 /* PaddingLabel.swift in Sources */,
 				6D6614302FB204E100D4E681 /* LiveMatchDTO.swift in Sources */,
@@ -702,6 +717,7 @@
 				6D66148D2FB2088700D4E681 /* Endpoint.swift in Sources */,
 				6D66148E2FB2088700D4E681 /* ApiService.swift in Sources */,
 				6D66148F2FB2088700D4E681 /* ApiServiceImpl.swift in Sources */,
+				6D6616012FB2348900D4E681 /* AppRouter.swift in Sources */,
 				6D6614342FB204E100D4E681 /* LeagueDTO.swift in Sources */,
 				39BBE9B72FAC7DC500079018 /* onBoarding1ViewController.swift in Sources */,
 				39BBE9B52FAC7B8F00079018 /* myPageViewController.swift in Sources */,
