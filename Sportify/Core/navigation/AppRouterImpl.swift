@@ -36,29 +36,34 @@ class AppRouterImpl: AppRouter {
         return view
     }
 
-    static func createHomeModule()
-    -> UIViewController {
+    static func createHomeModule() -> UIViewController {
 
-        guard let view =
-                storyboard.instantiateViewController(
-                    withIdentifier: "myTabBarController"
-                ) as? myTabBarController
-        else {
-
-            fatalError(
-                "Cannot load SportsViewController"
-            )
+        guard let tabBar = storyboard.instantiateViewController(
+            withIdentifier: "myTabBarController"
+        ) as? myTabBarController else {
+            fatalError("Cannot load myTabBarController")
         }
 
+        // No UINavigationController wrapper — look directly
+        guard let sportsVC = tabBar.viewControllers?
+            .compactMap({ $0 as? SportsViewController })
+            .first
+        else {
+            fatalError("Cannot load SportsViewController")
+        }
+
+        let remoteDataSource = SportifyRemoteDataSourceImpl()
+        let repository = HomeRepositoryImpl(remoteDataSource: remoteDataSource)
         let router = AppRouterImpl()
+        let presenter = HomePresenterImpl(
+            view: sportsVC,
+            repository: repository,
+            router: router
+        )
+        sportsVC.presenter = presenter
 
-        // presenter/interactor here later
-
-        // view.presenter = presenter
-
-        return view
+        return tabBar
     }
-
     // MARK: - Navigation
 
     func navigateToLeagueList(

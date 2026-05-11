@@ -23,14 +23,12 @@ class onBoarding2ViewController: UIViewController {
     }
     
     @IBAction func skipButton(_ sender: UIButton) {
-        let tabBar = storyboard?.instantiateViewController(withIdentifier: "myTabBarController") as! myTabBarController
+        
 
-        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-           let window = windowScene.windows.first {
+        let tabBar =
+            AppRouterImpl.createHomeModule()
 
-            window.rootViewController = tabBar
-            window.makeKeyAndVisible()
-        }
+        navigationController?.pushViewController(tabBar, animated: true)
     }
     /*
     // MARK: - Navigation

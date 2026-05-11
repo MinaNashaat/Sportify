@@ -282,15 +282,63 @@ extension leagueDetailsViewController: UICollectionViewDataSource {
                 withReuseIdentifier: "upcomingCell",
                 for: indexPath) as! LiveResultCollectionViewCell
 
-            let match = liveMatches[indexPath.item]
-            cell.leagueNameLabel.text  = match.leagueName
-            cell.matchTimeLabel.text   = match.matchTime
-            cell.homeTeamName.text     = match.homeTeamName
-            cell.homeTeamLabel.text    = match.homeTeamName
-            cell.homeTeamLogo.image    = match.homeTeamLogo
-            cell.awayTeamLogo.image    = match.awayTeamLogo
-            cell.matchResultLabel.text = match.score
-            cell.configure(homeGoals: match.homeGoals, awayGoals: match.awayGoals)
+            let dummyMatch =
+            liveMatches[indexPath.item]
+
+            let mappedGoals: [Goal] =
+
+            dummyMatch.homeGoals.map {
+
+                Goal(
+                    minute: "",
+                    half: nil,
+                    scorer: $0,
+                    assist: nil,
+                    side: .home,
+                    scoreAfter: ""
+                )
+
+            } +
+
+            dummyMatch.awayGoals.map {
+
+                Goal(
+                    minute: "",
+                    half: nil,
+                    scorer: $0,
+                    assist: nil,
+                    side: .away,
+                    scoreAfter: ""
+                )
+            }
+
+            let liveMatch = LiveMatch(
+                id: indexPath.item,
+                kickoffTime: dummyMatch.matchTime,
+                status: "Live",
+                isLive: true,
+                score: Score(
+                    home: 0,
+                    away: 0,
+                    raw: dummyMatch.score
+                ),
+                homeTeam: TeamSummary(
+                    name: dummyMatch.homeTeamName,
+                    logoURL: nil
+                ),
+                awayTeam: TeamSummary(
+                    name: dummyMatch.awayTeamName,
+                    logoURL: nil
+                ),
+                tournament: Tournament(
+                    league: dummyMatch.leagueName,
+                    round: nil,
+                    stage: nil
+                ),
+                goals: mappedGoals
+            )
+
+            cell.configure(with: liveMatch)
             return cell
 
         case .recentMatches:

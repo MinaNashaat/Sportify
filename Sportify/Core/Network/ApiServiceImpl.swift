@@ -15,7 +15,8 @@ class APIServiceImpl : APIService {
     private init() {}
 
     private let baseURL = "https://apiv2.allsportsapi.com/"
-    private let apiKey = "cba2ee62e3058eb4138e75f253d8087253c0f68a4ecab1d1646b4d5d97b61d1"
+    private let apiKey = "cba2ee62e3058eb4138e75f253d8087253c0f68a4ecab1d1646b4d5d97b61d1e"
+
 
     func request<T: Decodable>(
         endpoint: Endpoint
