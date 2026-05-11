@@ -46,3 +46,4 @@ extension Array where Element == LeagueDTO {
         compactMap { $0.toDomain() }
     }
 }
+

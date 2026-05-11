@@ -16,12 +16,7 @@ class SportsViewController: UIViewController {
 
         setupCollectionView()
     }
-    let sportsData = [
-        Sport(name: "Football", image: "Football"),
-        Sport(name: "Tennis", image: "Tennis"),
-        Sport(name: "Basketball", image: "BascketBall"),
-        Sport(name: "Cricket", image: "Cracket")
-    ]
+    let sportsData = SportType.allCases
     private func setupCollectionView() {
 
         homeCollectionView.register(
@@ -120,8 +115,8 @@ extension SportsViewController: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "sports", for: indexPath) as! SportsTypeCollectionViewCell
             let sport = sportsData[indexPath.row]
 
-            cell.sportText.text = sport.name
-            cell.sportImage.image = UIImage(named: sport.image)
+            cell.sportText.text = sport.title
+            cell.sportImage.image = UIImage(named: sport.imageName)
 
             return cell
         }

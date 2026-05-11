@@ -1,19 +1,19 @@
 //
-//  SportifyLocalDatasource.swift
+//  CacheService.swift
 //  Sportify
 //
 //  Created by Ahmed Salah on 11/05/2026.
 //
+
 import Foundation
 
-protocol SportifyLocalDataSource {
+protocol CacheService {
 
     func insertLeague(
         league: FavouriteLeague
     )
 
-    func fetchFavouriteLeagues()
-    -> [FavouriteLeague]
+    func fetchLeagues() -> [FavouriteLeague]
 
     func deleteLeague(
         leagueId: Int
