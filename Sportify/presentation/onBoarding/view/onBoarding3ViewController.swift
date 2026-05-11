@@ -16,14 +16,10 @@ class onBoarding3ViewController: UIViewController {
     }
     
     @IBAction func getStarted(_ sender: Any) {
-        let tabBar = storyboard?.instantiateViewController(withIdentifier: "myTabBarController") as! myTabBarController
+        let tabBar =
+            AppRouterImpl.createHomeModule()
 
-        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-           let window = windowScene.windows.first {
-
-            window.rootViewController = tabBar
-            window.makeKeyAndVisible()
-        }
+        navigationController?.pushViewController(tabBar, animated: true)
     }
     
     /*

@@ -1,11 +1,5 @@
-//
-//  LiveResultCollectionViewCell.swift
-//  Sportify
-//
-//  Created by Ahmed Salah on 05/05/2026.
-//
-
 import UIKit
+import Kingfisher
 
 class LiveResultCollectionViewCell: UICollectionViewCell {
 
@@ -23,9 +17,13 @@ class LiveResultCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var matchTimeLabel: UILabel!
     @IBOutlet weak var homeTeamLogo: UIImageView!
 
-
     override func awakeFromNib() {
         super.awakeFromNib()
+
+        setupUI()
+    }
+
+    private func setupUI() {
 
         cardView.layer.cornerRadius = 20
         cardView.layer.masksToBounds = false
@@ -39,75 +37,135 @@ class LiveResultCollectionViewCell: UICollectionViewCell {
 
         contentView.backgroundColor = .clear
         backgroundColor = .clear
-        leagueNameLabel.font = .systemFont(ofSize: 13, weight: .semibold)
 
-        homeTeamName.font = .systemFont(ofSize: 17, weight: .bold)
-
-        homeTeamLabel.font = .systemFont(ofSize: 17, weight: .bold)
-
-        matchResultLabel.font = .systemFont(ofSize: 28, weight: .heavy)
-
-        matchTimeLabel.textColor = .systemGray
         playersScoresRow.alignment = .top
+
+        homeTeamLogo.layer.cornerRadius = 25
+        awayTeamLogo.layer.cornerRadius = 25
+
+        homeTeamLogo.clipsToBounds = true
+        awayTeamLogo.clipsToBounds = true
     }
 
+    func configure(with match: LiveMatch) {
 
-    func configure(homeGoals: [String], awayGoals: [String]) {
+        homeTeamName.text =
+        match.homeTeam.name
 
-        homeGoalsStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
-        awayGoalsStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        homeTeamLabel.text =
+        match.awayTeam.name
+
+        matchResultLabel.text =
+        match.score.raw
+
+        matchTimeLabel.text =
+        match.kickoffTime
+
+        leagueNameLabel.text =
+        match.tournament?.league
+
+        homeTeamLogo.kf.setImage(
+            with: match.homeTeam.logoURL,
+            placeholder: UIImage(systemName: "photo")
+        )
+
+        awayTeamLogo.kf.setImage(
+            with: match.awayTeam.logoURL,
+            placeholder: UIImage(systemName: "photo")
+        )
+
+        configureGoals(match.goals)
+    }
+
+    private func configureGoals(
+        _ goals: [Goal]
+    ) {
+
+        homeGoalsStack.arrangedSubviews
+            .forEach { $0.removeFromSuperview() }
+
+        awayGoalsStack.arrangedSubviews
+            .forEach { $0.removeFromSuperview() }
+
+        let homeGoals = goals.filter {
+            $0.side == .home
+        }
+
+        let awayGoals = goals.filter {
+            $0.side == .away
+        }
 
         for goal in homeGoals {
-            let label = createGoalLabel(text: goal, alignment: .left)
+
+            let text =
+            "\(goal.scorer) \(goal.minute)'"
+
+            let label = createGoalLabel(
+                text: text,
+                alignment: .left
+            )
+
             homeGoalsStack.addArrangedSubview(label)
         }
 
         for goal in awayGoals {
-            let label = createGoalLabel(text: goal, alignment: .right)
+
+            let text =
+            "\(goal.scorer) \(goal.minute)'"
+
+            let label = createGoalLabel(
+                text: text,
+                alignment: .right
+            )
+
             awayGoalsStack.addArrangedSubview(label)
         }
     }
-    private func createGoalLabel(text: String,
-                                 alignment: NSTextAlignment) -> UILabel {
 
-        let label = UILabel()
+    private func createGoalLabel(
+        text: String,
+        alignment: NSTextAlignment
+    ) -> UILabel {
 
-        label.text = "⚽ \(text)"
-        label.font = .systemFont(ofSize: 14, weight: .medium)
+        let label = PaddingLabel()
 
-        label.textColor = .label
-        label.numberOfLines = 1
-
-        label.textAlignment = alignment
-
-        label.backgroundColor = UIColor.systemGray6
-        label.layer.cornerRadius = 8
-        label.layer.masksToBounds = true
-
-        label.layoutMargins = UIEdgeInsets(
+        label.insets = UIEdgeInsets(
             top: 6,
             left: 10,
             bottom: 6,
             right: 10
         )
 
-        let container = PaddingLabel()
-        container.insets = UIEdgeInsets(top: 6, left: 10, bottom: 6, right: 10)
+        label.text = "⚽ \(text)"
 
-        container.text = label.text
-        container.font = label.font
-        container.textAlignment = alignment
-        container.backgroundColor = UIColor.systemGray6
-        container.layer.cornerRadius = 8
-        container.layer.masksToBounds = true
+        label.font = .systemFont(
+            ofSize: 14,
+            weight: .medium
+        )
 
-        return container
+        label.textColor = .label
+
+        label.textAlignment = alignment
+
+        label.backgroundColor =
+        UIColor.systemGray6
+
+        label.layer.cornerRadius = 8
+        label.layer.masksToBounds = true
+
+        return label
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
 
-        homeGoalsStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
-        awayGoalsStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        homeGoalsStack.arrangedSubviews
+            .forEach { $0.removeFromSuperview() }
+
+        awayGoalsStack.arrangedSubviews
+            .forEach { $0.removeFromSuperview() }
+
+        homeTeamLogo.image = nil
+        awayTeamLogo.image = nil
     }
 }
