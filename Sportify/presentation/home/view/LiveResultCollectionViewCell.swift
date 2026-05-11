@@ -131,9 +131,9 @@ class LiveResultCollectionViewCell: UICollectionViewCell {
 
         label.insets = UIEdgeInsets(
             top: 6,
-            left: 10,
+            left: 8,
             bottom: 6,
-            right: 10
+            right: 8
         )
 
         label.text = "⚽ \(text)"

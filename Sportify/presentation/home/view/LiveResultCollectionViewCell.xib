@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -106,10 +107,10 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="ocR-vJ-lQk">
-                                <rect key="frame" x="24" y="118" width="1141" height="40"/>
+                                <rect key="frame" x="8" y="118" width="1173" height="40"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="WJc-U3-9Oo">
-                                        <rect key="frame" x="0.0" y="0.0" width="570.5" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="586.5" height="40"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⚽ Calvert-Lewin 14'" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uf4-m9-d79">
                                                 <rect key="frame" x="0.0" y="0.0" width="131.5" height="16"/>
@@ -126,16 +127,16 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Wrf-c7-oMh">
-                                        <rect key="frame" x="570.5" y="0.0" width="570.5" height="40"/>
+                                        <rect key="frame" x="586.5" y="0.0" width="586.5" height="40"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⚽ Calvert-Lewin 14'" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQj-BY-na4">
-                                                <rect key="frame" x="439" y="0.0" width="131.5" height="16"/>
+                                                <rect key="frame" x="455" y="0.0" width="131.5" height="16"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⚽ Calvert-Lewin 14'" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5t8-GS-jxo">
-                                                <rect key="frame" x="439" y="24" width="131.5" height="16"/>
+                                                <rect key="frame" x="455" y="24" width="131.5" height="16"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -151,11 +152,11 @@
                             <constraint firstItem="cwh-rz-yDX" firstAttribute="top" secondItem="AIm-aV-q1C" secondAttribute="bottom" constant="8" id="7NT-qd-Kje"/>
                             <constraint firstItem="cwh-rz-yDX" firstAttribute="leading" secondItem="EPU-gD-dQ1" secondAttribute="leading" constant="24" id="DdP-2v-UWy"/>
                             <constraint firstItem="3fL-yG-IBX" firstAttribute="leading" secondItem="EPU-gD-dQ1" secondAttribute="leading" constant="8" id="EQO-Uv-0ov"/>
-                            <constraint firstItem="ocR-vJ-lQk" firstAttribute="trailing" secondItem="EPU-gD-dQ1" secondAttribute="trailing" constant="-24" id="Oql-ad-fJ3"/>
+                            <constraint firstItem="ocR-vJ-lQk" firstAttribute="trailing" secondItem="EPU-gD-dQ1" secondAttribute="trailing" constant="-8" id="Oql-ad-fJ3"/>
                             <constraint firstItem="ocR-vJ-lQk" firstAttribute="top" secondItem="cwh-rz-yDX" secondAttribute="bottom" constant="8" id="Qms-Zg-9Cd"/>
                             <constraint firstItem="cwh-rz-yDX" firstAttribute="trailing" secondItem="EPU-gD-dQ1" secondAttribute="trailing" constant="-24" id="UIs-Pa-Kh6"/>
                             <constraint firstItem="3fL-yG-IBX" firstAttribute="top" secondItem="EPU-gD-dQ1" secondAttribute="top" constant="8" id="awI-as-RjU"/>
-                            <constraint firstItem="ocR-vJ-lQk" firstAttribute="leading" secondItem="EPU-gD-dQ1" secondAttribute="leading" constant="24" id="bq6-Xj-gmv"/>
+                            <constraint firstItem="ocR-vJ-lQk" firstAttribute="leading" secondItem="EPU-gD-dQ1" secondAttribute="leading" constant="8" id="bq6-Xj-gmv"/>
                             <constraint firstItem="3fL-yG-IBX" firstAttribute="trailing" secondItem="EPU-gD-dQ1" secondAttribute="trailing" constant="-8" id="hZe-Py-giE"/>
                             <constraint firstItem="AIm-aV-q1C" firstAttribute="trailing" secondItem="EPU-gD-dQ1" secondAttribute="trailing" constant="-16" id="jMx-c8-XvX"/>
                             <constraint firstItem="AIm-aV-q1C" firstAttribute="leading" secondItem="EPU-gD-dQ1" secondAttribute="leading" constant="16" id="oTG-7y-jGy"/>
@@ -190,7 +191,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="circle.fill" catalog="system" width="128" height="121"/>
+        <image name="circle.fill" catalog="system" width="128" height="123"/>
         <image name="teamLogo" width="36" height="36"/>
         <namedColor name="GreyColor">
             <color red="0.87450980392156863" green="0.89411764705882357" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
