@@ -55,6 +55,9 @@ private enum Section: Int, CaseIterable {
 
 class leagueDetailsViewController: UIViewController {
 
+    var league: League!
+    var sportType: SportType!
+    
     // MARK: Outlets
     @IBOutlet weak var leagueName: UILabel!
     @IBOutlet weak var leagueImage: UIImageView!

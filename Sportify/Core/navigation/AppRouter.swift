@@ -14,11 +14,14 @@ protocol AppRouter {
     static func createOnboardingModule() -> UIViewController
 
     func navigateToLeagueList(
-        from view: UIViewController
+        from view: UIViewController,
+        sportType: SportType
     )
 
     func navigateToLeagueDetails(
-        from view: UIViewController
+        from view: UIViewController,
+        league: League,
+        sportType: SportType
     )
 
     func navigateToTeamDetails(

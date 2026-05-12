@@ -11,11 +11,13 @@ protocol HomePresenter {
 
     var liveMatches: [LiveMatch] { get }
 
+    var selectedSportType: SportType { get }
+    
     func viewDidLoad()
 
     func didSelectSport(
         at index: Int
     )
 
-    func didSelectLeague()
+//    func didSelectLeague()
 }

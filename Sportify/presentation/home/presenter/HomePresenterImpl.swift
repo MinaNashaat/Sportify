@@ -18,7 +18,7 @@ class HomePresenterImpl: HomePresenter {
     private let router: AppRouter
 
     var liveMatches: [LiveMatch] = []
-
+    private(set) var selectedSportType: SportType = .football
     init(
         view: HomeView,
         repository: HomeRepository,
@@ -32,10 +32,10 @@ class HomePresenterImpl: HomePresenter {
 
     func viewDidLoad() {
 
-        fetchLiveMatches()
+        fetchLiveMatches(for: .football)
     }
 
-    private func fetchLiveMatches() {
+    private func fetchLiveMatches(for sport: SportType) {
 
         view?.showLoading()
 
@@ -45,7 +45,7 @@ class HomePresenterImpl: HomePresenter {
 
                 let matches =
                 try await repository.getLiveMatches(
-                    sport: .football
+                    sport: sport
                 )
 
                 self.liveMatches = matches
@@ -71,10 +71,17 @@ class HomePresenterImpl: HomePresenter {
     }
 
     func didSelectSport(at index: Int) {
-
+        let sport = SportType.allCases[index]
+        selectedSportType = sport
+        fetchLiveMatches(for: sport)
+        guard let viewController = view as? UIViewController else { return }
+            router.navigateToLeagueList(
+            from: viewController,
+            sportType: selectedSportType
+        )
     }
 
-    func didSelectLeague() {
-
-    }
+//    func didSelectLeague() {
+//
+//    }
 }

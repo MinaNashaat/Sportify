@@ -35,6 +35,7 @@ class SportsViewController: UIViewController {
 
         homeCollectionView.collectionViewLayout = createLayout()
         homeCollectionView.dataSource = self
+        homeCollectionView.delegate = self
         homeCollectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
     }
     func createLayout() -> UICollectionViewLayout {
@@ -149,6 +150,11 @@ extension SportsViewController: UICollectionViewDataSource {
         }
         return UICollectionReusableView()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
 }
 
 extension SportsViewController:
@@ -187,5 +193,17 @@ HomeView {
         )
 
         present(alert, animated: true)
+    }
+}
+
+extension SportsViewController: UICollectionViewDelegate {
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didSelectItemAt indexPath: IndexPath
+    ) {
+        guard indexPath.section == 1 else { return }
+        presenter.didSelectSport(at: indexPath.row)
+//        presenter.didSelectLeague()
     }
 }
