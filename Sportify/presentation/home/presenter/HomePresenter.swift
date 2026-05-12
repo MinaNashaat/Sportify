@@ -8,6 +8,11 @@
 import Foundation
 
 protocol HomePresenter {
+    func viewDidLoad()
+    func getLiveMatch(at index: Int) -> LiveMatch?
+    func getLiveMatchesCount() -> Int
+    func didSelectSport(at index: Int)
+    func didSelectLeague()
 
     var liveMatches: [LiveMatch] { get }
 
@@ -19,5 +24,5 @@ protocol HomePresenter {
         at index: Int
     )
 
-//    func didSelectLeague()
+
 }

@@ -17,6 +17,8 @@ class HomePresenterImpl: HomePresenter {
 
     private let router: AppRouter
 
+    private var liveMatches: [LiveMatch] = []
+
     var liveMatches: [LiveMatch] = []
     private(set) var selectedSportType: SportType = .football
     init(
@@ -81,7 +83,16 @@ class HomePresenterImpl: HomePresenter {
         )
     }
 
-//    func didSelectLeague() {
-//
-//    }
+    func didSelectLeague() {
+
+    }
+    func getLiveMatch(at index: Int) -> LiveMatch? {
+        guard index >= 0 && index < liveMatches.count else { return nil }
+        return liveMatches[index]
+    }
+
+    func getLiveMatchesCount() -> Int {
+        return liveMatches.count
+    }
+
 }
