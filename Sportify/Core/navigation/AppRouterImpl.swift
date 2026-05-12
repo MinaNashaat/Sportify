@@ -64,7 +64,6 @@ class AppRouterImpl: AppRouter {
 
         return tabBar
     }
-    // MARK: - Navigation
 
     func navigateToLeagueList(
         from view: UIViewController,
