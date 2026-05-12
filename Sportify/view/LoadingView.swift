@@ -10,7 +10,7 @@ import Lottie
 class LoadingView: UIView {
 
     private let animationView =
-    AnimationView(name: "loading")
+    LottieAnimationView(name: "loading")
 
     override init(frame: CGRect) {
         super.init(frame: frame)

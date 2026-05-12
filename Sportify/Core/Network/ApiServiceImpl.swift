@@ -28,20 +28,24 @@ class APIServiceImpl : APIService {
         var params = endpoint.parameters
         params["APIkey"] = apiKey
 
-        let response = await AF.request(
-            url,
-            method: .get,
-            parameters: params
-        )
-        .serializingDecodable(T.self)
-        .response
+        return try await withCheckedThrowingContinuation { continuation in
 
-        switch response.result {
-        case .success(let data):
-            return data
+            AF.request(
+                url,
+                method: .get,
+                parameters: params
+            )
+            .responseDecodable(of: T.self) { response in
 
-        case .failure(let error):
-            throw error
+                switch response.result {
+
+                case .success(let data):
+                    continuation.resume(returning: data)
+
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
+            }
         }
     }
 }

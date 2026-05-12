@@ -66,7 +66,7 @@ class LiveResultCollectionViewCell: UICollectionViewCell {
 
         homeTeamLogo.kf.setImage(
             with: match.homeTeam.logoURL,
-            placeholder: UIImage(systemName: "photo")
+            placeholder: UIImage(named: "teamLogo")
         )
 
         awayTeamLogo.kf.setImage(
