@@ -11,6 +11,8 @@ class FavouritesEmptyStateView: UIView {
 
     @IBOutlet weak var contentView: UIView!
 
+    weak var tabBarController:
+    UITabBarController?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,9 +35,17 @@ class FavouritesEmptyStateView: UIView {
         addSubview(contentView)
 
         contentView.frame = bounds
+
         contentView.autoresizingMask = [
             .flexibleWidth,
             .flexibleHeight
         ]
+    }
+
+    @IBAction func browseSportsPressed(
+        _ sender: Any
+    ) {
+
+        tabBarController?.selectedIndex = 0
     }
 }

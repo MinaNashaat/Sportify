@@ -38,33 +38,75 @@ class AppRouterImpl: AppRouter {
 
     static func createHomeModule() -> UIViewController {
 
-        guard let tabBar = storyboard.instantiateViewController(
-            withIdentifier: "myTabBarController"
-        ) as? myTabBarController else {
+        guard let tabBar =
+                storyboard.instantiateViewController(
+                    withIdentifier: "myTabBarController"
+                ) as? myTabBarController
+        else {
+
             fatalError("Cannot load myTabBarController")
         }
 
-        // No UINavigationController wrapper — look directly
-        guard let sportsVC = tabBar.viewControllers?
-            .compactMap({ $0 as? SportsViewController })
-            .first
+        // MARK: Sports
+
+        guard let sportsVC =
+                tabBar.viewControllers?
+                .compactMap({ $0 as? SportsViewController })
+                .first
         else {
+
             fatalError("Cannot load SportsViewController")
         }
 
-        let remoteDataSource = SportifyRemoteDataSourceImpl()
-        let repository = HomeRepositoryImpl(remoteDataSource: remoteDataSource)
+        let remoteDataSource =
+        SportifyRemoteDataSourceImpl()
+
+        let repository =
+        HomeRepositoryImpl(
+            remoteDataSource: remoteDataSource
+        )
+
         let router = AppRouterImpl()
-        let presenter = HomePresenterImpl(
+
+        let sportsPresenter =
+        HomePresenterImpl(
             view: sportsVC,
             repository: repository,
             router: router
         )
-        sportsVC.presenter = presenter
+
+        sportsVC.presenter = sportsPresenter
+
+
+        guard let favouritesVC =
+                tabBar.viewControllers?
+                .compactMap({
+                    $0 as? FavouritesUIViewController
+                })
+                .first
+        else {
+
+            fatalError(
+                "Cannot load FavouritesUIViewController"
+            )
+        }
+
+        let localDataSource =
+        SportifyLocalDataSourceImpl()
+
+        let favouritesPresenter =
+        FavouritesPresenterImpl(
+            view: favouritesVC,
+            viewController: favouritesVC,
+            localDataSource: localDataSource,
+            router: router
+        )
+
+        favouritesVC.presenter =
+        favouritesPresenter
 
         return tabBar
     }
-
     func navigateToLeagueList(
         from view: UIViewController,
         sportType: SportType
@@ -166,5 +208,31 @@ class AppRouterImpl: AppRouter {
                 vc,
                 animated: true
             )
+    }
+    static func createFavouritesModule()
+    -> UIViewController {
+
+        let vc =
+        storyboard.instantiateViewController(
+            withIdentifier: "favouritesVC"
+        ) as! FavouritesUIViewController
+
+        let localDataSource =
+        SportifyLocalDataSourceImpl()
+
+        let router =
+        AppRouterImpl()
+
+        let presenter =
+        FavouritesPresenterImpl(
+            view: vc,
+            viewController: vc,
+            localDataSource: localDataSource,
+            router: router
+        )
+
+        vc.presenter = presenter
+
+        return vc
     }
 }

@@ -55,7 +55,11 @@ class leagueDetailsViewController: UIViewController {
 
         collectionView.dataSource = self
         collectionView.delegate = self
-
+        collectionView.register(
+            EmptyStateCollectionViewCell.self,
+            forCellWithReuseIdentifier:
+                EmptyStateCollectionViewCell.reuseID
+        )
         collectionView.register(
             UINib(
                 nibName: "MatchCollectionViewCell",
@@ -152,8 +156,7 @@ class leagueDetailsViewController: UIViewController {
 
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(0.92),
-                heightDimension: .estimated(170)
+                widthDimension: .fractionalWidth(1) ,    heightDimension: .estimated(170)
             ),
             subitems: [item]
         )
@@ -305,7 +308,7 @@ extension leagueDetailsViewController: LeagueDetailsView {
 
 
 extension leagueDetailsViewController:
-UICollectionViewDataSource {
+    UICollectionViewDataSource {
 
     func numberOfSections(
         in collectionView: UICollectionView
@@ -322,16 +325,27 @@ UICollectionViewDataSource {
         switch Section(rawValue: section)! {
 
         case .liveMatches:
-            return presenter.upcomingMatches.count
+
+            return max(
+                presenter.upcomingMatches.count,
+                1
+            )
 
         case .recentMatches:
-            return presenter.recentMatches.count
+
+            return max(
+                presenter.recentMatches.count,
+                1
+            )
 
         case .teamPlayers:
-            return presenter.teams.count
+
+            return max(
+                presenter.teams.count,
+                1
+            )
         }
     }
-
     func collectionView(
         _ collectionView: UICollectionView,
         viewForSupplementaryElementOfKind kind: String,
@@ -355,7 +369,7 @@ UICollectionViewDataSource {
         Section(rawValue: indexPath.section)?.title
 
         label.font =
-        .systemFont(ofSize: 18, weight: .bold)
+            .systemFont(ofSize: 18, weight: .bold)
 
         label.translatesAutoresizingMaskIntoConstraints =
         false
@@ -383,8 +397,24 @@ UICollectionViewDataSource {
 
         switch Section(rawValue: indexPath.section)! {
 
-
         case .liveMatches:
+
+            if presenter.upcomingMatches.isEmpty {
+
+                let cell =
+                collectionView.dequeueReusableCell(
+                    withReuseIdentifier:
+                        EmptyStateTableViewCell.reuseID,
+                    for: indexPath
+                ) as! EmptyStateCollectionViewCell
+
+                cell.configure(
+                    icon: "calendar.badge.exclamationmark",
+                    message: "No upcoming matches available"
+                )
+
+                return cell
+            }
 
             let cell =
             collectionView.dequeueReusableCell(
@@ -401,6 +431,23 @@ UICollectionViewDataSource {
 
         case .recentMatches:
 
+            if presenter.recentMatches.isEmpty {
+
+                let cell =
+                collectionView.dequeueReusableCell(
+                    withReuseIdentifier:
+                        EmptyStateTableViewCell.reuseID,
+                    for: indexPath
+                ) as! EmptyStateCollectionViewCell
+
+                cell.configure(
+                    icon: "clock.badge.xmark",
+                    message: "No recent results available"
+                )
+
+                return cell
+            }
+
             let cell =
             collectionView.dequeueReusableCell(
                 withReuseIdentifier: "matchCell",
@@ -414,8 +461,24 @@ UICollectionViewDataSource {
 
             return cell
 
-
         case .teamPlayers:
+
+            if presenter.teams.isEmpty {
+
+                let cell =
+                collectionView.dequeueReusableCell(
+                    withReuseIdentifier:
+                        EmptyStateTableViewCell.reuseID,
+                    for: indexPath
+                ) as! EmptyStateCollectionViewCell
+
+                cell.configure(
+                    icon: "person.3.slash",
+                    message: "No teams available"
+                )
+
+                return cell
+            }
 
             let cell =
             collectionView.dequeueReusableCell(
@@ -448,7 +511,8 @@ UICollectionViewDelegate {
     ) {
 
         guard Section(rawValue: indexPath.section)
-                == .teamPlayers
+                == .teamPlayers,
+              !presenter.teams.isEmpty
         else {
             return
         }

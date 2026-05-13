@@ -13,6 +13,7 @@ class FavouritesUITableViewCell: UITableViewCell {
     @IBOutlet weak var leagueName: UILabel!
     @IBOutlet weak var leagueImage: UIImageView!
     @IBOutlet weak var favouriteBtn: UIButton!
+    var deleteAction: (() -> Void)?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -68,15 +69,30 @@ class FavouritesUITableViewCell: UITableViewCell {
         favouriteBtn.layer.cornerRadius = 18
     }
 
-    @IBAction func favouriteButton(_ sender: UIButton) {
+    @IBAction func favouriteButton(
+        _ sender: UIButton
+    ) {
 
-        UIView.animate(withDuration: 0.15,
-                       animations: {
-            sender.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-        }) { _ in
-            UIView.animate(withDuration: 0.15) {
-                sender.transform = .identity
+        UIView.animate(
+            withDuration: 0.15,
+            animations: {
+
+                sender.transform =
+                CGAffineTransform(
+                    scaleX: 0.8,
+                    y: 0.8
+                )
+
+            }) { _ in
+
+                UIView.animate(
+                    withDuration: 0.15
+                ) {
+
+                    sender.transform = .identity
+                }
             }
-        }
+
+        deleteAction?()
     }
 }
