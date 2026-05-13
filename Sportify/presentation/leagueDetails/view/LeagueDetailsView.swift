@@ -13,5 +13,8 @@ protocol LeagueDetailsView: AnyObject {
     func hideLoading()
     func reloadData()
     func showError(message: String)
+    func updateFavouriteButton(isFavourite: Bool)
+    
+    var viewController: UIViewController { get }
 
 }

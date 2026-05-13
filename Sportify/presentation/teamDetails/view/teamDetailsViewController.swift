@@ -245,7 +245,7 @@ extension teamDetailsViewController: UITableViewDataSource {
             ? presenter?.getUpcomingEvent(at: indexPath.row)
             : presenter?.getRecentEvent(at: indexPath.row)
 
-        if let event {
+        if let event = event {
             cell.configure(with: event)
         }
 

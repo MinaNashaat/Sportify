@@ -80,7 +80,7 @@ final class TeamDetailsPresenterImpl: TeamDetailsPresenter {
         view?.showLoading()
 
         Task { [weak self] in
-            guard let self else { return }
+            guard let self = self else { return }
 
             do {
                 let events = try await repository.getTeamEvents(

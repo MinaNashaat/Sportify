@@ -10,9 +10,12 @@ import Foundation
 class LeagueDetailsRepositoryImpl: LeagueDetailsRepository {
 
     private let remoteDataSource: SportifyRemoteDataSourceProtocol
-
-    init(remoteDataSource: SportifyRemoteDataSourceProtocol) {
+    private let localDataSource: SportifyLocalDataSource
+    
+    init(remoteDataSource: SportifyRemoteDataSourceProtocol,
+         localDataSource: SportifyLocalDataSource = SportifyLocalDataSourceImpl()) {
         self.remoteDataSource = remoteDataSource
+        self.localDataSource  = localDataSource
     }
 
     func getLeagueEvents(
@@ -43,5 +46,22 @@ class LeagueDetailsRepositoryImpl: LeagueDetailsRepository {
         )
 
         return response.result.toDomain()
+    }
+    
+    func isFavourite(leagueId: Int) -> Bool {
+        localDataSource.isFavourite(leagueId: leagueId)
+    }
+
+    func addFavourite(league: League) {
+        let favourite = FavouriteLeague(
+            leagueId:    league.id,
+            leagueTitle: league.name,
+            leagueImage: league.logoURL?.absoluteString ?? ""
+        )
+        localDataSource.insertLeague(league: favourite)
+    }
+
+    func removeFavourite(leagueId: Int) {
+        localDataSource.deleteLeague(leagueId: leagueId)
     }
 }
