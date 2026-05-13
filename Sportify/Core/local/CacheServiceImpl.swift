@@ -37,7 +37,7 @@ class CacheServiceImpl: CacheService {
 
             let entity =
             NSEntityDescription.entity(
-                forEntityName: "FavouriteLeague",
+                forEntityName: "FavouriteLeagues",
                 in: context
             )!
 
@@ -70,7 +70,7 @@ class CacheServiceImpl: CacheService {
 
             let request =
             NSFetchRequest<NSManagedObject>(
-                entityName: "FavouriteLeague"
+                entityName: "FavouriteLeagues"
             )
 
             do {
@@ -113,7 +113,7 @@ class CacheServiceImpl: CacheService {
 
             let request =
             NSFetchRequest<NSManagedObject>(
-                entityName: "FavouriteLeague"
+                entityName: "FavouriteLeagues"
             )
 
             request.predicate =
@@ -145,7 +145,7 @@ class CacheServiceImpl: CacheService {
 
             let request =
             NSFetchRequest<NSManagedObject>(
-                entityName: "FavouriteLeague"
+                entityName: "FavouriteLeagues"
             )
 
             request.predicate =

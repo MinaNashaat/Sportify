@@ -51,6 +51,9 @@ quickly keep track of their latest matches.</string>
                     <buttonConfiguration key="configuration" style="filled" title="Browse Sports">
                         <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="24"/>
                     </buttonConfiguration>
+                    <connections>
+                        <action selector="browseSportsPressed:" destination="-1" eventType="touchUpInside" id="wKh-LA-GCB"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Favourites Yet" textAlignment="natural" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mfj-v2-tOX">
                     <rect key="frame" x="93.666666666666686" y="574" width="206" height="32"/>

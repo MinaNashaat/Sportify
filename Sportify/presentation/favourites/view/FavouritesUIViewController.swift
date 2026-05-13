@@ -1,22 +1,26 @@
-//
-//  FavouritesUIViewController.swift
-//  Sportify
-//
 
 import UIKit
+import Kingfisher
 
-class FavouritesUIViewController: UIViewController {
+class FavouritesUIViewController:
+UIViewController {
 
-    @IBOutlet weak var favouritesTable: UITableView!
+    @IBOutlet weak var favouritesTable:
+    UITableView!
 
-    let leagues: [String] = []
+    private let emptyView =
+    FavouritesEmptyStateView()
 
-    private let emptyView = FavouritesEmptyStateView()
+    var presenter:
+    FavouritesPresenter!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?
+            .navigationBar
+            .prefersLargeTitles = true
+        emptyView.tabBarController = tabBarController
         title = "Favourites"
 
         favouritesTable.separatorStyle = .none
@@ -33,7 +37,8 @@ class FavouritesUIViewController: UIViewController {
         )
 
         setupEmptyView()
-        updateUI()
+
+        presenter.viewDidLoad()
     }
 
     private func setupEmptyView() {
@@ -64,10 +69,60 @@ class FavouritesUIViewController: UIViewController {
 
     private func updateUI() {
 
-        let isEmpty = leagues.isEmpty
+        let isEmpty =
+        presenter.leagues.isEmpty
 
         favouritesTable.isHidden = isEmpty
+
         emptyView.isHidden = !isEmpty
+    }
+}
+
+extension FavouritesUIViewController:
+FavouritesView {
+
+    func renderLeagues() {
+
+        favouritesTable.reloadData()
+
+        updateUI()
+    }
+
+    func showDeleteAlert(
+        index: Int
+    ) {
+
+        let alert =
+        UIAlertController(
+            title: "Delete League",
+            message: "Are you sure you want to remove this league from favourites?",
+            preferredStyle: .alert
+        )
+
+        alert.addAction(
+            UIAlertAction(
+                title: "Cancel",
+                style: .cancel
+            )
+        )
+
+        alert.addAction(
+            UIAlertAction(
+                title: "Delete",
+                style: .destructive,
+                handler: { _ in
+
+                    self.presenter.deleteLeague(
+                        at: index
+                    )
+                }
+            )
+        )
+
+        present(
+            alert,
+            animated: true
+        )
     }
 }
 
@@ -80,7 +135,7 @@ UITableViewDataSource {
         numberOfRowsInSection section: Int
     ) -> Int {
 
-        return leagues.count
+        presenter.leagues.count
     }
 
     func tableView(
@@ -88,15 +143,41 @@ UITableViewDataSource {
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
 
-        let cell = tableView.dequeueReusableCell(
+        let cell =
+        tableView.dequeueReusableCell(
             withIdentifier: "favouriteCell",
             for: indexPath
         ) as! FavouritesUITableViewCell
 
-        cell.leagueName.text = leagues[indexPath.row]
-        cell.leagueImage.image = UIImage(named: "teamLogo")
+        let league =
+        presenter.leagues[indexPath.row]
+
+        cell.leagueName.text =
+        league.leagueTitle
+
+        cell.leagueImage.kf.setImage(
+            with: URL(string: league.leagueImage),
+            placeholder: UIImage(named: "teamLogo")
+        )
+
+        cell.deleteAction = { [weak self] in
+
+            self?.showDeleteAlert(
+                index: indexPath.row
+            )
+        }
 
         return cell
+    }
+
+    func tableView(
+        _ tableView: UITableView,
+        didSelectRowAt indexPath: IndexPath
+    ) {
+
+        presenter.didSelectLeague(
+            at: indexPath.row
+        )
     }
 
     func tableView(
@@ -104,6 +185,29 @@ UITableViewDataSource {
         heightForRowAt indexPath: IndexPath
     ) -> CGFloat {
 
-        return 120
+        120
+    }
+
+    func tableView(
+        _ tableView: UITableView,
+        trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath
+    ) -> UISwipeActionsConfiguration? {
+
+        let delete =
+        UIContextualAction(
+            style: .destructive,
+            title: "Delete"
+        ) { [weak self] _, _, completion in
+
+            self?.showDeleteAlert(
+                index: indexPath.row
+            )
+
+            completion(true)
+        }
+
+        return UISwipeActionsConfiguration(
+            actions: [delete]
+        )
     }
 }

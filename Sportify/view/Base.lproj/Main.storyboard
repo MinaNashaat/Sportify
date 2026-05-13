@@ -258,7 +258,7 @@
         <!--FavouritesUI View Controller-->
         <scene sceneID="nGK-c7-FXy">
             <objects>
-                <viewController id="7I0-GJ-aFf" customClass="FavouritesUIViewController" customModule="Sportify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="favouritesVC" id="7I0-GJ-aFf" customClass="FavouritesUIViewController" customModule="Sportify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jcq-yf-CVR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
