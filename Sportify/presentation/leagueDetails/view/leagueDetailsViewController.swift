@@ -9,12 +9,15 @@ import UIKit
 import Kingfisher
 
 private enum Section: Int, CaseIterable {
+
     case liveMatches
     case recentMatches
     case teamPlayers
 
     var title: String {
+
         switch self {
+
         case .liveMatches:
             return "Upcoming"
 
@@ -29,17 +32,24 @@ private enum Section: Int, CaseIterable {
 
 class leagueDetailsViewController: UIViewController {
 
+    // MARK: - Outlets
+
     @IBOutlet weak var leagueName: UILabel!
     @IBOutlet weak var leagueImage: UIImageView!
     @IBOutlet weak var leagueCountry: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var favButtonOutlet: UIButton!
 
+    // MARK: - Properties
+
     var presenter: LeagueDetailsPresenter!
 
     private let loadingView = LoadingView()
 
+    // MARK: - Lifecycle
+
     override func viewDidLoad() {
+
         super.viewDidLoad()
 
         navigationController?.setNavigationBarHidden(
@@ -52,18 +62,19 @@ class leagueDetailsViewController: UIViewController {
         presenter.viewDidLoad()
     }
 
-
-    // MARK: - Collection view setup
+    // MARK: - CollectionView Setup
 
     private func setupCollectionView() {
 
         collectionView.dataSource = self
         collectionView.delegate = self
+
         collectionView.register(
             EmptyStateCollectionViewCell.self,
             forCellWithReuseIdentifier:
                 EmptyStateCollectionViewCell.reuseID
         )
+
         collectionView.register(
             UINib(
                 nibName: "MatchCollectionViewCell",
@@ -93,6 +104,8 @@ class leagueDetailsViewController: UIViewController {
         )
     }
 
+    // MARK: - Header
+
     private func populateHeader() {
 
         leagueName.text = presenter.league.name
@@ -106,6 +119,45 @@ class leagueDetailsViewController: UIViewController {
         )
     }
 
+    // MARK: - Favourite
+
+    @IBAction func favButtonAction(_ sender: UIButton) {
+
+        if presenter.isFavourite() {
+
+            let alert = UIAlertController(
+                title: "Remove from Favourites",
+                message: "Are you sure you want to remove \"\(presenter.league.name)\" from your favourites?",
+                preferredStyle: .alert
+            )
+
+            alert.addAction(
+                UIAlertAction(
+                    title: "Remove",
+                    style: .destructive
+                ) { [weak self] _ in
+
+                    self?.presenter.toggleFavourite()
+                }
+            )
+
+            alert.addAction(
+                UIAlertAction(
+                    title: "Cancel",
+                    style: .cancel
+                )
+            )
+
+            present(alert, animated: true)
+
+        } else {
+
+            presenter.toggleFavourite()
+        }
+    }
+
+    // MARK: - Layout
+
     private func makeLayout()
     -> UICollectionViewLayout {
 
@@ -118,31 +170,6 @@ class leagueDetailsViewController: UIViewController {
                 return nil
             }
 
-    // MARK: - Favourite
-
-    @IBAction func favButtonAction(_ sender: UIButton) {
-        if presenter.isFavourite() {
-            let alert = UIAlertController(
-                title: "Remove from Favourites",
-                message: "Are you sure you want to remove \"\(presenter.league.name)\" from your favourites?",
-                preferredStyle: .alert
-            )
-            alert.addAction(UIAlertAction(title: "Remove", style: .destructive) { [weak self] _ in
-                self?.presenter.toggleFavourite()
-            })
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-            present(alert, animated: true)
-        } else {
-            presenter.toggleFavourite()
-        }
-    }
-
-
-    // MARK: - Layout
-
-    private func makeLayout() -> UICollectionViewLayout {
-        UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
-            guard let section = Section(rawValue: sectionIndex) else { return nil }
             switch section {
 
             case .liveMatches:
@@ -185,7 +212,8 @@ class leagueDetailsViewController: UIViewController {
 
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1) ,    heightDimension: .estimated(170)
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .estimated(170)
             ),
             subitems: [item]
         )
@@ -290,7 +318,6 @@ class leagueDetailsViewController: UIViewController {
     }
 }
 
-
 // MARK: - LeagueDetailsView
 
 extension leagueDetailsViewController: LeagueDetailsView {
@@ -337,16 +364,30 @@ extension leagueDetailsViewController: LeagueDetailsView {
     }
 
     func updateFavouriteButton(isFavourite: Bool) {
-        let image = UIImage(systemName: isFavourite ? "heart.fill" : "heart")
-        favButtonOutlet.setImage(image, for: .normal)
-        favButtonOutlet.tintColor = isFavourite ? .systemRed : .label
+
+        let image = UIImage(
+            systemName:
+                isFavourite
+            ? "heart.fill"
+            : "heart"
+        )
+
+        favButtonOutlet.setImage(
+            image,
+            for: .normal
+        )
+
+        favButtonOutlet.tintColor =
+        isFavourite
+        ? .systemRed
+        : .label
     }
 }
 
-
 // MARK: - UICollectionViewDataSource
 
-extension leagueDetailsViewController: UICollectionViewDataSource {
+extension leagueDetailsViewController:
+UICollectionViewDataSource {
 
     func numberOfSections(
         in collectionView: UICollectionView
@@ -384,6 +425,7 @@ extension leagueDetailsViewController: UICollectionViewDataSource {
             )
         }
     }
+
     func collectionView(
         _ collectionView: UICollectionView,
         viewForSupplementaryElementOfKind kind: String,
@@ -407,7 +449,10 @@ extension leagueDetailsViewController: UICollectionViewDataSource {
         Section(rawValue: indexPath.section)?.title
 
         label.font =
-            .systemFont(ofSize: 18, weight: .bold)
+            .systemFont(
+                ofSize: 18,
+                weight: .bold
+            )
 
         label.translatesAutoresizingMaskIntoConstraints =
         false
@@ -435,74 +480,146 @@ extension leagueDetailsViewController: UICollectionViewDataSource {
 
         switch Section(rawValue: indexPath.section)! {
 
-        case .liveMatches:
-            let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: "upcomingCell", for: indexPath
-            ) as! LiveResultCollectionViewCell
+        // MARK: - Live Matches
 
-            let event = presenter.upcomingMatches[indexPath.item]
-            let liveMatch = LiveMatch(
-                id: event.id,
-                kickoffTime: "\(event.date) \(event.time)",
-                status: {
-                    if case .live(let min) = event.state { return min }
-                    return event.time
-                }(),
-                isLive:     event.state.isLive,
-                score:      event.state.score ?? Score(home: 0, away: 0, raw: "- : -"),
-                homeTeam:   event.homeTeam,
-                awayTeam:   event.awayTeam,
-                tournament: event.tournament,
-                goals:      event.goals
-            )
-            cell.configure(with: liveMatch)
+        case .liveMatches:
+
+            if presenter.upcomingMatches.isEmpty {
+
+                let cell =
+                collectionView.dequeueReusableCell(
+                    withReuseIdentifier:
+                        EmptyStateCollectionViewCell.reuseID,
+                    for: indexPath
+                ) as! EmptyStateCollectionViewCell
+
+                cell.configure(
+                    icon: "calendar.badge.exclamationmark",
+                    message: "No upcoming matches available"
+                )
+
+                return cell
+            }
+
+            let cell =
+            collectionView.dequeueReusableCell(
+                withReuseIdentifier: "matchCell",
+                for: indexPath
+            ) as! MatchCollectionViewCell
+
+            let event =
+            presenter.upcomingMatches[indexPath.item]
+
+            cell.configure(with: event)
+
             return cell
+
+        // MARK: - Recent Matches
 
         case .recentMatches:
-            let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: "latestCell", for: indexPath
-            ) as! recentMatchesCollectionViewCell
 
-            let event = presenter.recentMatches[indexPath.item]
-            let scoreText: String = {
-                if case .finished(let s) = event.state { return s.raw }
-                return "-"
-            }()
-            cell.firstTeamName.text  = event.homeTeam.name
-            cell.secondTeamName.text = event.awayTeam.name
-            cell.score.text          = scoreText
-            cell.myTime.text         = event.date
-            cell.firstTeamImage.kf.setImage(with: event.homeTeam.logoURL,  placeholder: UIImage(named: "teamLogo"))
-            cell.secondTeamImage.kf.setImage(with: event.awayTeam.logoURL, placeholder: UIImage(named: "teamLogo"))
+            if presenter.recentMatches.isEmpty {
+
+                let cell =
+                collectionView.dequeueReusableCell(
+                    withReuseIdentifier:
+                        EmptyStateCollectionViewCell.reuseID,
+                    for: indexPath
+                ) as! EmptyStateCollectionViewCell
+
+                cell.configure(
+                    icon: "clock.badge.xmark",
+                    message: "No recent results available"
+                )
+
+                return cell
+            }
+
+            let cell =
+            collectionView.dequeueReusableCell(
+                withReuseIdentifier: "matchCell",
+                for: indexPath
+            ) as! MatchCollectionViewCell
+
+            let event =
+            presenter.recentMatches[indexPath.item]
+
+            cell.configure(with: event)
+
             return cell
 
+        // MARK: - Teams
+
         case .teamPlayers:
-            let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: "teamsCell", for: indexPath
+
+            if presenter.teams.isEmpty {
+
+                let cell =
+                collectionView.dequeueReusableCell(
+                    withReuseIdentifier:
+                        EmptyStateCollectionViewCell.reuseID,
+                    for: indexPath
+                ) as! EmptyStateCollectionViewCell
+
+                cell.configure(
+                    icon: "person.3.slash",
+                    message: "No teams available"
+                )
+
+                return cell
+            }
+
+            let cell =
+            collectionView.dequeueReusableCell(
+                withReuseIdentifier: "teamsCell",
+                for: indexPath
             ) as! teamPlayerCollectionViewCell
 
-            let team = presenter.teams[indexPath.item]
-            cell.playerName.text = team.name
-            cell.playerImage.kf.setImage(with: team.logoURL, placeholder: UIImage(named: "teamLogo"))
+            let team =
+            presenter.teams[indexPath.item]
+
+            cell.playerName.text =
+            team.name
+
+            cell.playerImage.kf.setImage(
+                with: team.logoURL,
+                placeholder: UIImage(named: "teamLogo")
+            )
+
             return cell
         }
     }
 }
 
-
 // MARK: - UICollectionViewDelegate
 
-extension leagueDetailsViewController: UICollectionViewDelegate {
+extension leagueDetailsViewController:
+UICollectionViewDelegate {
 
-    func collectionView(_ collectionView: UICollectionView,
-                        didSelectItemAt indexPath: IndexPath) {
-        guard Section(rawValue: indexPath.section) == .teamPlayers else { return }
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didSelectItemAt indexPath: IndexPath
+    ) {
 
-        let selectedTeam = presenter.teams[indexPath.item]
+        guard Section(rawValue: indexPath.section)
+                == .teamPlayers,
+              !presenter.teams.isEmpty
+        else {
+            return
+        }
+
+        let selectedTeam =
+        presenter.teams[indexPath.item]
+
+        presenter.didSelectTeam(
+            at: indexPath.item
+        )
+
         AppRouterImpl().navigateToTeamDetails(
             from: self,
             team: selectedTeam,
-            sport: presenter.sportType
+            sport: presenter.sportType,
+            leagueName: presenter.league.name
         )
     }
 }
