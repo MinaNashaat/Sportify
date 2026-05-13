@@ -16,4 +16,5 @@ protocol LeagueDetailsView: AnyObject {
     func updateFavouriteButton(isFavourite: Bool)
     
     var viewController: UIViewController { get }
+
 }

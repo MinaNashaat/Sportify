@@ -8,7 +8,6 @@
 import UIKit
 import Kingfisher
 
-
 private enum Section: Int, CaseIterable {
     case liveMatches
     case recentMatches
@@ -16,19 +15,22 @@ private enum Section: Int, CaseIterable {
 
     var title: String {
         switch self {
-        case .liveMatches:   return "Upcoming"
-        case .recentMatches: return "Latest Results"
-        case .teamPlayers:   return "Teams"
+        case .liveMatches:
+            return "Upcoming"
+
+        case .recentMatches:
+            return "Latest Results"
+
+        case .teamPlayers:
+            return "Teams"
         }
     }
 }
 
-
 class leagueDetailsViewController: UIViewController {
 
-    // MARK: Outlets
-    @IBOutlet weak var leagueName:    UILabel!
-    @IBOutlet weak var leagueImage:   UIImageView!
+    @IBOutlet weak var leagueName: UILabel!
+    @IBOutlet weak var leagueImage: UIImageView!
     @IBOutlet weak var leagueCountry: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var favButtonOutlet: UIButton!
@@ -37,11 +39,16 @@ class leagueDetailsViewController: UIViewController {
 
     private let loadingView = LoadingView()
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.setNavigationBarHidden(false, animated: false)
+
+        navigationController?.setNavigationBarHidden(
+            false,
+            animated: false
+        )
+
         setupCollectionView()
+
         presenter.viewDidLoad()
     }
 
@@ -49,39 +56,67 @@ class leagueDetailsViewController: UIViewController {
     // MARK: - Collection view setup
 
     private func setupCollectionView() {
+
         collectionView.dataSource = self
-        collectionView.delegate   = self
+        collectionView.delegate = self
+        collectionView.register(
+            EmptyStateCollectionViewCell.self,
+            forCellWithReuseIdentifier:
+                EmptyStateCollectionViewCell.reuseID
+        )
+        collectionView.register(
+            UINib(
+                nibName: "MatchCollectionViewCell",
+                bundle: nil
+            ),
+            forCellWithReuseIdentifier: "matchCell"
+        )
 
         collectionView.register(
-            UINib(nibName: "LiveResultCollectionViewCell", bundle: nil),
-            forCellWithReuseIdentifier: "upcomingCell"
-        )
-        collectionView.register(
-            UINib(nibName: "recentMatchesCollectionViewCell", bundle: nil),
-            forCellWithReuseIdentifier: "latestCell"
-        )
-        collectionView.register(
-            UINib(nibName: "teamPlayerCollectionViewCell", bundle: nil),
+            UINib(
+                nibName: "teamPlayerCollectionViewCell",
+                bundle: nil
+            ),
             forCellWithReuseIdentifier: "teamsCell"
         )
+
         collectionView.register(
             UICollectionReusableView.self,
-            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            forSupplementaryViewOfKind:
+                UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: "sectionHeader"
         )
 
-        collectionView.setCollectionViewLayout(makeLayout(), animated: false)
+        collectionView.setCollectionViewLayout(
+            makeLayout(),
+            animated: false
+        )
     }
 
     private func populateHeader() {
-        leagueName.text    = presenter.league.name
-        leagueCountry.text = presenter.league.country ?? ""
+
+        leagueName.text = presenter.league.name
+
+        leagueCountry.text =
+        presenter.league.country ?? ""
+
         leagueImage.kf.setImage(
             with: presenter.league.logoURL,
             placeholder: UIImage(named: "teamLogo")
         )
     }
 
+    private func makeLayout()
+    -> UICollectionViewLayout {
+
+        UICollectionViewCompositionalLayout {
+            [weak self] sectionIndex, _ in
+
+            guard let section =
+                    Section(rawValue: sectionIndex)
+            else {
+                return nil
+            }
 
     // MARK: - Favourite
 
@@ -109,69 +144,148 @@ class leagueDetailsViewController: UIViewController {
         UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
             guard let section = Section(rawValue: sectionIndex) else { return nil }
             switch section {
-            case .liveMatches:   return self?.makeLiveMatchesSection()
-            case .recentMatches: return self?.makeRecentMatchesSection()
-            case .teamPlayers:   return self?.makeTeamPlayersSection()
+
+            case .liveMatches:
+                return self?.makeLiveMatchesSection()
+
+            case .recentMatches:
+                return self?.makeRecentMatchesSection()
+
+            case .teamPlayers:
+                return self?.makeTeamPlayersSection()
             }
         }
     }
 
-    private func makeHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
+    private func makeHeader()
+    -> NSCollectionLayoutBoundarySupplementaryItem {
+
         let size = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
             heightDimension: .absolute(44)
         )
+
         return NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: size,
-            elementKind: UICollectionView.elementKindSectionHeader,
+            elementKind:
+                UICollectionView.elementKindSectionHeader,
             alignment: .top
         )
     }
 
-    private func makeLiveMatchesSection() -> NSCollectionLayoutSection {
-        let item  = NSCollectionLayoutItem(
-            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+    private func makeLiveMatchesSection()
+    -> NSCollectionLayoutSection {
+
+        let item = NSCollectionLayoutItem(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .fractionalHeight(1)
+            )
         )
+
         let group = NSCollectionLayoutGroup.horizontal(
-            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.88), heightDimension: .estimated(250)),
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1) ,    heightDimension: .estimated(170)
+            ),
             subitems: [item]
         )
-        let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .groupPagingCentered
-        section.interGroupSpacing           = 12
-        section.contentInsets               = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 16, trailing: 16)
-        section.boundarySupplementaryItems  = [makeHeader()]
+
+        let section =
+        NSCollectionLayoutSection(group: group)
+
+        section.orthogonalScrollingBehavior =
+        .groupPagingCentered
+
+        section.interGroupSpacing = 12
+
+        section.contentInsets =
+        NSDirectionalEdgeInsets(
+            top: 8,
+            leading: 16,
+            bottom: 16,
+            trailing: 16
+        )
+
+        section.boundarySupplementaryItems =
+        [makeHeader()]
+
         return section
     }
 
-    private func makeRecentMatchesSection() -> NSCollectionLayoutSection {
-        let item  = NSCollectionLayoutItem(
-            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(93))
+    private func makeRecentMatchesSection()
+    -> NSCollectionLayoutSection {
+
+        let item = NSCollectionLayoutItem(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .estimated(150)
+            )
         )
+
         let group = NSCollectionLayoutGroup.vertical(
-            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(93)),
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .estimated(150)
+            ),
             subitems: [item]
         )
-        let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing          = 8
-        section.contentInsets              = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 16, trailing: 16)
-        section.boundarySupplementaryItems = [makeHeader()]
+
+        let section =
+        NSCollectionLayoutSection(group: group)
+
+        section.interGroupSpacing = 10
+
+        section.contentInsets =
+        NSDirectionalEdgeInsets(
+            top: 8,
+            leading: 16,
+            bottom: 16,
+            trailing: 16
+        )
+
+        section.boundarySupplementaryItems =
+        [makeHeader()]
+
         return section
     }
 
-    private func makeTeamPlayersSection() -> NSCollectionLayoutSection {
-        let item  = NSCollectionLayoutItem(
-            layoutSize: NSCollectionLayoutSize(widthDimension: .absolute(165), heightDimension: .absolute(178))
+    private func makeTeamPlayersSection()
+    -> NSCollectionLayoutSection {
+
+        let item = NSCollectionLayoutItem(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .absolute(165),
+                heightDimension: .absolute(178)
+            )
         )
+
         let group = NSCollectionLayoutGroup.horizontal(
-            layoutSize: NSCollectionLayoutSize(widthDimension: .estimated(600), heightDimension: .absolute(178)),
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .estimated(600),
+                heightDimension: .absolute(178)
+            ),
             subitems: [item]
         )
+
         group.interItemSpacing = .fixed(12)
-        let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets              = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 24, trailing: 16)
-        section.boundarySupplementaryItems = [makeHeader()]
+
+        let section =
+        NSCollectionLayoutSection(group: group)
+
+        section.orthogonalScrollingBehavior =
+        .continuous
+
+        section.contentInsets =
+        NSDirectionalEdgeInsets(
+            top: 8,
+            leading: 16,
+            bottom: 24,
+            trailing: 16
+        )
+
+        section.boundarySupplementaryItems =
+        [makeHeader()]
+
         return section
     }
 }
@@ -181,25 +295,44 @@ class leagueDetailsViewController: UIViewController {
 
 extension leagueDetailsViewController: LeagueDetailsView {
 
-    var viewController: UIViewController { self }
+    var viewController: UIViewController {
+        self
+    }
 
     func showLoading() {
+
         loadingView.frame = view.bounds
+
         view.addSubview(loadingView)
     }
 
     func hideLoading() {
+
         loadingView.removeFromSuperview()
     }
 
     func reloadData() {
+
         populateHeader()
+
         collectionView.reloadData()
     }
 
     func showError(message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
+
+        let alert = UIAlertController(
+            title: "Error",
+            message: message,
+            preferredStyle: .alert
+        )
+
+        alert.addAction(
+            UIAlertAction(
+                title: "OK",
+                style: .default
+            )
+        )
+
         present(alert, animated: true)
     }
 
@@ -215,45 +348,90 @@ extension leagueDetailsViewController: LeagueDetailsView {
 
 extension leagueDetailsViewController: UICollectionViewDataSource {
 
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+    func numberOfSections(
+        in collectionView: UICollectionView
+    ) -> Int {
+
         Section.allCases.count
     }
 
-    func collectionView(_ collectionView: UICollectionView,
-                        numberOfItemsInSection section: Int) -> Int {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -> Int {
+
         switch Section(rawValue: section)! {
-        case .liveMatches:   return presenter.upcomingMatches.count
-        case .recentMatches: return presenter.recentMatches.count
-        case .teamPlayers:   return presenter.teams.count
+
+        case .liveMatches:
+
+            return max(
+                presenter.upcomingMatches.count,
+                1
+            )
+
+        case .recentMatches:
+
+            return max(
+                presenter.recentMatches.count,
+                1
+            )
+
+        case .teamPlayers:
+
+            return max(
+                presenter.teams.count,
+                1
+            )
         }
     }
+    func collectionView(
+        _ collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
+        at indexPath: IndexPath
+    ) -> UICollectionReusableView {
 
-    func collectionView(_ collectionView: UICollectionView,
-                        viewForSupplementaryElementOfKind kind: String,
-                        at indexPath: IndexPath) -> UICollectionReusableView {
-
-        let header = collectionView.dequeueReusableSupplementaryView(
+        let header =
+        collectionView.dequeueReusableSupplementaryView(
             ofKind: kind,
             withReuseIdentifier: "sectionHeader",
             for: indexPath
         )
-        header.subviews.forEach { $0.removeFromSuperview() }
+
+        header.subviews.forEach {
+            $0.removeFromSuperview()
+        }
 
         let label = UILabel()
-        label.text = Section(rawValue: indexPath.section)?.title
-        label.font = .systemFont(ofSize: 18, weight: .bold)
-        label.translatesAutoresizingMaskIntoConstraints = false
+
+        label.text =
+        Section(rawValue: indexPath.section)?.title
+
+        label.font =
+            .systemFont(ofSize: 18, weight: .bold)
+
+        label.translatesAutoresizingMaskIntoConstraints =
+        false
+
         header.addSubview(label)
+
         NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: header.leadingAnchor),
-            label.centerYAnchor.constraint(equalTo: header.centerYAnchor)
+
+            label.leadingAnchor.constraint(
+                equalTo: header.leadingAnchor
+            ),
+
+            label.centerYAnchor.constraint(
+                equalTo: header.centerYAnchor
+            )
         ])
 
         return header
     }
 
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
 
         switch Section(rawValue: indexPath.section)! {
 

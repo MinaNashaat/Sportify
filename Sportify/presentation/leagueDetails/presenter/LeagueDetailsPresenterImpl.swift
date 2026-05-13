@@ -6,10 +6,13 @@
 //
 
 import Foundation
+import UIKit
 
 class LeagueDetailsPresenterImpl: LeagueDetailsPresenter {
 
     weak var view: LeagueDetailsView?
+    private let router: AppRouter
+
     private let repository: LeagueDetailsRepository
 
     let sportType: SportType
@@ -22,6 +25,7 @@ class LeagueDetailsPresenterImpl: LeagueDetailsPresenter {
     init(
         view: LeagueDetailsView,
         repository: LeagueDetailsRepository,
+        router: AppRouter,
         league: League,
         sportType: SportType
     ) {
@@ -29,6 +33,7 @@ class LeagueDetailsPresenterImpl: LeagueDetailsPresenter {
         self.repository = repository
         self.league     = league
         self.sportType  = sportType
+        self.router = router
     }
 
     func viewDidLoad() {
@@ -84,5 +89,23 @@ class LeagueDetailsPresenterImpl: LeagueDetailsPresenter {
                 }
             }
         }
+    }
+
+    func didSelectTeam(at index: Int) {
+
+        guard index < teams.count,
+              let viewController = view as? UIViewController
+        else {
+            return
+        }
+
+        let selectedTeam = teams[index]
+
+        router.navigateToTeamDetails(
+            from: viewController,
+            team: selectedTeam,
+            sport: sportType,
+            leagueName: league.name
+        )
     }
 }

@@ -17,6 +17,10 @@ protocol LeagueDetailsPresenter {
     var teams: [Team] { get }
 
     func viewDidLoad()
+<<<<<<< 51-check-the-team-in-favourite-or-not
     func isFavourite() -> Bool
     func toggleFavourite()
+=======
+    func didSelectTeam(at index: Int)
+>>>>>>> dev
 }
