@@ -47,7 +47,6 @@ class AppRouterImpl: AppRouter {
             fatalError("Cannot load myTabBarController")
         }
 
-        // MARK: Sports
 
         guard let sportsVC =
                 tabBar.viewControllers?
@@ -94,13 +93,19 @@ class AppRouterImpl: AppRouter {
         let localDataSource =
         SportifyLocalDataSourceImpl()
 
+        let favRepository =
+        FavouritesRepositoryImpl(
+            localDataSource: localDataSource
+        )
+
         let favouritesPresenter =
         FavouritesPresenterImpl(
             view: favouritesVC,
-            viewController: favouritesVC,
-            localDataSource: localDataSource,
+            repository: favRepository,
             router: router
         )
+
+
 
         favouritesVC.presenter =
         favouritesPresenter
@@ -217,21 +222,27 @@ class AppRouterImpl: AppRouter {
             withIdentifier: "favouritesVC"
         ) as! FavouritesUIViewController
 
-        let localDataSource =
-        SportifyLocalDataSourceImpl()
+
 
         let router =
         AppRouterImpl()
 
-        let presenter =
+        let localDataSource =
+        SportifyLocalDataSourceImpl()
+
+        let repository =
+        FavouritesRepositoryImpl(
+            localDataSource: localDataSource
+        )
+
+        let favouritesPresenter =
         FavouritesPresenterImpl(
             view: vc,
-            viewController: vc,
-            localDataSource: localDataSource,
+            repository: repository,
             router: router
         )
 
-        vc.presenter = presenter
+        vc.presenter = favouritesPresenter
 
         return vc
     }
