@@ -58,6 +58,8 @@
 		6D3E5F3A2FB13F9800EFFE45 /* SportifyRemoteDatasourceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3E5F392FB13F8A00EFFE45 /* SportifyRemoteDatasourceImpl.swift */; };
 		6D3E5F3C2FB13FBC00EFFE45 /* SportifyLocalDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3E5F3B2FB13FAE00EFFE45 /* SportifyLocalDatasource.swift */; };
 		6D3E5F402FB1401600EFFE45 /* SportifyLocalDatasourceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3E5F3F2FB1400100EFFE45 /* SportifyLocalDatasourceImpl.swift */; };
+		6D504F572FB525240051B3F3 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D504F562FB5251C0051B3F3 /* NetworkManager.swift */; };
+		6D504F592FB52BEC0051B3F3 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6D504F582FB52BEC0051B3F3 /* splash.json */; };
 		6D5B9DED2FABF428002DD243 /* LiveResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5B9DE82FABF428002DD243 /* LiveResultCollectionViewCell.swift */; };
 		6D5B9DEE2FABF428002DD243 /* SportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5B9DEC2FABF428002DD243 /* SportsViewController.swift */; };
 		6D5B9DEF2FABF428002DD243 /* SportsTypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5B9DEA2FABF428002DD243 /* SportsTypeCollectionViewCell.swift */; };
@@ -176,6 +178,8 @@
 		6D3E5F392FB13F8A00EFFE45 /* SportifyRemoteDatasourceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportifyRemoteDatasourceImpl.swift; sourceTree = "<group>"; };
 		6D3E5F3B2FB13FAE00EFFE45 /* SportifyLocalDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportifyLocalDatasource.swift; sourceTree = "<group>"; };
 		6D3E5F3F2FB1400100EFFE45 /* SportifyLocalDatasourceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportifyLocalDatasourceImpl.swift; sourceTree = "<group>"; };
+		6D504F562FB5251C0051B3F3 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		6D504F582FB52BEC0051B3F3 /* splash.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		6D5B9DE82FABF428002DD243 /* LiveResultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveResultCollectionViewCell.swift; sourceTree = "<group>"; };
 		6D5B9DE92FABF428002DD243 /* LiveResultCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LiveResultCollectionViewCell.xib; sourceTree = "<group>"; };
 		6D5B9DEA2FABF428002DD243 /* SportsTypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsTypeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -311,6 +315,7 @@
 				39A8B6512FAA064E00CA4BDD /* Info.plist */,
 				39A8B6492FAA064D00CA4BDD /* Sportify.xcdatamodeld */,
 				6D6616162FB278E700D4E681 /* loading.json */,
+				6D504F582FB52BEC0051B3F3 /* splash.json */,
 			);
 			path = Sportify;
 			sourceTree = "<group>";
@@ -531,6 +536,7 @@
 		6D6614D62FB20E8100D4E681 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				6D504F562FB5251C0051B3F3 /* NetworkManager.swift */,
 				6D6614D72FB20EA100D4E681 /* SportType.swift */,
 				392D680B2FB3CDE200DFE4EA /* DateHelper.swift */,
 			);
@@ -785,6 +791,7 @@
 				6D3E5F2E2FB1234500EFFE45 /* LeagueLTableViewCell.xib in Resources */,
 				6D6616172FB278E700D4E681 /* loading.json in Resources */,
 				6D3E5F322FB128A200EFFE45 /* EmptyLeagueListState.xib in Resources */,
+				6D504F592FB52BEC0051B3F3 /* splash.json in Resources */,
 				6D5B9DF02FABF428002DD243 /* LiveResultCollectionViewCell.xib in Resources */,
 				6DA898922FAE7B2E00E0F910 /* FavouritesUITableViewCell.xib in Resources */,
 				6D3A887C2FB3F4AF008329D5 /* teamPlayerTableViewCell.xib in Resources */,
@@ -862,6 +869,7 @@
 				392D68042FB3CD4300DFE4EA /* LeagueDetailsView.swift in Sources */,
 				6D6616122FB2726200D4E681 /* HomePresenterImpl.swift in Sources */,
 				6D24E5B72FB291D60003795B /* TeamDetailsRepository.swift in Sources */,
+				6D504F572FB525240051B3F3 /* NetworkManager.swift in Sources */,
 				6D5B9DED2FABF428002DD243 /* LiveResultCollectionViewCell.swift in Sources */,
 				6D24E5BF2FB292480003795B /* TeamDetailsPresenter.swift in Sources */,
 				6D5B9DEE2FABF428002DD243 /* SportsViewController.swift in Sources */,

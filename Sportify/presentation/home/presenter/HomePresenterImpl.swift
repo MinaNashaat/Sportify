@@ -72,23 +72,40 @@ class HomePresenterImpl: HomePresenter {
     }
 
 
-    func didSelectSport(at index: Int) {
+    func didSelectSport(
+            at index: Int
+        ) {
 
-        let sport = SportType.allCases[index]
+            guard NetworkManager
+                .shared
+                .isReachable else {
 
-        selectedSportType = sport
+                view?.showNoInternetAlert()
 
-        fetchLiveMatches(for: sport)
+                return
+            }
 
-        guard let viewController = view as? UIViewController else {
-            return
+            let sport =
+            SportType.allCases[index]
+
+            selectedSportType =
+            sport
+
+            fetchLiveMatches(
+                for: sport
+            )
+
+            guard let viewController =
+                    view as? UIViewController else {
+                return
+            }
+
+            router.navigateToLeagueList(
+                from: viewController,
+                sportType: selectedSportType
+            )
         }
 
-        router.navigateToLeagueList(
-            from: viewController,
-            sportType: selectedSportType
-        )
-    }
 
 
 

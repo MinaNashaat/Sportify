@@ -12,13 +12,43 @@ class SportsViewController: UIViewController {
     @IBOutlet weak var homeCollectionView: UICollectionView!
     var presenter: HomePresenter!
     private let loadingView = LoadingView()
+    private let refreshControl =
+    UIRefreshControl()
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: false)
 
         setupCollectionView()
+        setupRefreshControl()
 
         presenter?.viewDidLoad()
+    }
+    private func setupRefreshControl() {
+
+        refreshControl.addTarget(
+            self,
+            action: #selector(refreshData),
+            for: .valueChanged
+        )
+
+        homeCollectionView.refreshControl =
+        refreshControl
+    }
+    @objc
+    private func refreshData() {
+
+        guard NetworkManager
+            .shared
+            .isReachable else {
+
+            refreshControl.endRefreshing()
+
+            showNoInternetAlert()
+
+            return
+        }
+
+        presenter.viewDidLoad()
     }
     let sportsData = SportType.allCases
     private func setupCollectionView() {
@@ -217,17 +247,25 @@ HomeView {
 
     func hideLoading() {
 
+        refreshControl.endRefreshing()
+
         loadingView.removeFromSuperview()
     }
 
     func reloadData() {
 
+        refreshControl.endRefreshing()
+
         homeCollectionView.reloadData()
     }
+    func showError(
+        message: String
+    ) {
 
-    func showError(message: String) {
+        refreshControl.endRefreshing()
 
-        let alert = UIAlertController(
+        let alert =
+        UIAlertController(
             title: "Error",
             message: message,
             preferredStyle: .alert
@@ -240,8 +278,33 @@ HomeView {
             )
         )
 
-        present(alert, animated: true)
+        present(
+            alert,
+            animated: true
+        )
     }
+    func showNoInternetAlert() {
+
+            let alert =
+            UIAlertController(
+                title: "No Internet Connection",
+                message:
+                "Please check your internet connectivity and try again.",
+                preferredStyle: .alert
+            )
+
+            alert.addAction(
+                UIAlertAction(
+                    title: "OK",
+                    style: .default
+                )
+            )
+
+            present(
+                alert,
+                animated: true
+            )
+        }
 }
 
 extension SportsViewController: UICollectionViewDelegate {

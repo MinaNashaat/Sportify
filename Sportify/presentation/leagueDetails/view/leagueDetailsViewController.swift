@@ -591,7 +591,6 @@ UICollectionViewDataSource {
     }
 }
 
-// MARK: - UICollectionViewDelegate
 
 extension leagueDetailsViewController:
 UICollectionViewDelegate {
@@ -608,18 +607,8 @@ UICollectionViewDelegate {
             return
         }
 
-        let selectedTeam =
-        presenter.teams[indexPath.item]
-
         presenter.didSelectTeam(
             at: indexPath.item
-        )
-
-        AppRouterImpl().navigateToTeamDetails(
-            from: self,
-            team: selectedTeam,
-            sport: presenter.sportType,
-            leagueName: presenter.league.name
         )
     }
 }

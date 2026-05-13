@@ -18,4 +18,6 @@ protocol HomeView: AnyObject {
     func showError(
         message: String
     )
+    func showNoInternetAlert()
+
 }

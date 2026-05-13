@@ -1,3 +1,9 @@
+//
+//  FavouritesUIViewController.swift
+//  Sportify
+//
+//  Created by Ahmed Salah on 13/05/2026.
+//
 
 import UIKit
 import Kingfisher
@@ -14,61 +20,87 @@ UIViewController {
     var presenter:
     FavouritesPresenter!
 
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(
+        _ animated: Bool
+    ) {
+
         super.viewWillAppear(animated)
 
-        navigationController?.setNavigationBarHidden(true, animated: animated)
+        navigationController?
+            .setNavigationBarHidden(
+                true,
+                animated: animated
+            )
+
+        presenter.viewDidLoad()
+
+        favouritesTable.reloadData()
+
+        updateUI()
     }
-    
+
     override func viewDidLoad() {
+
         super.viewDidLoad()
 
         navigationController?
             .navigationBar
             .prefersLargeTitles = true
-        emptyView.tabBarController = tabBarController
+
+        emptyView.tabBarController =
+        tabBarController
+
         title = "Favourites"
 
         favouritesTable.separatorStyle = .none
+
         favouritesTable.delegate = self
+
         favouritesTable.dataSource = self
-        favouritesTable.showsVerticalScrollIndicator = false
+
+        favouritesTable
+            .showsVerticalScrollIndicator = false
 
         favouritesTable.register(
             UINib(
-                nibName: "FavouritesUITableViewCell",
+                nibName:
+                "FavouritesUITableViewCell",
                 bundle: nil
             ),
-            forCellReuseIdentifier: "favouriteCell"
+            forCellReuseIdentifier:
+            "favouriteCell"
         )
 
         setupEmptyView()
-
-        presenter.viewDidLoad()
     }
 
     private func setupEmptyView() {
 
         view.addSubview(emptyView)
 
-        emptyView.translatesAutoresizingMaskIntoConstraints = false
+        emptyView
+            .translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
 
             emptyView.topAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.topAnchor
+                equalTo:
+                    view.safeAreaLayoutGuide.topAnchor
             ),
 
             emptyView.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor
+                equalTo:
+                    view.leadingAnchor
             ),
 
             emptyView.trailingAnchor.constraint(
-                equalTo: view.trailingAnchor
+                equalTo:
+                    view.trailingAnchor
             ),
 
             emptyView.bottomAnchor.constraint(
-                equalTo: view.bottomAnchor
+                equalTo:
+                    view.bottomAnchor
             )
         ])
     }
@@ -78,9 +110,11 @@ UIViewController {
         let isEmpty =
         presenter.leagues.isEmpty
 
-        favouritesTable.isHidden = isEmpty
+        favouritesTable.isHidden =
+        isEmpty
 
-        emptyView.isHidden = !isEmpty
+        emptyView.isHidden =
+        !isEmpty
     }
 }
 
@@ -101,7 +135,8 @@ FavouritesView {
         let alert =
         UIAlertController(
             title: "Delete League",
-            message: "Are you sure you want to remove this league from favourites?",
+            message:
+            "Are you sure you want to remove this league from favourites?",
             preferredStyle: .alert
         )
 
@@ -122,6 +157,29 @@ FavouritesView {
                         at: index
                     )
                 }
+            )
+        )
+
+        present(
+            alert,
+            animated: true
+        )
+    }
+
+    func showNoInternetAlert() {
+
+        let alert =
+        UIAlertController(
+            title: "No Internet Connection",
+            message:
+            "Please check your internet connectivity and try again.",
+            preferredStyle: .alert
+        )
+
+        alert.addAction(
+            UIAlertAction(
+                title: "OK",
+                style: .default
             )
         )
 
@@ -162,11 +220,15 @@ UITableViewDataSource {
         league.leagueTitle
 
         cell.leagueImage.kf.setImage(
-            with: URL(string: league.leagueImage),
-            placeholder: UIImage(named: "teamLogo")
+            with: URL(
+                string: league.leagueImage
+            ),
+            placeholder:
+            UIImage(named: "teamLogo")
         )
 
-        cell.deleteAction = { [weak self] in
+        cell.deleteAction = {
+            [weak self] in
 
             self?.showDeleteAlert(
                 index: indexPath.row
@@ -203,7 +265,8 @@ UITableViewDataSource {
         UIContextualAction(
             style: .destructive,
             title: "Delete"
-        ) { [weak self] _, _, completion in
+        ) {
+            [weak self] _, _, completion in
 
             self?.showDeleteAlert(
                 index: indexPath.row
