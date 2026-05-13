@@ -18,11 +18,11 @@ protocol HomePresenter {
 
     var selectedSportType: SportType { get }
     
-    func viewDidLoad()
-
-    func didSelectSport(
-        at index: Int
-    )
+//    func viewDidLoad()
+//
+//    func didSelectSport(
+//        at index: Int
+//    )
 
 
 }
