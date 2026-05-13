@@ -17,9 +17,15 @@ class myPageViewController: UIPageViewController,
     let stackView = UIStackView()
     var indicators: [UIView] = []
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        
         self.delegate = self
         self.dataSource = self
 

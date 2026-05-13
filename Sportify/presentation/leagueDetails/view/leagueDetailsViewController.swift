@@ -27,10 +27,11 @@ private enum Section: Int, CaseIterable {
 class leagueDetailsViewController: UIViewController {
 
     // MARK: Outlets
-    @IBOutlet weak var leagueName: UILabel!
-    @IBOutlet weak var leagueImage: UIImageView!
+    @IBOutlet weak var leagueName:    UILabel!
+    @IBOutlet weak var leagueImage:   UIImageView!
     @IBOutlet weak var leagueCountry: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var favButtonOutlet: UIButton!
 
     var presenter: LeagueDetailsPresenter!
 
@@ -44,6 +45,8 @@ class leagueDetailsViewController: UIViewController {
         presenter.viewDidLoad()
     }
 
+
+    // MARK: - Collection view setup
 
     private func setupCollectionView() {
         collectionView.dataSource = self
@@ -79,6 +82,28 @@ class leagueDetailsViewController: UIViewController {
         )
     }
 
+
+    // MARK: - Favourite
+
+    @IBAction func favButtonAction(_ sender: UIButton) {
+        if presenter.isFavourite() {
+            let alert = UIAlertController(
+                title: "Remove from Favourites",
+                message: "Are you sure you want to remove \"\(presenter.league.name)\" from your favourites?",
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: "Remove", style: .destructive) { [weak self] _ in
+                self?.presenter.toggleFavourite()
+            })
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            present(alert, animated: true)
+        } else {
+            presenter.toggleFavourite()
+        }
+    }
+
+
+    // MARK: - Layout
 
     private func makeLayout() -> UICollectionViewLayout {
         UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
@@ -152,6 +177,8 @@ class leagueDetailsViewController: UIViewController {
 }
 
 
+// MARK: - LeagueDetailsView
+
 extension leagueDetailsViewController: LeagueDetailsView {
 
     var viewController: UIViewController { self }
@@ -175,8 +202,16 @@ extension leagueDetailsViewController: LeagueDetailsView {
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
     }
+
+    func updateFavouriteButton(isFavourite: Bool) {
+        let image = UIImage(systemName: isFavourite ? "heart.fill" : "heart")
+        favButtonOutlet.setImage(image, for: .normal)
+        favButtonOutlet.tintColor = isFavourite ? .systemRed : .label
+    }
 }
 
+
+// MARK: - UICollectionViewDataSource
 
 extension leagueDetailsViewController: UICollectionViewDataSource {
 
@@ -228,7 +263,6 @@ extension leagueDetailsViewController: UICollectionViewDataSource {
             ) as! LiveResultCollectionViewCell
 
             let event = presenter.upcomingMatches[indexPath.item]
-
             let liveMatch = LiveMatch(
                 id: event.id,
                 kickoffTime: "\(event.date) \(event.time)",
@@ -236,14 +270,13 @@ extension leagueDetailsViewController: UICollectionViewDataSource {
                     if case .live(let min) = event.state { return min }
                     return event.time
                 }(),
-                isLive: event.state.isLive,
-                score: event.state.score ?? Score(home: 0, away: 0, raw: "- : -"),
-                homeTeam: event.homeTeam,
-                awayTeam: event.awayTeam,
+                isLive:     event.state.isLive,
+                score:      event.state.score ?? Score(home: 0, away: 0, raw: "- : -"),
+                homeTeam:   event.homeTeam,
+                awayTeam:   event.awayTeam,
                 tournament: event.tournament,
-                goals: event.goals
+                goals:      event.goals
             )
-
             cell.configure(with: liveMatch)
             return cell
 
@@ -257,21 +290,12 @@ extension leagueDetailsViewController: UICollectionViewDataSource {
                 if case .finished(let s) = event.state { return s.raw }
                 return "-"
             }()
-
             cell.firstTeamName.text  = event.homeTeam.name
             cell.secondTeamName.text = event.awayTeam.name
             cell.score.text          = scoreText
             cell.myTime.text         = event.date
-
-            cell.firstTeamImage.kf.setImage(
-                with: event.homeTeam.logoURL,
-                placeholder: UIImage(named: "teamLogo")
-            )
-            cell.secondTeamImage.kf.setImage(
-                with: event.awayTeam.logoURL,
-                placeholder: UIImage(named: "teamLogo")
-            )
-
+            cell.firstTeamImage.kf.setImage(with: event.homeTeam.logoURL,  placeholder: UIImage(named: "teamLogo"))
+            cell.secondTeamImage.kf.setImage(with: event.awayTeam.logoURL, placeholder: UIImage(named: "teamLogo"))
             return cell
 
         case .teamPlayers:
@@ -281,33 +305,23 @@ extension leagueDetailsViewController: UICollectionViewDataSource {
 
             let team = presenter.teams[indexPath.item]
             cell.playerName.text = team.name
-            cell.playerImage.kf.setImage(
-                with: team.logoURL,
-                placeholder: UIImage(named: "teamLogo")
-            )
-
+            cell.playerImage.kf.setImage(with: team.logoURL, placeholder: UIImage(named: "teamLogo"))
             return cell
         }
     }
 }
 
 
+// MARK: - UICollectionViewDelegate
+
 extension leagueDetailsViewController: UICollectionViewDelegate {
 
-    func collectionView(
-        _ collectionView: UICollectionView,
-        didSelectItemAt indexPath: IndexPath
-    ) {
-
-        guard Section(rawValue: indexPath.section) == .teamPlayers else {
-            return
-        }
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
+        guard Section(rawValue: indexPath.section) == .teamPlayers else { return }
 
         let selectedTeam = presenter.teams[indexPath.item]
-
-        let router = AppRouterImpl()
-
-        router.navigateToTeamDetails(
+        AppRouterImpl().navigateToTeamDetails(
             from: self,
             team: selectedTeam,
             sport: presenter.sportType

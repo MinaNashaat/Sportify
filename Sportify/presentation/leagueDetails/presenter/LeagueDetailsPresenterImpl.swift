@@ -10,15 +10,14 @@ import Foundation
 class LeagueDetailsPresenterImpl: LeagueDetailsPresenter {
 
     weak var view: LeagueDetailsView?
-
     private let repository: LeagueDetailsRepository
 
     let sportType: SportType
-    let league: League
+    let league:    League
 
     var upcomingMatches: [MatchEvent] = []
-    var recentMatches: [MatchEvent] = []
-    var teams: [Team] = []
+    var recentMatches:   [MatchEvent] = []
+    var teams:           [Team]       = []
 
     init(
         view: LeagueDetailsView,
@@ -26,18 +25,31 @@ class LeagueDetailsPresenterImpl: LeagueDetailsPresenter {
         league: League,
         sportType: SportType
     ) {
-        self.view = view
+        self.view       = view
         self.repository = repository
-        self.league = league
-        self.sportType = sportType
+        self.league     = league
+        self.sportType  = sportType
     }
 
     func viewDidLoad() {
+        view?.updateFavouriteButton(isFavourite: repository.isFavourite(leagueId: league.id))
         fetchData()
     }
 
-    private func fetchData() {
+    func isFavourite() -> Bool {
+        repository.isFavourite(leagueId: league.id)
+    }
 
+    func toggleFavourite() {
+        if repository.isFavourite(leagueId: league.id) {
+            repository.removeFavourite(leagueId: league.id)
+        } else {
+            repository.addFavourite(league: league)
+        }
+        view?.updateFavouriteButton(isFavourite: repository.isFavourite(leagueId: league.id))
+    }
+
+    private func fetchData() {
         view?.showLoading()
 
         let from = DateHelper.dateString(daysOffset: -30)
@@ -45,37 +57,26 @@ class LeagueDetailsPresenterImpl: LeagueDetailsPresenter {
 
         Task {
             do {
-                async let eventsTask = repository.getLeagueEvents(
-                    sport: sportType,
-                    leagueId: league.id,
-                    from: from,
-                    to: to
-                )
-                async let teamsTask = repository.getLeagueTeams(
-                    sport: sportType,
-                    leagueId: league.id
-                )
+                async let eventsTask = repository.getLeagueEvents(sport: sportType, leagueId: league.id, from: from, to: to)
+                async let teamsTask  = repository.getLeagueTeams(sport: sportType, leagueId: league.id)
 
                 let (events, fetchedTeams) = try await (eventsTask, teamsTask)
 
                 self.upcomingMatches = events.filter {
                     if case .upcoming = $0.state { return true }
-                    if case .live = $0.state     { return true }
+                    if case .live     = $0.state { return true }
                     return false
                 }
-
                 self.recentMatches = events.filter {
                     if case .finished = $0.state { return true }
                     return false
                 }
-
                 self.teams = fetchedTeams
 
                 await MainActor.run {
                     self.view?.hideLoading()
                     self.view?.reloadData()
                 }
-
             } catch {
                 await MainActor.run {
                     self.view?.hideLoading()

@@ -20,4 +20,8 @@ protocol LeagueDetailsRepository {
         sport: SportType,
         leagueId: Int
     ) async throws -> [Team]
+    
+    func isFavourite(leagueId: Int) -> Bool
+    func addFavourite(league: League)
+    func removeFavourite(leagueId: Int)
 }

@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		39016AC52FB290AF001B185E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 39016AC42FB290AF001B185E /* Alamofire */; };
-		39016AC82FB290BE001B185E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 39016AC72FB290BE001B185E /* Kingfisher */; };
 		39016ACD2FB29CC0001B185E /* LeagueRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39016ACC2FB29CBF001B185E /* LeagueRepositoryImpl.swift */; };
 		39016ACF2FB29D26001B185E /* LeagueListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39016ACE2FB29D26001B185E /* LeagueListView.swift */; };
 		39016AD12FB29D3E001B185E /* LeagueListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39016AD02FB29D3E001B185E /* LeagueListPresenter.swift */; };
@@ -19,6 +17,8 @@
 		392D68072FB3CD7B00DFE4EA /* LeagueDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D68062FB3CD7B00DFE4EA /* LeagueDetailsPresenter.swift */; };
 		392D680A2FB3CDB200DFE4EA /* LeagueDetailsPresenterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D68092FB3CDB200DFE4EA /* LeagueDetailsPresenterImpl.swift */; };
 		392D680C2FB3CDE200DFE4EA /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D680B2FB3CDE200DFE4EA /* DateHelper.swift */; };
+		396D65A62FB4F52400EC7B62 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 396D65A52FB4F52400EC7B62 /* Kingfisher */; };
+		396D65A92FB4F53A00EC7B62 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 396D65A82FB4F53A00EC7B62 /* Alamofire */; };
 		39A8B6412FAA064D00CA4BDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A8B6402FAA064D00CA4BDD /* AppDelegate.swift */; };
 		39A8B6432FAA064D00CA4BDD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A8B6422FAA064D00CA4BDD /* SceneDelegate.swift */; };
 		39A8B6452FAA064D00CA4BDD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A8B6442FAA064D00CA4BDD /* ViewController.swift */; };
@@ -29,6 +29,7 @@
 		39A8B65B2FAA064F00CA4BDD /* SportifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A8B65A2FAA064F00CA4BDD /* SportifyTests.swift */; };
 		39A8B6652FAA064F00CA4BDD /* SportifyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A8B6642FAA064F00CA4BDD /* SportifyUITests.swift */; };
 		39A8B6672FAA064F00CA4BDD /* SportifyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A8B6662FAA064F00CA4BDD /* SportifyUITestsLaunchTests.swift */; };
+		39AF0F832FB4F88D00939FE0 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 39AF0F822FB4F88D00939FE0 /* Lottie */; };
 		39B0B3612FAF9DEE005C4B90 /* recentMatchesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0B35F2FAF9DEE005C4B90 /* recentMatchesTableViewCell.swift */; };
 		39B0B3622FAF9DEE005C4B90 /* recentMatchesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39B0B3602FAF9DEE005C4B90 /* recentMatchesTableViewCell.xib */; };
 		39BBE9B52FAC7B8F00079018 /* myPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BBE9B42FAC7B8F00079018 /* myPageViewController.swift */; };
@@ -45,7 +46,6 @@
 		6D24E5BC2FB292250003795B /* TeamDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D24E5BB2FB292200003795B /* TeamDetailsView.swift */; };
 		6D24E5BF2FB292480003795B /* TeamDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D24E5BE2FB292450003795B /* TeamDetailsPresenter.swift */; };
 		6D24E5C12FB292730003795B /* TeamDetailsPresenterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D24E5C02FB292610003795B /* TeamDetailsPresenterImpl.swift */; };
-		6D3A88702FB3BA36008329D5 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 6D3A886F2FB3BA36008329D5 /* Lottie */; };
 		6D3A88782FB3E5C5008329D5 /* EmptyStateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3A88772FB3E5C1008329D5 /* EmptyStateTableViewCell.swift */; };
 		6D3A887C2FB3F4AF008329D5 /* teamPlayerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D3A887B2FB3F4AF008329D5 /* teamPlayerTableViewCell.xib */; };
 		6D3A887D2FB3F4AF008329D5 /* teamPlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3A887A2FB3F4AF008329D5 /* teamPlayerTableViewCell.swift */; };
@@ -217,9 +217,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39016AC82FB290BE001B185E /* Kingfisher in Frameworks */,
-				39016AC52FB290AF001B185E /* Alamofire in Frameworks */,
-				6D3A88702FB3BA36008329D5 /* Lottie in Frameworks */,
+				396D65A62FB4F52400EC7B62 /* Kingfisher in Frameworks */,
+				396D65A92FB4F53A00EC7B62 /* Alamofire in Frameworks */,
+				39AF0F832FB4F88D00939FE0 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -659,9 +659,9 @@
 			);
 			name = Sportify;
 			packageProductDependencies = (
-				39016AC42FB290AF001B185E /* Alamofire */,
-				39016AC72FB290BE001B185E /* Kingfisher */,
-				6D3A886F2FB3BA36008329D5 /* Lottie */,
+				396D65A52FB4F52400EC7B62 /* Kingfisher */,
+				396D65A82FB4F53A00EC7B62 /* Alamofire */,
+				39AF0F822FB4F88D00939FE0 /* Lottie */,
 			);
 			productName = Sportify;
 			productReference = 39A8B63D2FAA064D00CA4BDD /* Sportify.app */;
@@ -736,9 +736,9 @@
 			);
 			mainGroup = 39A8B6342FAA064D00CA4BDD;
 			packageReferences = (
-				39016AC32FB290AF001B185E /* XCRemoteSwiftPackageReference "alamofire" */,
-				39016AC62FB290BE001B185E /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				6D3A886E2FB3B974008329D5 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				396D65A42FB4F52400EC7B62 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				396D65A72FB4F53A00EC7B62 /* XCRemoteSwiftPackageReference "alamofire" */,
+				39AF0F812FB4F88D00939FE0 /* XCRemoteSwiftPackageReference "lottie-spm" */,
 			);
 			productRefGroup = 39A8B63E2FAA064D00CA4BDD /* Products */;
 			projectDirPath = "";
@@ -1204,15 +1204,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		39016AC32FB290AF001B185E /* XCRemoteSwiftPackageReference "alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/alamofire/alamofire";
-			requirement = {
-				kind = exactVersion;
-				version = 5.6.4;
-			};
-		};
-		39016AC62FB290BE001B185E /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		396D65A42FB4F52400EC7B62 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
 			requirement = {
@@ -1220,9 +1212,17 @@
 				version = 7.11.0;
 			};
 		};
-		6D3A886E2FB3B974008329D5 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+		396D65A72FB4F53A00EC7B62 /* XCRemoteSwiftPackageReference "alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			repositoryURL = "https://github.com/alamofire/alamofire";
+			requirement = {
+				kind = exactVersion;
+				version = 5.6.4;
+			};
+		};
+		39AF0F812FB4F88D00939FE0 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-spm";
 			requirement = {
 				kind = exactVersion;
 				version = 4.2.0;
@@ -1231,19 +1231,19 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		39016AC42FB290AF001B185E /* Alamofire */ = {
+		396D65A52FB4F52400EC7B62 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 39016AC32FB290AF001B185E /* XCRemoteSwiftPackageReference "alamofire" */;
-			productName = Alamofire;
-		};
-		39016AC72FB290BE001B185E /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 39016AC62FB290BE001B185E /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = 396D65A42FB4F52400EC7B62 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
-		6D3A886F2FB3BA36008329D5 /* Lottie */ = {
+		396D65A82FB4F53A00EC7B62 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6D3A886E2FB3B974008329D5 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			package = 396D65A72FB4F53A00EC7B62 /* XCRemoteSwiftPackageReference "alamofire" */;
+			productName = Alamofire;
+		};
+		39AF0F822FB4F88D00939FE0 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39AF0F812FB4F88D00939FE0 /* XCRemoteSwiftPackageReference "lottie-spm" */;
 			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */

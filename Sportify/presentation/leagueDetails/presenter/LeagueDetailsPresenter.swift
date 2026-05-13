@@ -17,4 +17,6 @@ protocol LeagueDetailsPresenter {
     var teams: [Team] { get }
 
     func viewDidLoad()
+    func isFavourite() -> Bool
+    func toggleFavourite()
 }

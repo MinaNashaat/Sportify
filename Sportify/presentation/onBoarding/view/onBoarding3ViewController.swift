@@ -21,7 +21,10 @@ class onBoarding3ViewController: UIViewController {
 
         navigationController?.pushViewController(tabBar, animated: true)
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
     /*
     // MARK: - Navigation
 
