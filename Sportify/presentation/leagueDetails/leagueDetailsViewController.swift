@@ -361,11 +361,11 @@ extension leagueDetailsViewController: UICollectionViewDataSource {
         case .teamPlayers:
             let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: "teamsCell",
-                for: indexPath) as! teamPlayerCollectionViewCell
+                for: indexPath) as! UICollectionViewCell
 
-            let player = teamPlayers[indexPath.item]
-            cell.playerName.text   = player.name
-            cell.playerImage.image = player.image
+//            let player = teamPlayers[indexPath.item]
+//            cell.playerName.text   = player.name
+//            cell.playerImage.image = player.image
             return cell
         }
     }
