@@ -14,5 +14,4 @@ protocol LeagueDetailsView: AnyObject {
     func reloadData()
     func showError(message: String)
 
-    var viewController: UIViewController { get }
 }

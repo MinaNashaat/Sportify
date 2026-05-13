@@ -80,16 +80,8 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Eyd-nc-XZR" userLabel="timeMatch">
                                         <rect key="frame" x="0.0" y="0.0" width="293" height="16"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ekL-XT-p6A">
-                                                <rect key="frame" x="0.0" y="3.5" width="10" height="9"/>
-                                                <color key="tintColor" name="RedColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="10" id="Lwb-tu-KQb"/>
-                                                    <constraint firstAttribute="width" constant="10" id="W6h-Qn-Zg5"/>
-                                                </constraints>
-                                            </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LIVE • 71'" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nGc-Zy-KcC">
-                                                <rect key="frame" x="18" y="1" width="275" height="14.5"/>
+                                                <rect key="frame" x="0.0" y="1" width="293" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                                 <color key="textColor" name="RedColor"/>
                                                 <nil key="highlightedColor"/>
@@ -139,7 +131,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="circle.fill" catalog="system" width="128" height="123"/>
         <namedColor name="RedColor">
             <color red="0.72941176470588232" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
