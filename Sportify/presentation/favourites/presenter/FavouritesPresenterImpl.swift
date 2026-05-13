@@ -40,26 +40,37 @@ FavouritesPresenter{
     }
 
     func didSelectLeague(
-        at index: Int
-    ) {
+            at index: Int
+        ) {
 
-        let favouriteLeague =
-        leagues[index]
+            guard NetworkManager
+                .shared
+                .isReachable else {
 
-        let league = League(
-            id: favouriteLeague.leagueId,
-            name: favouriteLeague.leagueTitle,
-            country: nil,
-            logoURL: URL(string: favouriteLeague.leagueImage),
-            countryLogoURL: nil
-        )
+                view?.showNoInternetAlert()
 
-        router.navigateToLeagueDetails(
-            from: view as! UIViewController,
-            league: league,
-            sportType: .football
-        )
-    }
+                return
+            }
+
+            let favouriteLeague =
+            leagues[index]
+
+            let league = League(
+                id: favouriteLeague.leagueId,
+                name: favouriteLeague.leagueTitle,
+                country: nil,
+                logoURL: URL(
+                    string: favouriteLeague.leagueImage
+                ),
+                countryLogoURL: nil
+            )
+
+            router.navigateToLeagueDetails(
+                from: view as! UIViewController,
+                league: league,
+                sportType: .football
+            )
+        }
 
     func deleteLeague(
         at index: Int

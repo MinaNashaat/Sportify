@@ -14,4 +14,6 @@ protocol FavouritesView: AnyObject {
     func showDeleteAlert(
         index: Int
     )
+
+    func showNoInternetAlert()
 }

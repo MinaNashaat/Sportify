@@ -48,7 +48,7 @@ class FavouritesUITableViewCell: UITableViewCell {
     private func setupButton() {
 
         let image = UIImage(
-            systemName: "heart",
+            systemName: "heart.fill",
             withConfiguration: UIImage.SymbolConfiguration(
                 pointSize: 20,
                 weight: .regular
