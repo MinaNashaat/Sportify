@@ -56,8 +56,26 @@ class LiveResultCollectionViewCell: UICollectionViewCell {
         matchResultLabel.text =
         match.score.raw
 
-        matchTimeLabel.text =
-        match.kickoffTime
+
+        if match.isLive {
+            stopLivePulse()
+
+            matchTimeLabel.text =
+            "🔴 LIVE • \(match.kickoffTime)"
+
+            matchTimeLabel.textColor =
+            .systemRed
+
+            startLivePulse()
+
+        } else {
+
+            matchTimeLabel.text =
+            match.kickoffTime
+
+            matchTimeLabel.textColor =
+            .secondaryLabel
+        }
 
         leagueNameLabel.text =
         match.tournament?.league
@@ -157,6 +175,8 @@ class LiveResultCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
 
+        stopLivePulse()
+
         homeGoalsStack.arrangedSubviews
             .forEach { $0.removeFromSuperview() }
 
@@ -165,5 +185,40 @@ class LiveResultCollectionViewCell: UICollectionViewCell {
 
         homeTeamLogo.image = nil
         awayTeamLogo.image = nil
+    }
+    private func startLivePulse() {
+
+        let pulse =
+        CABasicAnimation(
+            keyPath: "opacity"
+        )
+
+        pulse.fromValue = 1.0
+        pulse.toValue = 0.2
+
+        pulse.duration = 0.75
+
+        pulse.autoreverses = true
+
+        pulse.repeatCount = .infinity
+
+        pulse.timingFunction =
+        CAMediaTimingFunction(
+            name: .easeInEaseOut
+        )
+
+        matchTimeLabel.layer.add(
+            pulse,
+            forKey: "livePulse"
+        )
+    }
+
+    private func stopLivePulse() {
+
+        matchTimeLabel.layer.removeAnimation(
+            forKey: "livePulse"
+        )
+
+        matchTimeLabel.alpha = 1
     }
 }

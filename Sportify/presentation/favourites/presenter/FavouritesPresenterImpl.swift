@@ -12,33 +12,29 @@ FavouritesPresenter{
 
     weak var view: FavouritesView?
 
-    private let localDataSource:
-    SportifyLocalDataSource
+    private let repository:
+    FavouritesRepository
 
     private let router: AppRouterImpl
 
-    private weak var viewController:
-    UIViewController?
 
     var leagues: [FavouriteLeague] = []
 
     init(
         view: FavouritesView,
-        viewController: UIViewController,
-        localDataSource: SportifyLocalDataSource,
+        repository: FavouritesRepository,
         router: AppRouterImpl
     ) {
 
         self.view = view
-        self.viewController = viewController
-        self.localDataSource = localDataSource
+        self.repository = repository
         self.router = router
     }
 
     func viewDidLoad() {
 
         leagues =
-        localDataSource.fetchFavouriteLeagues()
+        repository.fetchFavouriteLeagues()
 
         view?.renderLeagues()
     }
@@ -59,7 +55,7 @@ FavouritesPresenter{
         )
 
         router.navigateToLeagueDetails(
-            from: viewController!,
+            from: view as! UIViewController,
             league: league,
             sportType: .football
         )
@@ -71,7 +67,7 @@ FavouritesPresenter{
 
         let league = leagues[index]
 
-        localDataSource.deleteLeague(
+        repository.deleteLeague(
             leagueId: league.leagueId
         )
 
