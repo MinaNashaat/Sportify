@@ -12,9 +12,10 @@ class LeagueDetailsPresenterImpl: LeagueDetailsPresenter {
     weak var view: LeagueDetailsView?
 
     private let repository: LeagueDetailsRepository
-    private let sportType: SportType
 
+    let sportType: SportType
     let league: League
+
     var upcomingMatches: [MatchEvent] = []
     var recentMatches: [MatchEvent] = []
     var teams: [Team] = []
