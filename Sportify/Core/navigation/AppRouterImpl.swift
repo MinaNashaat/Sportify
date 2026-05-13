@@ -105,8 +105,17 @@ class AppRouterImpl: AppRouter {
         AppRouterImpl.storyboard.instantiateViewController(
             withIdentifier: "leagueEvent"
         ) as! leagueDetailsViewController
-        vc.league = league
-        vc.sportType = sportType
+        let remoteDataSource = SportifyRemoteDataSourceImpl()
+        let repository = LeagueDetailsRepositoryImpl(remoteDataSource: remoteDataSource)
+        let presenter = LeagueDetailsPresenterImpl(
+            view: vc,
+            repository: repository,
+            league: league,
+            sportType: sportType
+        )
+        vc.presenter = presenter
+//        vc.league = league
+//        vc.sportType = sportType
         view.navigationController?
             .pushViewController(
                 vc,
