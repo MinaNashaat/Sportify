@@ -64,7 +64,6 @@ class AppRouterImpl: AppRouter {
 
         return tabBar
     }
-    // MARK: - Navigation
 
     func navigateToLeagueList(
         from view: UIViewController,
@@ -125,13 +124,38 @@ class AppRouterImpl: AppRouter {
     }
 
     func navigateToTeamDetails(
-        from view: UIViewController
+        from view: UIViewController,
+        team: Team,
+        sport: SportType
     ) {
 
         let vc =
         AppRouterImpl.storyboard.instantiateViewController(
             withIdentifier: "teamEvents"
         ) as! teamDetailsViewController
+
+        let remoteDataSource =
+        SportifyRemoteDataSourceImpl()
+
+        let repository =
+        TeamDetailsRepositoryImpl(
+            remoteDataSource: remoteDataSource
+        )
+
+        let router = AppRouterImpl()
+
+        let presenter =
+        TeamDetailsPresenterImpl(
+            view: vc,
+            repository: repository,
+            router: router
+        )
+
+        presenter.teamId = team.id
+        presenter.sport = sport
+
+        vc.selectedTeam = team
+        vc.presenter = presenter
 
         view.navigationController?
             .pushViewController(

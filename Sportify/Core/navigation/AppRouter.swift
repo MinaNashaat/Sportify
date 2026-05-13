@@ -25,6 +25,8 @@ protocol AppRouter {
     )
 
     func navigateToTeamDetails(
-        from view: UIViewController
-    )
+           from view: UIViewController,
+           team: Team,
+           sport: SportType
+       )
 }

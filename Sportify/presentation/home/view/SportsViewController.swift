@@ -40,8 +40,10 @@ class SportsViewController: UIViewController {
     }
     func createLayout() -> UICollectionViewLayout {
         return UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
-
-            if sectionIndex == 0 {
+            let hasLiveMatches =
+            self.presenter.getLiveMatchesCount() > 0
+            if hasLiveMatches && sectionIndex == 0
+ {
                 let itemSize = NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1.0),
                     heightDimension: .estimated(250)
@@ -90,40 +92,66 @@ class SportsViewController: UIViewController {
 extension SportsViewController: UICollectionViewDataSource {
 
 
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+    func numberOfSections(
+        in collectionView: UICollectionView
+    ) -> Int {
+
+        return presenter.getLiveMatchesCount() > 0 ? 2 : 1
     }
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return section == 0
-            ? presenter.getLiveMatchesCount()
-            : sportsData.count
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -> Int {
+
+        if presenter.getLiveMatchesCount() > 0 {
+
+            return section == 0
+                ? presenter.getLiveMatchesCount()
+                : sportsData.count
+        } else {
+
+            return sportsData.count
+        }
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
 
+        let hasLiveMatches =
+        presenter.getLiveMatchesCount() > 0
 
-        if indexPath.section == 0 {
+        if hasLiveMatches && indexPath.section == 0 {
 
             let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: "liveScore",
                 for: indexPath
             ) as! LiveResultCollectionViewCell
 
-            if let match = presenter.getLiveMatch(at: indexPath.item) {
-                        cell.configure(with: match)
-                    }
+            if let match = presenter.getLiveMatch(
+                at: indexPath.item
+            ) {
+
+                cell.configure(with: match)
+            }
 
             return cell
-        }
-        else {
+
+        } else {
 
             let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: "sports",
                 for: indexPath
             ) as! SportsTypeCollectionViewCell
 
-            let sport = sportsData[indexPath.row]
+            let sportIndex =
+            hasLiveMatches
+                ? indexPath.row
+                : indexPath.row
+
+            let sport = sportsData[sportIndex]
 
             cell.sportText.text = sport.title
 
@@ -133,19 +161,40 @@ extension SportsViewController: UICollectionViewDataSource {
             return cell
         }
     }
+
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 
-        if kind == UICollectionView.elementKindSectionHeader && indexPath.section == 1 {
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath)
+        if kind == UICollectionView.elementKindSectionHeader {
 
-            header.subviews.forEach { $0.removeFromSuperview() }
-            let label = UILabel(frame: header.bounds)
-            label.text = "Sports"
-            label.font = .boldSystemFont(ofSize: 24)
+            let hasLiveMatches =
+            presenter.getLiveMatchesCount() > 0
 
-            header.addSubview(label)
+            let sportsSection =
+            hasLiveMatches ? 1 : 0
 
-            return header
+            if indexPath.section == sportsSection {
+
+                let header =
+                collectionView.dequeueReusableSupplementaryView(
+                    ofKind: kind,
+                    withReuseIdentifier: "header",
+                    for: indexPath
+                )
+
+                header.subviews.forEach {
+                    $0.removeFromSuperview()
+                }
+
+                let label = UILabel(frame: header.bounds)
+
+                label.text = "Sports"
+
+                label.font = .boldSystemFont(ofSize: 24)
+
+                header.addSubview(label)
+
+                return header
+            }
         }
         return UICollectionReusableView()
     }

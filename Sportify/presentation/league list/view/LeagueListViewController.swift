@@ -44,19 +44,29 @@ class LeagueListViewController: UIViewController {
     }
 
     private func updateUI() {
+
         let isEmpty = presenter.leagues.isEmpty
+
         leaguestTable.isHidden = isEmpty
+
         emptyView.isHidden = !isEmpty
     }
 }
 
 extension LeagueListViewController: LeagueListView {
     func showLoading() {
+
+        leaguestTable.isHidden = true
+        emptyView.isHidden = true
+
         loadingView.frame = view.bounds
+
         view.addSubview(loadingView)
     }
     func hideLoading() {
+
         loadingView.removeFromSuperview()
+
         updateUI()
     }
     func reloadData() {
