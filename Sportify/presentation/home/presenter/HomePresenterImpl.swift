@@ -17,7 +17,7 @@ class HomePresenterImpl: HomePresenter {
 
     private let router: AppRouter
 
-    private var liveMatches: [LiveMatch] = []
+//    private var liveMatches: [LiveMatch] = []
 
     var liveMatches: [LiveMatch] = []
     private(set) var selectedSportType: SportType = .football
