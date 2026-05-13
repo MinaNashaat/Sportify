@@ -40,11 +40,9 @@ class LiveResultCollectionViewCell: UICollectionViewCell {
 
         playersScoresRow.alignment = .top
 
-        homeTeamLogo.layer.cornerRadius = 25
-        awayTeamLogo.layer.cornerRadius = 25
 
-        homeTeamLogo.clipsToBounds = true
-        awayTeamLogo.clipsToBounds = true
+
+        
     }
 
     func configure(with match: LiveMatch) {

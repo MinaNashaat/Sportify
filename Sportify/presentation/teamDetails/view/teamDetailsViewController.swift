@@ -66,7 +66,7 @@ final class teamDetailsViewController: UIViewController {
         MyTable.backgroundColor = .clear
         MyTable.contentInset   = UIEdgeInsets(top: 8, left: 0, bottom: 24, right: 0)
         MyTable.showsVerticalScrollIndicator = false
-        MyTable.estimatedRowHeight = 90
+        MyTable.estimatedRowHeight = 110
 
 
         MyTable.register(

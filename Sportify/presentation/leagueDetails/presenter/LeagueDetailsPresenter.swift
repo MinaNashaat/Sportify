@@ -10,6 +10,8 @@ import Foundation
 protocol LeagueDetailsPresenter {
 
     var league: League { get }
+    var sportType: SportType { get }
+
     var upcomingMatches: [MatchEvent] { get }
     var recentMatches: [MatchEvent] { get }
     var teams: [Team] { get }

@@ -292,4 +292,25 @@ extension leagueDetailsViewController: UICollectionViewDataSource {
 }
 
 
-extension leagueDetailsViewController: UICollectionViewDelegate {}
+extension leagueDetailsViewController: UICollectionViewDelegate {
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didSelectItemAt indexPath: IndexPath
+    ) {
+
+        guard Section(rawValue: indexPath.section) == .teamPlayers else {
+            return
+        }
+
+        let selectedTeam = presenter.teams[indexPath.item]
+
+        let router = AppRouterImpl()
+
+        router.navigateToTeamDetails(
+            from: self,
+            team: selectedTeam,
+            sport: presenter.sportType
+        )
+    }
+}
