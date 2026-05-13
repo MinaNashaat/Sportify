@@ -107,9 +107,11 @@ class AppRouterImpl: AppRouter {
         ) as! leagueDetailsViewController
         let remoteDataSource = SportifyRemoteDataSourceImpl()
         let repository = LeagueDetailsRepositoryImpl(remoteDataSource: remoteDataSource)
+        let router = AppRouterImpl()
         let presenter = LeagueDetailsPresenterImpl(
             view: vc,
             repository: repository,
+            router: router,
             league: league,
             sportType: sportType
         )
@@ -126,7 +128,8 @@ class AppRouterImpl: AppRouter {
     func navigateToTeamDetails(
         from view: UIViewController,
         team: Team,
-        sport: SportType
+        sport: SportType,
+        leagueName: String
     ) {
 
         let vc =
@@ -155,6 +158,7 @@ class AppRouterImpl: AppRouter {
         presenter.sport = sport
 
         vc.selectedTeam = team
+        vc.selectedLeagueName = leagueName
         vc.presenter = presenter
 
         view.navigationController?

@@ -17,7 +17,7 @@ final class teamDetailsViewController: UIViewController {
     @IBOutlet weak var teamName: UILabel!
     @IBOutlet weak var teamLogo: UIImageView!
 
-
+    var selectedLeagueName: String?
     var presenter: TeamDetailsPresenter?
     var selectedTeam: Team?
 
@@ -38,8 +38,8 @@ final class teamDetailsViewController: UIViewController {
 
 
     private func setupView() {
-        view.backgroundColor = .systemGroupedBackground
         navigationItem.largeTitleDisplayMode = .never
+        
     }
 
     private func setupSegmentControl() {
@@ -81,7 +81,7 @@ final class teamDetailsViewController: UIViewController {
             EmptyStateTableViewCell.self,
             forCellReuseIdentifier: EmptyStateTableViewCell.reuseID
         )
-        MyTable.rowHeight = 90
+        MyTable.rowHeight = 110
     }
 
     private func setupLoadingOverlay() {
@@ -97,17 +97,18 @@ final class teamDetailsViewController: UIViewController {
     }
 
     private func configureTeamHeader() {
+
         guard let team = selectedTeam else { return }
 
-        title          = team.name
-        teamName.text  = team.name
+        title = team.name
+        teamName.text = team.name
+        teamLeague.text = selectedLeagueName
 
         teamLogo.contentMode = .scaleAspectFit
-        teamLogo.clipsToBounds = true
-        teamLogo.layer.cornerRadius = teamLogo.frame.width / 2
+        
 
         if let url = team.logoURL {
-            // Using Kingfisher — swap for SDWebImage or URLSession if needed
+
             teamLogo.kf.setImage(
                 with: url,
                 placeholder: UIImage(systemName: "sportscourt.circle.fill")

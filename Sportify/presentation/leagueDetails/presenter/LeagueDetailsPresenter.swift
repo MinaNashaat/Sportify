@@ -17,4 +17,5 @@ protocol LeagueDetailsPresenter {
     var teams: [Team] { get }
 
     func viewDidLoad()
+    func didSelectTeam(at index: Int)
 }
