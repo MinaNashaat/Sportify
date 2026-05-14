@@ -18,24 +18,15 @@ class APIServiceImpl : APIService {
     private let apiKey = "cba2ee62e3058eb4138e75f253d8087253c0f68a4ecab1d1646b4d5d97b61d1e"
 
 
-    func request<T: Decodable>(
-        endpoint: Endpoint
-
-    ) async throws -> T {
+    func request<T: Decodable>(endpoint: Endpoint) async throws -> T {
 
         let url = baseURL + endpoint.path
-
         var params = endpoint.parameters
         params["APIkey"] = apiKey
 
         return try await withCheckedThrowingContinuation { continuation in
 
-            AF.request(
-                url,
-                method: .get,
-                parameters: params
-            )
-            .responseDecodable(of: T.self) { response in
+            AF.request(url, method: .get, parameters: params).responseDecodable(of: T.self) { response in
 
                 switch response.result {
 

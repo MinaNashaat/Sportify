@@ -8,7 +8,5 @@
 import Foundation
 
 protocol APIService {
-    func request<T: Decodable>(
-        endpoint: Endpoint
-    ) async throws -> T
+    func request<T: Decodable>(endpoint: Endpoint) async throws -> T
 }

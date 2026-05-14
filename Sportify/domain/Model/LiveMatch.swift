@@ -8,10 +8,8 @@ struct LiveMatch {
     let status: String
     let isLive: Bool
     let score: Score
-
     let homeTeam: TeamSummary
     let awayTeam: TeamSummary
-
     let tournament: Tournament?
     let goals: [Goal]
 }

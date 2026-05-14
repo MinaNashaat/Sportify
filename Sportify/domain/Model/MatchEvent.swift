@@ -7,10 +7,8 @@ struct MatchEvent: Identifiable, Equatable {
     let date: String
     let time: String
     let state: MatchState
-
     let homeTeam: TeamSummary
     let awayTeam: TeamSummary
-
     let tournament: Tournament?
     let goals: [Goal]
 }

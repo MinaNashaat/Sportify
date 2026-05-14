@@ -15,12 +15,9 @@ class LeagueRepositoryImpl: LeagueRepository {
         self.remoteDataSource = remoteDataSource
     }
 
-    func getLeagues(
-        sport: SportType
-    ) async throws -> [League] {
+    func getLeagues(sport: SportType) async throws -> [League] {
 
-        let response =
-            try await remoteDataSource.getLeagues(sport: sport)
+        let response = try await remoteDataSource.getLeagues(sport: sport)
 
         return response.result.toDomain()
     }

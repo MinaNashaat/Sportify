@@ -313,8 +313,17 @@ extension SportsViewController: UICollectionViewDelegate {
         _ collectionView: UICollectionView,
         didSelectItemAt indexPath: IndexPath
     ) {
-        guard indexPath.section == 1 else { return }
+
+        let hasLiveMatches =
+        presenter.getLiveMatchesCount() > 0
+
+        let sportsSection =
+        hasLiveMatches ? 1 : 0
+
+        guard indexPath.section == sportsSection else {
+            return
+        }
+
         presenter.didSelectSport(at: indexPath.row)
-//        presenter.didSelectLeague()
     }
 }

@@ -13,24 +13,14 @@ class AppRouterImpl: AppRouter {
 
 
     private static let storyboard =
-    UIStoryboard(
-        name: "Main",
-        bundle: nil
-    )
+    UIStoryboard(name: "Main", bundle: nil)
 
 
-    static func createOnboardingModule()
-    -> UIViewController {
+    static func createOnboardingModule() -> UIViewController {
 
-        guard let view =
-                storyboard.instantiateViewController(
-                    withIdentifier: "startOnboarding"
-                ) as? myPageViewController
+        guard let view = storyboard.instantiateViewController(withIdentifier: "startOnboarding") as? myPageViewController
         else {
-
-            fatalError(
-                "Cannot load myPageViewController"
-            )
+            fatalError("Cannot load myPageViewController")
         }
 
         return view
@@ -38,32 +28,20 @@ class AppRouterImpl: AppRouter {
 
     static func createHomeModule() -> UIViewController {
 
-        guard let tabBar =
-                storyboard.instantiateViewController(
-                    withIdentifier: "myTabBarController"
-                ) as? myTabBarController
+        guard let tabBar = storyboard.instantiateViewController(withIdentifier: "myTabBarController") as? myTabBarController
         else {
-
             fatalError("Cannot load myTabBarController")
         }
 
 
-        guard let sportsVC =
-                tabBar.viewControllers?
-                .compactMap({ $0 as? SportsViewController })
-                .first
+        guard let sportsVC = tabBar.viewControllers?.compactMap({ $0 as? SportsViewController }).first
         else {
-
             fatalError("Cannot load SportsViewController")
         }
 
-        let remoteDataSource =
-        SportifyRemoteDataSourceImpl()
+        let remoteDataSource = SportifyRemoteDataSourceImpl()
 
-        let repository =
-        HomeRepositoryImpl(
-            remoteDataSource: remoteDataSource
-        )
+        let repository = HomeRepositoryImpl(remoteDataSource: remoteDataSource)
 
         let router = AppRouterImpl()
 
@@ -77,26 +55,14 @@ class AppRouterImpl: AppRouter {
         sportsVC.presenter = sportsPresenter
 
 
-        guard let favouritesVC =
-                tabBar.viewControllers?
-                .compactMap({
-                    $0 as? FavouritesUIViewController
-                })
-                .first
+        guard let favouritesVC = tabBar.viewControllers?.compactMap({$0 as? FavouritesUIViewController}).first
         else {
-
-            fatalError(
-                "Cannot load FavouritesUIViewController"
-            )
+            fatalError("Cannot load FavouritesUIViewController")
         }
 
-        let localDataSource =
-        SportifyLocalDataSourceImpl()
+        let localDataSource = SportifyLocalDataSourceImpl()
 
-        let favRepository =
-        FavouritesRepositoryImpl(
-            localDataSource: localDataSource
-        )
+        let favRepository = FavouritesRepositoryImpl(localDataSource: localDataSource)
 
         let favouritesPresenter =
         FavouritesPresenterImpl(
@@ -105,22 +71,13 @@ class AppRouterImpl: AppRouter {
             router: router
         )
 
-
-
-        favouritesVC.presenter =
-        favouritesPresenter
+        favouritesVC.presenter = favouritesPresenter
 
         return tabBar
     }
-    func navigateToLeagueList(
-        from view: UIViewController,
-        sportType: SportType
-    ) {
+    func navigateToLeagueList(from view: UIViewController, sportType: SportType) {
 
-        let vc =
-        AppRouterImpl.storyboard.instantiateViewController(
-            withIdentifier: "leagueList"
-        ) as! LeagueListViewController
+        let vc = AppRouterImpl.storyboard.instantiateViewController(withIdentifier: "leagueList") as! LeagueListViewController
 
         let remoteDataSource = SportifyRemoteDataSourceImpl()
         let repository = LeagueRepositoryImpl(remoteDataSource: remoteDataSource)
@@ -163,8 +120,6 @@ class AppRouterImpl: AppRouter {
             sportType: sportType
         )
         vc.presenter = presenter
-//        vc.league = league
-//        vc.sportType = sportType
         view.navigationController?
             .pushViewController(
                 vc,

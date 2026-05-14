@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class LeagueListPresenterImpl: LeagueListPresenter {
 
@@ -61,7 +62,7 @@ class LeagueListPresenterImpl: LeagueListPresenter {
     func didSelectLeague(at index: Int) {
         let league = leagues[index]
         router.navigateToLeagueDetails(
-            from: (view?.viewController)!,
+            from: view as! UIViewController,
             league: league,
             sportType: sportType
         )
