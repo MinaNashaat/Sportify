@@ -514,7 +514,6 @@
 				6D6616022FB2349900D4E681 /* navigation */,
 				6D66153B2FB22A0800D4E681 /* local */,
 				6D6614D62FB20E8100D4E681 /* utils */,
-				6D66148C2FB2088700D4E681 /* Network */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -545,6 +544,7 @@
 			children = (
 				6D66153E2FB22A5400D4E681 /* CacheServiceImpl.swift */,
 				6D66153C2FB22A1E00D4E681 /* CacheService.swift */,
+				6D66148C2FB2088700D4E681 /* Network */,
 			);
 			path = local;
 			sourceTree = "<group>";

@@ -55,42 +55,76 @@ class LeagueDetailsPresenterImpl: LeagueDetailsPresenter {
     }
 
     private func fetchData() {
-        view?.showLoading()
+
+        Task { @MainActor in
+            self.view?.showLoading()
+        }
 
         let from = DateHelper.dateString(daysOffset: -30)
-        let to   = DateHelper.dateString(daysOffset:  30)
+        let to   = DateHelper.dateString(daysOffset: 30)
 
         Task {
-            do {
-                async let eventsTask = repository.getLeagueEvents(sport: sportType, leagueId: league.id, from: from, to: to)
-                async let teamsTask  = repository.getLeagueTeams(sport: sportType, leagueId: league.id)
 
-                let (events, fetchedTeams) = try await (eventsTask, teamsTask)
+            do {
+
+                async let eventsTask = repository.getLeagueEvents(
+                    sport: sportType,
+                    leagueId: league.id,
+                    from: from,
+                    to: to
+                )
+
+                async let teamsTask = repository.getLeagueTeams(
+                    sport: sportType,
+                    leagueId: league.id
+                )
+
+                let events = try await eventsTask
+                let fetchedTeams = try await teamsTask
 
                 self.upcomingMatches = events.filter {
-                    if case .upcoming = $0.state { return true }
-                    if case .live     = $0.state { return true }
+
+                    if case .upcoming = $0.state {
+                        return true
+                    }
+
+                    if case .live = $0.state {
+                        return true
+                    }
+
                     return false
                 }
+
                 self.recentMatches = events.filter {
-                    if case .finished = $0.state { return true }
+
+                    if case .finished = $0.state {
+                        return true
+                    }
+
                     return false
                 }
+
                 self.teams = fetchedTeams
 
                 await MainActor.run {
-                    self.view?.hideLoading()
+
                     self.view?.reloadData()
-                }
-            } catch {
-                await MainActor.run {
                     self.view?.hideLoading()
-                    self.view?.showError(message: error.localizedDescription)
+                }
+
+            } catch {
+
+                await MainActor.run {
+
+                    self.view?.hideLoading()
+
+                    self.view?.showError(
+                        message: error.localizedDescription
+                    )
                 }
             }
         }
     }
-
     func didSelectTeam(at index: Int) {
 
         guard index < teams.count,
