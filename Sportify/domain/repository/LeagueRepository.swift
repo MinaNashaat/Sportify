@@ -8,8 +8,5 @@
 import Foundation
 
 protocol LeagueRepository {
-
-    func getLeagues(
-        sport: SportType
-    ) async throws -> [League]
+    func getLeagues(sport: SportType) async throws -> [League]
 }

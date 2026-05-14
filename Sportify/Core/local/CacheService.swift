@@ -9,17 +9,11 @@ import Foundation
 
 protocol CacheService {
 
-    func insertLeague(
-        league: FavouriteLeague
-    )
+    func insertLeague(league: FavouriteLeague)
 
     func fetchLeagues() -> [FavouriteLeague]
 
-    func deleteLeague(
-        leagueId: Int
-    )
+    func deleteLeague(leagueId: Int)
 
-    func isFavourite(
-        leagueId: Int
-    ) -> Bool
+    func isFavourite(leagueId: Int) -> Bool
 }

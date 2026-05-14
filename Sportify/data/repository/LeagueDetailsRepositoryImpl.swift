@@ -12,38 +12,21 @@ class LeagueDetailsRepositoryImpl: LeagueDetailsRepository {
     private let remoteDataSource: SportifyRemoteDataSourceProtocol
     private let localDataSource: SportifyLocalDataSource
     
-    init(remoteDataSource: SportifyRemoteDataSourceProtocol,
-         localDataSource: SportifyLocalDataSource = SportifyLocalDataSourceImpl()) {
+    init(remoteDataSource: SportifyRemoteDataSourceProtocol, localDataSource: SportifyLocalDataSource = SportifyLocalDataSourceImpl()) {
         self.remoteDataSource = remoteDataSource
         self.localDataSource  = localDataSource
     }
 
-    func getLeagueEvents(
-        sport: SportType,
-        leagueId: Int,
-        from: String,
-        to: String
-    ) async throws -> [MatchEvent] {
+    func getLeagueEvents(sport: SportType, leagueId: Int, from: String, to: String) async throws -> [MatchEvent] {
 
-        let response = try await remoteDataSource.getLeagueEvents(
-            sport: sport,
-            leagueId: leagueId,
-            from: from,
-            to: to
-        )
+        let response = try await remoteDataSource.getLeagueEvents(sport: sport, leagueId: leagueId, from: from, to: to)
 
         return response.result.toDomain()
     }
 
-    func getLeagueTeams(
-        sport: SportType,
-        leagueId: Int
-    ) async throws -> [Team] {
+    func getLeagueTeams(sport: SportType, leagueId: Int) async throws -> [Team] {
 
-        let response = try await remoteDataSource.getLeagueTeams(
-            sport: sport,
-            leagueId: leagueId
-        )
+        let response = try await remoteDataSource.getLeagueTeams(sport: sport, leagueId: leagueId)
 
         return response.result.toDomain()
     }
@@ -53,11 +36,7 @@ class LeagueDetailsRepositoryImpl: LeagueDetailsRepository {
     }
 
     func addFavourite(league: League) {
-        let favourite = FavouriteLeague(
-            leagueId:    league.id,
-            leagueTitle: league.name,
-            leagueImage: league.logoURL?.absoluteString ?? ""
-        )
+        let favourite = FavouriteLeague(leagueId: league.id, leagueTitle: league.name, leagueImage: league.logoURL?.absoluteString ?? "")
         localDataSource.insertLeague(league: favourite)
     }
 

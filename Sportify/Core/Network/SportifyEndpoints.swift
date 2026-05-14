@@ -14,25 +14,11 @@ enum SportifyEndpoints: Endpoint {
 
     case liveScore(sport: SportType)
 
-    case leagueTeams(
-        sport: SportType,
-        leagueId: Int
-    )
+    case leagueTeams(sport: SportType,leagueId: Int)
 
-    case leagueEvents(
-        sport: SportType,
-        leagueId: Int,
-        from: String,
-        to: String
-    )
+    case leagueEvents(sport: SportType, leagueId: Int, from: String, to: String)
 
-    case teamEvents(
-        sport: SportType,
-        leagueId: Int,
-        teamId: Int,
-        from: String,
-        to: String
-    )
+    case teamEvents(sport: SportType, leagueId: Int, teamId: Int, from: String, to: String)
 
     var path: String {
 
@@ -53,54 +39,20 @@ enum SportifyEndpoints: Endpoint {
         switch self {
 
         case .leagues:
-            return [
-                "met": "Leagues"
-            ]
+            return ["met": "Leagues"]
 
         case .liveScore:
-            return [
-                "met": "Livescore",
-                "timezone": "Africa/Cairo"
-            ]
+            return ["met": "Livescore","timezone": "Africa/Cairo"]
 
         case .leagueTeams(_, let leagueId):
+            return ["met": "Teams","leagueId": leagueId]
 
-            return [
-                "met": "Teams",
-                "leagueId": leagueId
-            ]
+        case .leagueEvents(_,let leagueId, let from, let to):
+            return ["met": "Fixtures", "leagueId": leagueId, "from": from, "to": to, "timezone": "Africa/Cairo"]
 
-        case .leagueEvents(
-            _,
-            let leagueId,
-            let from,
-            let to
-        ):
+        case .teamEvents(_, let leagueId, let teamId, let from, let to):
 
-            return [
-                "met": "Fixtures",
-                "leagueId": leagueId,
-                "from": from,
-                "to": to,
-                "timezone": "Africa/Cairo"
-            ]
-
-        case .teamEvents(
-            _,
-            let leagueId,
-            let teamId,
-            let from,
-            let to
-        ):
-
-            return [
-                "met": "Fixtures",
-                "leagueId": leagueId,
-                "teamId": teamId,
-                "from": from,
-                "to": to,
-                "timezone": "Africa/Cairo"
-            ]
+            return ["met": "Fixtures", "leagueId": leagueId, "teamId": teamId, "from": from, "to": to, "timezone": "Africa/Cairo"]
         }
     }
 }

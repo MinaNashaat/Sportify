@@ -14,7 +14,6 @@ class LeagueListViewController: UIViewController {
     var presenter: LeagueListPresenter!
     private let loadingView = LoadingView()
     private let emptyView = EmptyLeagueListState()
-    var viewController: UIViewController { return self }
     
     override func viewDidLoad() {
         super.viewDidLoad()

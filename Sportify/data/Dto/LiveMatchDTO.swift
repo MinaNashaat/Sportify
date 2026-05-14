@@ -5,6 +5,31 @@ import Foundation
 struct LiveMatchResponseDTO: Decodable {
     let success: Int
     let result: [LiveMatchDTO]
+
+    enum CodingKeys: String, CodingKey {
+        case success
+        case result
+    }
+
+    init(from decoder: Decoder) throws {
+
+        let container =
+        try decoder.container(
+            keyedBy: CodingKeys.self
+        )
+
+        success =
+        try container.decode(
+            Int.self,
+            forKey: .success
+        )
+
+        result =
+        try container.decodeIfPresent(
+            [LiveMatchDTO].self,
+            forKey: .result
+        ) ?? []
+    }
 }
 
 struct LiveMatchDTO: Decodable {

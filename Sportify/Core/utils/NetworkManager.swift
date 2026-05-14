@@ -13,13 +13,11 @@ final class NetworkManager {
 
     static let shared = NetworkManager()
 
-    private let reachability =
-    NetworkReachabilityManager()
+    private let reachability = NetworkReachabilityManager()
 
     private init() {}
 
     var isReachable: Bool {
-
         return reachability?.isReachable ?? false
     }
 }
