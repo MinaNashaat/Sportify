@@ -115,7 +115,11 @@ class leagueDetailsViewController: UIViewController {
 
         leagueImage.kf.setImage(
             with: presenter.league.logoURL,
-            placeholder: UIImage(named: "teamLogo")
+            placeholder: UIImage(named: "teamLogo"),
+            options: [
+                    .transition(.fade(0.2)),
+                    .cacheOriginalImage
+                ]
         )
     }
 
@@ -318,7 +322,6 @@ class leagueDetailsViewController: UIViewController {
     }
 }
 
-// MARK: - LeagueDetailsView
 
 extension leagueDetailsViewController: LeagueDetailsView {
 
@@ -342,8 +345,7 @@ extension leagueDetailsViewController: LeagueDetailsView {
 
         populateHeader()
 
-        collectionView.reloadData()
-    }
+        collectionView.reloadData()    }
 
     func showError(message: String) {
 
@@ -480,7 +482,6 @@ UICollectionViewDataSource {
 
         switch Section(rawValue: indexPath.section)! {
 
-        // MARK: - Live Matches
 
         case .liveMatches:
 
@@ -514,7 +515,6 @@ UICollectionViewDataSource {
 
             return cell
 
-        // MARK: - Recent Matches
 
         case .recentMatches:
 
@@ -583,7 +583,12 @@ UICollectionViewDataSource {
 
             cell.playerImage.kf.setImage(
                 with: team.logoURL,
-                placeholder: UIImage(named: "teamLogo")
+                placeholder: UIImage(named: "teamLogo"),
+                options: [
+                        .transition(.fade(0.2)),
+                        .cacheOriginalImage
+                    ]
+
             )
 
             return cell
