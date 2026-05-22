@@ -1,0 +1,493 @@
+//
+//  SportifyRemoteDataSourceMockTests.swift
+//  Sportify
+//
+//  Created by Ahmed Salah on 16/05/2026.
+//
+
+
+
+import XCTest
+@testable import Sportify
+
+final class SportifyRemoteDataSourceMockTests: XCTestCase {
+
+    var sut: SportifyRemoteDataSourceImpl!
+    var mockAPI: MockAPIService!
+
+    override func setUp() {
+        super.setUp()
+        mockAPI = MockAPIService()
+        sut = SportifyRemoteDataSourceImpl(apiService: mockAPI)
+    }
+
+    override func tearDown() {
+        sut = nil
+        mockAPI = nil
+        super.tearDown()
+    }
+
+
+    private func stub(_ json: String) {
+        mockAPI.stubbedData = json.data(using: .utf8)!
+    }
+
+
+    func test_getLeagues_success_returnsTwoLeagues() {
+        let expectation = expectation(description: "Leagues returned")
+        stub(MockData.leaguesSuccess)
+
+        Task {
+            do {
+                let response = try await sut.getLeagues(sport: .football)
+                XCTAssertEqual(response.success, 1)
+                XCTAssertEqual(response.result.count, 2)
+                XCTAssertEqual(response.result[0].leagueKey, 1)
+                XCTAssertEqual(response.result[0].leagueName, "Premier League")
+                XCTAssertEqual(response.result[0].countryName, "England")
+                XCTAssertEqual(response.result[1].leagueKey, 2)
+                XCTAssertEqual(response.result[1].leagueName, "La Liga")
+                XCTAssertEqual(response.result[1].countryName, "Spain")
+            } catch {
+                XCTFail("Unexpected error: \(error)")
+            }
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 3)
+    }
+
+    func test_getLeagues_emptyResult_returnsEmptyArray() {
+        let expectation = expectation(description: "Empty leagues returned")
+        stub(MockData.leaguesEmpty)
+
+        Task {
+            do {
+                let response = try await sut.getLeagues(sport: .basketball)
+                XCTAssertEqual(response.success, 1)
+                XCTAssertTrue(response.result.isEmpty)
+            } catch {
+                XCTFail("Unexpected error: \(error)")
+            }
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 3)
+    }
+
+    func test_getLeagues_successFlagZero_stillDecodes() {
+        let expectation = expectation(description: "Success flag zero decoded")
+        stub(MockData.leaguesFailedSuccess)
+
+        Task {
+            do {
+                let response = try await sut.getLeagues(sport: .football)
+                XCTAssertEqual(response.success, 0)
+                XCTAssertTrue(response.result.isEmpty)
+            } catch {
+                XCTFail("Unexpected error: \(error)")
+            }
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 3)
+    }
+
+    func test_getLeagues_apiFailure_throwsError() {
+        let expectation = expectation(description: "Error thrown")
+        mockAPI.stubbedError = URLError(.notConnectedToInternet)
+
+        Task {
+            do {
+                _ = try await sut.getLeagues(sport: .football)
+                XCTFail("Expected error but got success")
+            } catch {
+                XCTAssertTrue(error is URLError)
+            }
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 3)
+    }
+
+
+    func test_getLiveMatches_success_returnsMatchWithGoalscorer() {
+        let expectation = expectation(description: "Live matches returned")
+        stub(MockData.liveMatchesSuccess)
+
+        Task {
+            do {
+                let response = try await sut.getLiveMatches(sport: .football)
+                XCTAssertEqual(response.success, 1)
+                XCTAssertEqual(response.result.count, 1)
+
+                let match = response.result[0]
+                XCTAssertEqual(match.eventKey, 101)
+                XCTAssertEqual(match.eventLive, "1")
+                XCTAssertEqual(match.eventFinalResult, "2-1")
+                XCTAssertEqual(match.eventHomeTeam, "Arsenal")
+                XCTAssertEqual(match.eventAwayTeam, "Chelsea")
+                XCTAssertEqual(match.leagueName, "Premier League")
+                XCTAssertEqual(match.goalscorers?.count, 1)
+                XCTAssertEqual(match.goalscorers?[0].homeScorer, "Saka")
+                XCTAssertEqual(match.goalscorers?[0].homeAssist, "Odegaard")
+                XCTAssertEqual(match.goalscorers?[0].score, "1-0")
+                XCTAssertEqual(match.goalscorers?[0].infoTime, "1H")
+            } catch {
+                XCTFail("Unexpected error: \(error)")
+            }
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 3)
+    }
+
+    func test_getLiveMatches_noLiveGames_returnsEmptyArray() {
+        let expectation = expectation(description: "Empty live matches returned")
+        stub(MockData.liveMatchesEmpty)
+
+        Task {
+            do {
+                let response = try await sut.getLiveMatches(sport: .football)
+                XCTAssertEqual(response.success, 1)
+                XCTAssertTrue(response.result.isEmpty)
+            } catch {
+                XCTFail("Unexpected error: \(error)")
+            }
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 3)
+    }
+
+    func test_getLiveMatches_apiFailure_throwsError() {
+        let expectation = expectation(description: "Error thrown")
+        mockAPI.stubbedError = URLError(.timedOut)
+
+        Task {
+            do {
+                _ = try await sut.getLiveMatches(sport: .football)
+                XCTFail("Expected error but got success")
+            } catch {
+                XCTAssertTrue(error is URLError)
+            }
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 3)
+    }
+
+
+    func test_getLeagueEvents_finishedEvents_returnsCorrectData() {
+        let expectation = expectation(description: "Finished league events returned")
+        stub(MockData.leagueEventsFinished)
+
+        Task {
+            do {
+                let response = try await sut.getLeagueEvents(
+                    sport: .football, leagueId: 148,
+                    from: "2025-04-01", to: "2025-04-30"
+                )
+                XCTAssertEqual(response.success, 1)
+                XCTAssertEqual(response.result.count, 2)
+
+                let first = response.result[0]
+                XCTAssertEqual(first.eventKey, 201)
+                XCTAssertEqual(first.eventHomeTeam, "Liverpool")
+                XCTAssertEqual(first.eventAwayTeam, "Man City")
+                XCTAssertEqual(first.eventFinalResult, "3-1")
+                XCTAssertEqual(first.eventStatus, "Finished")
+                XCTAssertEqual(first.eventLive, "0")
+
+                let second = response.result[1]
+                XCTAssertEqual(second.eventKey, 202)
+                XCTAssertEqual(second.eventHomeTeam, "Everton")
+                XCTAssertEqual(second.eventFinalResult, "1-1")
+            } catch {
+                XCTFail("Unexpected error: \(error)")
+            }
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 3)
+    }
+
+    func test_getLeagueEvents_liveEvent_hasCorrectFlags() {
+        let expectation = expectation(description: "Live event flags verified")
+        stub(MockData.leagueEventsLive)
+
+        Task {
+            do {
+                let response = try await sut.getLeagueEvents(
+                    sport: .football, leagueId: 302,
+                    from: "2025-05-01", to: "2025-05-15"
+                )
+                XCTAssertEqual(response.result.count, 1)
+
+                let event = try XCTUnwrap(response.result.first)
+                XCTAssertEqual(event.eventKey, 301)
+                XCTAssertEqual(event.eventLive, "1")
+                XCTAssertEqual(event.eventStatus, "67")
+                XCTAssertEqual(event.eventFinalResult, "2-1")
+                XCTAssertEqual(event.eventHomeTeam, "Barcelona")
+                XCTAssertEqual(event.eventAwayTeam, "Real Madrid")
+                XCTAssertNil(event.homeTeamLogo)
+                XCTAssertNil(event.awayTeamLogo)
+            } catch {
+                XCTFail("Unexpected error: \(error)")
+            }
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 3)
+    }
+
+    func test_getLeagueEvents_upcomingEvent_hasNoScore() {
+        let expectation = expectation(description: "Upcoming event has no score")
+        stub(MockData.leagueEventsUpcoming)
+
+        Task {
+            do {
+                let response = try await sut.getLeagueEvents(
+                    sport: .football, leagueId: 168,
+                    from: "2025-06-01", to: "2025-06-30"
+                )
+                let event = try XCTUnwrap(response.result.first)
+                XCTAssertEqual(event.eventKey, 401)
+                XCTAssertEqual(event.eventLive, "0")
+                XCTAssertEqual(event.eventStatus, "Not Started")
+                XCTAssertEqual(event.eventHomeTeam, "PSG")
+                XCTAssertEqual(event.eventAwayTeam, "Lyon")
+                XCTAssertNil(event.eventFinalResult)
+                XCTAssertNil(event.homeTeamLogo)
+            } catch {
+                XCTFail("Unexpected error: \(error)")
+            }
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 3)
+    }
+
+    func test_getLeagueEvents_emptyResult_returnsEmptyArray() {
+        let expectation = expectation(description: "Empty events returned")
+        stub(MockData.leagueEventsEmpty)
+
+        Task {
+            do {
+                let response = try await sut.getLeagueEvents(
+                    sport: .football, leagueId: 999,
+                    from: "2099-01-01", to: "2099-12-31"
+                )
+                XCTAssertEqual(response.success, 1)
+                XCTAssertTrue(response.result.isEmpty)
+            } catch {
+                XCTFail("Unexpected error: \(error)")
+            }
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 3)
+    }
+
+    func test_getLeagueEvents_apiFailure_throwsError() {
+        let expectation = expectation(description: "Error thrown")
+        mockAPI.stubbedError = URLError(.notConnectedToInternet)
+
+        Task {
+            do {
+                _ = try await sut.getLeagueEvents(
+                    sport: .football, leagueId: 148,
+                    from: "2025-01-01", to: "2025-05-01"
+                )
+                XCTFail("Expected error but got success")
+            } catch {
+                XCTAssertTrue(error is URLError)
+            }
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 3)
+    }
+
+
+    func test_getTeamEvents_success_returnsEventWithGoalscorers() {
+        let expectation = expectation(description: "Team events returned")
+        stub(MockData.teamEventsSuccess)
+
+        Task {
+            do {
+                let response = try await sut.getTeamEvents(
+                    sport: .football, leagueId: 148, teamId: 85,
+                    from: "2025-01-01", to: "2025-05-01"
+                )
+                XCTAssertEqual(response.success, 1)
+                XCTAssertEqual(response.result.count, 1)
+
+                let event = response.result[0]
+                XCTAssertEqual(event.eventKey, 501)
+                XCTAssertEqual(event.eventHomeTeam, "Arsenal")
+                XCTAssertEqual(event.eventAwayTeam, "Wolves")
+                XCTAssertEqual(event.eventFinalResult, "2-0")
+                XCTAssertEqual(event.eventStatus, "Finished")
+                XCTAssertEqual(event.goalscorers?.count, 2)
+
+                let firstGoal = try XCTUnwrap(event.goalscorers?[0])
+                XCTAssertEqual(firstGoal.homeScorer, "Havertz")
+                XCTAssertEqual(firstGoal.score, "1-0")
+                XCTAssertEqual(firstGoal.infoTime, "1H")
+
+                let secondGoal = try XCTUnwrap(event.goalscorers?[1])
+                XCTAssertEqual(secondGoal.homeScorer, "Trossard")
+                XCTAssertEqual(secondGoal.homeAssist, "Saka")
+                XCTAssertEqual(secondGoal.score, "2-0")
+                XCTAssertEqual(secondGoal.infoTime, "2H")
+            } catch {
+                XCTFail("Unexpected error: \(error)")
+            }
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 3)
+    }
+
+    func test_getTeamEvents_emptyResult_returnsEmptyArray() {
+        let expectation = expectation(description: "Empty team events returned")
+        stub(MockData.teamEventsEmpty)
+
+        Task {
+            do {
+                let response = try await sut.getTeamEvents(
+                    sport: .football, leagueId: 148, teamId: 85,
+                    from: "2025-01-01", to: "2025-05-01"
+                )
+                XCTAssertEqual(response.success, 1)
+                XCTAssertTrue(response.result.isEmpty)
+            } catch {
+                XCTFail("Unexpected error: \(error)")
+            }
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 3)
+    }
+
+    func test_getTeamEvents_apiFailure_throwsError() {
+        let expectation = expectation(description: "Error thrown")
+        mockAPI.stubbedError = URLError(.timedOut)
+
+        Task {
+            do {
+                _ = try await sut.getTeamEvents(
+                    sport: .football, leagueId: 148, teamId: 85,
+                    from: "2025-01-01", to: "2025-05-01"
+                )
+                XCTFail("Expected error but got success")
+            } catch {
+                XCTAssertTrue(error is URLError)
+            }
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 3)
+    }
+
+
+    func test_getLeagueTeams_success_returnsTwoTeams() {
+        let expectation = expectation(description: "Teams returned")
+        stub(MockData.leagueTeamsSuccess)
+
+        Task {
+            do {
+                let response = try await sut.getLeagueTeams(sport: .football, leagueId: 148)
+                XCTAssertEqual(response.success, 1)
+                XCTAssertEqual(response.result.count, 2)
+                XCTAssertEqual(response.result[0].teamKey, 85)
+                XCTAssertEqual(response.result[0].teamName, "Arsenal")
+                XCTAssertEqual(response.result[1].teamKey, 86)
+                XCTAssertEqual(response.result[1].teamName, "Chelsea")
+                XCTAssertTrue(response.result[0].players?.isEmpty ?? true)
+            } catch {
+                XCTFail("Unexpected error: \(error)")
+            }
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 3)
+    }
+
+    func test_getLeagueTeams_withPlayers_returnsCorrectPlayerData() {
+        let expectation = expectation(description: "Team with players returned")
+        stub(MockData.leagueTeamsWithPlayers)
+
+        Task {
+            do {
+                let response = try await sut.getLeagueTeams(sport: .football, leagueId: 148)
+                XCTAssertEqual(response.result.count, 1)
+
+                let team = try XCTUnwrap(response.result.first)
+                XCTAssertEqual(team.teamKey, 85)
+                XCTAssertEqual(team.teamName, "Arsenal")
+                XCTAssertEqual(team.players?.count, 3)
+
+                let goalkeeper = try XCTUnwrap(team.players?[0])
+                XCTAssertEqual(goalkeeper.playerKey, 1001)
+                XCTAssertEqual(goalkeeper.playerName, "David Raya")
+                XCTAssertEqual(goalkeeper.playerNumber, "22")
+                XCTAssertEqual(goalkeeper.playerType, "Goalkeepers")
+
+                let forward = try XCTUnwrap(team.players?[1])
+                XCTAssertEqual(forward.playerKey, 1002)
+                XCTAssertEqual(forward.playerName, "Bukayo Saka")
+                XCTAssertEqual(forward.playerNumber, "7")
+                XCTAssertEqual(forward.playerType, "Forwards")
+
+                let midfielder = try XCTUnwrap(team.players?[2])
+                XCTAssertEqual(midfielder.playerKey, 1003)
+                XCTAssertEqual(midfielder.playerName, "Martin Odegaard")
+                XCTAssertEqual(midfielder.playerNumber, "8")
+                XCTAssertEqual(midfielder.playerType, "Midfielders")
+            } catch {
+                XCTFail("Unexpected error: \(error)")
+            }
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 3)
+    }
+
+    func test_getLeagueTeams_emptyResult_returnsEmptyArray() {
+        let expectation = expectation(description: "Empty teams returned")
+        stub(MockData.leagueTeamsEmpty)
+
+        Task {
+            do {
+                let response = try await sut.getLeagueTeams(sport: .basketball, leagueId: 999)
+                XCTAssertEqual(response.success, 1)
+                XCTAssertTrue(response.result.isEmpty)
+            } catch {
+                XCTFail("Unexpected error: \(error)")
+            }
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 3)
+    }
+
+    func test_getLeagueTeams_apiFailure_throwsError() {
+        let expectation = expectation(description: "Error thrown")
+        mockAPI.stubbedError = URLError(.notConnectedToInternet)
+
+        Task {
+            do {
+                _ = try await sut.getLeagueTeams(sport: .football, leagueId: 148)
+                XCTFail("Expected error but got success")
+            } catch {
+                XCTAssertTrue(error is URLError)
+            }
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 3)
+    }
+}

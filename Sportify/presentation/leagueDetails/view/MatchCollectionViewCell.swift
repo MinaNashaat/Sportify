@@ -82,11 +82,19 @@ class MatchCollectionViewCell: UICollectionViewCell {
 
         homeTeamImage.kf.setImage(
             with: event.homeTeam.logoURL,
-            placeholder: UIImage(systemName: "shield")
+            placeholder: UIImage(systemName: "shield"),
+            options: [
+                    .transition(.fade(0.2)),
+                    .cacheOriginalImage
+                ]
         )
         awayTeamLogo.kf.setImage(
             with: event.awayTeam.logoURL,
-            placeholder: UIImage(systemName: "shield")
+            placeholder: UIImage(systemName: "shield"),
+            options: [
+                    .transition(.fade(0.2)),
+                    .cacheOriginalImage
+                ]
         )
 
         leagueNameAndRound.text = event.tournament?.league ?? "—"
