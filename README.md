@@ -145,12 +145,5 @@ Run them with `⌘U` in Xcode.
 - **Navigation always goes through `AppRouter`** — view controllers do not push other view controllers directly.
 - **Don't block the main thread** — repository calls are `async` and presenters hop back to `MainActor` before touching the view.
 
----
 
-## Contributors
 
-| Contributor | Modules |
-| --- | --- |
-| **Mina Nashaat** | Onboarding, Team Details, League Details, League list (data), League details (data) |
-| **Ahmed Salah** | Home, Favourites, League List (UI), Team Details (data), Favourites persistence |
-| **Shared** | Core Data, Entities, API services, Domain models, Project structure |
