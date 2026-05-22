@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="139" id="KGk-i7-Jjw" customClass="FavouritesUITableViewCell" customModule="Sportify" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="474" height="139"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="474" height="139"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u3t-Hz-SP5">
+                        <rect key="frame" x="16" y="8" width="442" height="86.666666666666671"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gj7-9g-g6h">
+                                <rect key="frame" x="16" y="16" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="3sW-jg-cJi"/>
+                                    <constraint firstAttribute="width" constant="50" id="5wr-Gd-Jym"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="r38-Cj-Ugc">
+                                <rect key="frame" x="82" y="15.999999999999996" width="268" height="54.666666666666657"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Egyptian League" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N7Q-v1-wuB">
+                                        <rect key="frame" x="0.0" y="0.0" width="268" height="26.333333333333332"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="League" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8nn-gl-Zz6">
+                                        <rect key="frame" x="0.0" y="34.333333333333336" width="268" height="20.333333333333336"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rzd-Pl-9Y2">
+                                <rect key="frame" x="366" y="16" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="EeU-O2-X9X"/>
+                                    <constraint firstAttribute="height" constant="60" id="tgK-h8-3a7"/>
+                                </constraints>
+                                <color key="tintColor" name="PrimaryColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" imagePlacement="leading" imagePadding="0.0">
+                                    <imageReference key="image" image="heart.fill" catalog="system" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="favouriteButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hvE-IN-xBL"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Rzd-Pl-9Y2" firstAttribute="top" secondItem="u3t-Hz-SP5" secondAttribute="top" constant="16" id="1Cr-b8-A2I"/>
+                            <constraint firstAttribute="bottom" secondItem="gj7-9g-g6h" secondAttribute="bottom" constant="16" id="60c-yv-7oK"/>
+                            <constraint firstItem="gj7-9g-g6h" firstAttribute="leading" secondItem="u3t-Hz-SP5" secondAttribute="leading" constant="16" id="87U-nm-zFE"/>
+                            <constraint firstItem="gj7-9g-g6h" firstAttribute="top" secondItem="u3t-Hz-SP5" secondAttribute="top" constant="16" id="Hp5-ql-EYp"/>
+                            <constraint firstItem="Rzd-Pl-9Y2" firstAttribute="leading" secondItem="r38-Cj-Ugc" secondAttribute="trailing" constant="16" id="J5I-3s-0ff"/>
+                            <constraint firstAttribute="bottom" secondItem="r38-Cj-Ugc" secondAttribute="bottom" constant="16" id="PaI-Ls-PEr"/>
+                            <constraint firstAttribute="trailing" secondItem="Rzd-Pl-9Y2" secondAttribute="trailing" constant="16" id="Y6Y-lv-Xvd"/>
+                            <constraint firstAttribute="bottom" secondItem="Rzd-Pl-9Y2" secondAttribute="bottom" constant="16" id="jFj-Dg-jpL"/>
+                            <constraint firstItem="r38-Cj-Ugc" firstAttribute="leading" secondItem="gj7-9g-g6h" secondAttribute="trailing" constant="16" id="lgt-7i-FYU"/>
+                            <constraint firstItem="r38-Cj-Ugc" firstAttribute="top" secondItem="u3t-Hz-SP5" secondAttribute="top" constant="16" id="peg-aL-RyI"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="u3t-Hz-SP5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Rf7-HQ-P8D"/>
+                    <constraint firstItem="u3t-Hz-SP5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Tng-Pm-oc8"/>
+                    <constraint firstAttribute="trailing" secondItem="u3t-Hz-SP5" secondAttribute="trailing" constant="16" id="kUw-73-8f0"/>
+                    <constraint firstAttribute="bottom" secondItem="u3t-Hz-SP5" secondAttribute="bottom" constant="16" id="suC-Vn-iSg"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="cardView" destination="u3t-Hz-SP5" id="4ZF-QK-A7j"/>
+                <outlet property="favouriteBtn" destination="Rzd-Pl-9Y2" id="M0T-4A-tg2"/>
+                <outlet property="leagueImage" destination="gj7-9g-g6h" id="BTu-yU-7QB"/>
+                <outlet property="leagueName" destination="N7Q-v1-wuB" id="9mD-YH-C6M"/>
+            </connections>
+            <point key="canvasLocation" x="21.374045801526716" y="179.92957746478874"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="heart.fill" catalog="system" width="128" height="107"/>
+        <namedColor name="PrimaryColor">
+            <color red="0.043137254901960784" green="0.41960784313725491" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

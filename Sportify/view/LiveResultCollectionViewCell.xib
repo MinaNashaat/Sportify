@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="LiveResultCollectionViewCell" customModule="Sportify" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="1189" height="351"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="1189" height="351"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EPU-gD-dQ1" userLabel="background">
+                        <rect key="frame" x="8" y="8" width="1189" height="335"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="3fL-yG-IBX" userLabel="cardHeader">
+                                <rect key="frame" x="8" y="8" width="1165" height="16"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="mhj-SK-69i" userLabel="timeMatch">
+                                        <rect key="frame" x="0.0" y="0.0" width="582.5" height="16"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LIVE • 71'" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vf6-Fq-GT1">
+                                                <rect key="frame" x="0.0" y="1" width="582.5" height="14.5"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                                <color key="textColor" name="RedColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Premier League" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIb-1C-XpZ">
+                                        <rect key="frame" x="582.5" y="0.0" width="582.5" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                        <color key="textColor" name="TextGrey"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="AIm-aV-q1C" userLabel="teamsResult">
+                                <rect key="frame" x="16" y="32" width="1157" height="68.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Zoa-61-EbX" userLabel="homeTeam">
+                                        <rect key="frame" x="0.0" y="0.0" width="385.5" height="68.5"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="teamLogo" translatesAutoresizingMaskIntoConstraints="NO" id="sdB-JD-Pao">
+                                                <rect key="frame" x="173" y="0.0" width="40" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="40" id="Lcu-zj-SAe"/>
+                                                    <constraint firstAttribute="height" constant="40" id="eSp-GE-tKK"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ASC" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bgq-yL-lgF">
+                                                <rect key="frame" x="175" y="48" width="35.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <color key="textColor" name="TextBlack"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 - 2" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EJ3-6w-qX3">
+                                        <rect key="frame" x="385.5" y="17.5" width="386" height="33.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="28"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gdu-y6-RWx" userLabel="awayTeam">
+                                        <rect key="frame" x="771.5" y="0.0" width="385.5" height="68.5"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="teamLogo" translatesAutoresizingMaskIntoConstraints="NO" id="OhN-0h-XdK">
+                                                <rect key="frame" x="172.5" y="0.0" width="40" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="6Ob-I8-Ym8"/>
+                                                    <constraint firstAttribute="width" constant="40" id="GU7-ov-qH4"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ASC" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g3W-68-WlI">
+                                                <rect key="frame" x="175" y="48" width="35.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <color key="textColor" name="TextBlack"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cwh-rz-yDX" userLabel="divider">
+                                <rect key="frame" x="24" y="108.5" width="1141" height="1.5"/>
+                                <color key="backgroundColor" name="GreyColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1.5" id="VSc-ge-Z4L"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="ocR-vJ-lQk">
+                                <rect key="frame" x="8" y="118" width="1173" height="40"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="WJc-U3-9Oo">
+                                        <rect key="frame" x="0.0" y="0.0" width="586.5" height="40"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⚽ Calvert-Lewin 14'" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uf4-m9-d79">
+                                                <rect key="frame" x="0.0" y="0.0" width="131.5" height="16"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⚽ Calvert-Lewin 14'" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qwr-e2-uIa">
+                                                <rect key="frame" x="0.0" y="24" width="131.5" height="16"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Wrf-c7-oMh">
+                                        <rect key="frame" x="586.5" y="0.0" width="586.5" height="40"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⚽ Calvert-Lewin 14'" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQj-BY-na4">
+                                                <rect key="frame" x="455" y="0.0" width="131.5" height="16"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⚽ Calvert-Lewin 14'" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5t8-GS-jxo">
+                                                <rect key="frame" x="455" y="24" width="131.5" height="16"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="AIm-aV-q1C" firstAttribute="top" secondItem="3fL-yG-IBX" secondAttribute="bottom" constant="8" id="4d7-P6-VHM"/>
+                            <constraint firstItem="cwh-rz-yDX" firstAttribute="top" secondItem="AIm-aV-q1C" secondAttribute="bottom" constant="8" id="7NT-qd-Kje"/>
+                            <constraint firstItem="cwh-rz-yDX" firstAttribute="leading" secondItem="EPU-gD-dQ1" secondAttribute="leading" constant="24" id="DdP-2v-UWy"/>
+                            <constraint firstItem="3fL-yG-IBX" firstAttribute="leading" secondItem="EPU-gD-dQ1" secondAttribute="leading" constant="8" id="EQO-Uv-0ov"/>
+                            <constraint firstItem="ocR-vJ-lQk" firstAttribute="trailing" secondItem="EPU-gD-dQ1" secondAttribute="trailing" constant="-8" id="Oql-ad-fJ3"/>
+                            <constraint firstItem="ocR-vJ-lQk" firstAttribute="top" secondItem="cwh-rz-yDX" secondAttribute="bottom" constant="8" id="Qms-Zg-9Cd"/>
+                            <constraint firstItem="cwh-rz-yDX" firstAttribute="trailing" secondItem="EPU-gD-dQ1" secondAttribute="trailing" constant="-24" id="UIs-Pa-Kh6"/>
+                            <constraint firstItem="3fL-yG-IBX" firstAttribute="top" secondItem="EPU-gD-dQ1" secondAttribute="top" constant="8" id="awI-as-RjU"/>
+                            <constraint firstItem="ocR-vJ-lQk" firstAttribute="leading" secondItem="EPU-gD-dQ1" secondAttribute="leading" constant="8" id="bq6-Xj-gmv"/>
+                            <constraint firstItem="3fL-yG-IBX" firstAttribute="trailing" secondItem="EPU-gD-dQ1" secondAttribute="trailing" constant="-16" id="hZe-Py-giE"/>
+                            <constraint firstItem="AIm-aV-q1C" firstAttribute="trailing" secondItem="EPU-gD-dQ1" secondAttribute="trailing" constant="-16" id="jMx-c8-XvX"/>
+                            <constraint firstItem="AIm-aV-q1C" firstAttribute="leading" secondItem="EPU-gD-dQ1" secondAttribute="leading" constant="16" id="oTG-7y-jGy"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="EPU-gD-dQ1" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="98H-r9-XQL"/>
+                <constraint firstItem="EPU-gD-dQ1" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="EhU-rl-7nG"/>
+                <constraint firstItem="EPU-gD-dQ1" firstAttribute="trailing" secondItem="gTV-IL-0wX" secondAttribute="trailing" constant="8" id="bHy-6w-Z9l"/>
+                <constraint firstAttribute="bottom" secondItem="EPU-gD-dQ1" secondAttribute="bottom" constant="8" id="mWa-6k-5YL"/>
+            </constraints>
+            <size key="customSize" width="1189" height="351"/>
+            <connections>
+                <outlet property="awayGoalsStack" destination="Wrf-c7-oMh" id="RoV-99-OQd"/>
+                <outlet property="awayTeamLogo" destination="OhN-0h-XdK" id="t39-fA-6Ox"/>
+                <outlet property="awayTeamPlayerScores" destination="RQj-BY-na4" id="eNW-C7-zRi"/>
+                <outlet property="cardView" destination="EPU-gD-dQ1" id="IPC-AE-g1H"/>
+                <outlet property="homeGoalsStack" destination="WJc-U3-9Oo" id="H0q-DD-sOF"/>
+                <outlet property="homeTeamLabel" destination="g3W-68-WlI" id="jUX-i6-abP"/>
+                <outlet property="homeTeamLogo" destination="sdB-JD-Pao" id="PTA-px-pen"/>
+                <outlet property="homeTeamName" destination="Bgq-yL-lgF" id="3sJ-es-Mm3"/>
+                <outlet property="homeTeamPlayerScored" destination="Uf4-m9-d79" id="EjL-14-CT3"/>
+                <outlet property="leagueNameLabel" destination="wIb-1C-XpZ" id="UPT-WS-Y74"/>
+                <outlet property="matchResultLabel" destination="EJ3-6w-qX3" id="qbd-pZ-xcx"/>
+                <outlet property="matchTimeLabel" destination="vf6-Fq-GT1" id="VwG-2t-3Ns"/>
+                <outlet property="playersScoresRow" destination="ocR-vJ-lQk" id="8Sv-lV-Wfv"/>
+            </connections>
+            <point key="canvasLocation" x="-199.27536231884059" y="5.0223214285714279"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="teamLogo" width="36" height="36"/>
+        <namedColor name="GreyColor">
+            <color red="0.87450980392156863" green="0.89411764705882357" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="RedColor">
+            <color red="0.72941176470588232" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TextBlack">
+            <color red="0.094117647058823528" green="0.11372549019607843" blue="0.098039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TextGrey">
+            <color red="0.37254901960784315" green="0.36862745098039218" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

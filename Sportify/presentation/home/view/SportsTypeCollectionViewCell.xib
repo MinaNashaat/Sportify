@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="SportsTypeCollectionViewCell" customModule="Sportify" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="399" height="312"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="399" height="312"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OIJ-xu-Nmj">
+                        <rect key="frame" x="0.0" y="0.0" width="399" height="312"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Football" translatesAutoresizingMaskIntoConstraints="NO" id="3DL-Lh-I3e">
+                                <rect key="frame" x="0.0" y="0.0" width="399" height="312"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hlh-hY-uby" userLabel="sport name back">
+                                <rect key="frame" x="0.0" y="252" width="399" height="60"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Football" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qmF-TH-AHX">
+                                        <rect key="frame" x="16" y="15.5" width="367" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="qmF-TH-AHX" firstAttribute="centerY" secondItem="hlh-hY-uby" secondAttribute="centerY" id="8Gp-0K-Lcw"/>
+                                    <constraint firstAttribute="trailing" secondItem="qmF-TH-AHX" secondAttribute="trailing" constant="16" id="QAT-Rm-tQP"/>
+                                    <constraint firstAttribute="height" constant="60" id="fiC-vT-MUk"/>
+                                    <constraint firstItem="qmF-TH-AHX" firstAttribute="leading" secondItem="hlh-hY-uby" secondAttribute="leading" constant="16" id="o57-7r-2pB"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="3DL-Lh-I3e" secondAttribute="trailing" id="HoU-EJ-ToE"/>
+                            <constraint firstItem="3DL-Lh-I3e" firstAttribute="leading" secondItem="OIJ-xu-Nmj" secondAttribute="leading" id="Uyx-KG-3RS"/>
+                            <constraint firstAttribute="trailing" secondItem="hlh-hY-uby" secondAttribute="trailing" id="dqD-Jg-UFT"/>
+                            <constraint firstAttribute="bottom" secondItem="3DL-Lh-I3e" secondAttribute="bottom" id="kXM-KI-GSU"/>
+                            <constraint firstItem="3DL-Lh-I3e" firstAttribute="top" secondItem="OIJ-xu-Nmj" secondAttribute="top" id="q3S-dG-dp4"/>
+                            <constraint firstItem="hlh-hY-uby" firstAttribute="leading" secondItem="OIJ-xu-Nmj" secondAttribute="leading" id="ubA-1t-ADc"/>
+                            <constraint firstAttribute="bottom" secondItem="hlh-hY-uby" secondAttribute="bottom" id="w4j-8b-38S"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="OIJ-xu-Nmj" secondAttribute="trailing" id="Ba3-cD-hb6"/>
+                <constraint firstItem="OIJ-xu-Nmj" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="DHm-oI-Sra"/>
+                <constraint firstItem="OIJ-xu-Nmj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="EzK-pu-Ggg"/>
+                <constraint firstAttribute="bottom" secondItem="OIJ-xu-Nmj" secondAttribute="bottom" id="tE8-LT-OEl"/>
+            </constraints>
+            <size key="customSize" width="399" height="312"/>
+            <connections>
+                <outlet property="spordCardBackground" destination="OIJ-xu-Nmj" id="Gf8-da-Ha8"/>
+                <outlet property="sportImage" destination="3DL-Lh-I3e" id="Vyv-Su-AlJ"/>
+                <outlet property="sportNameBack" destination="hlh-hY-uby" id="ElB-zb-Coz"/>
+                <outlet property="sportText" destination="qmF-TH-AHX" id="PWC-Gp-3hQ"/>
+            </connections>
+            <point key="canvasLocation" x="83.206106870229007" y="238.73239436619718"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="Football" width="2816" height="1536"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
